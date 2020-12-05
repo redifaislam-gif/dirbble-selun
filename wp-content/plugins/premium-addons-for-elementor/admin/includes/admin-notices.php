@@ -61,8 +61,6 @@ class Admin_Notices {
         
         $this->handle_major_update_notice();
 
-        $this->handle_bf_notice();
-        
     }
     
     /**
@@ -86,8 +84,6 @@ class Admin_Notices {
         }
         
         $this->get_major_update_notice();
-
-        $this->get_bf_notice();
         
     }
 
@@ -140,64 +136,6 @@ class Admin_Notices {
         exit;
     }
 
-    public function handle_bf_notice() {
-
-        if ( ! isset( $_GET['papro_new_bf'] ) ) {
-            return;
-        }
-
-        if ( 'opt_out' === $_GET['papro_new_bf'] ) {
-            check_admin_referer( 'opt_out' );
-
-            update_option( 'papro_new_bf_notice', '1' );
-        }
-
-        wp_redirect( remove_query_arg( 'papro_new_bf' ) );
-        
-        exit;
-
-    }
-
-    public function get_bf_notice() {
-        
-        $papro_path = 'premium-addons-pro/premium-addons-pro-for-elementor.php';
-        
-        $is_papro_installed = Helper_Functions::is_plugin_installed( $papro_path );
-        
-        $license_status = get_option( 'papro_license_status' );
-        
-        $bf_notice = get_option( 'papro_new_bf_notice' );
-        
-        if( ( $is_papro_installed && 'valid' === $license_status ) || '1' === $bf_notice )
-            return;
-            
-        $theme = Helper_Functions::get_installed_theme();
-
-        $link = Helper_Functions::get_campaign_link( 'https://premiumaddons.com/black-friday/', 'wp-dash', 'black-friday-2020-notification', 'black-friday-2020' ); 
-
-        ?>
-
-        <div class="error pa-notice-wrap pa-new-feature-notice pa-review-notice">
-            <div class="pa-img-wrap">
-                <img src="<?php echo PREMIUM_ADDONS_URL .'admin/images/pa-logo-symbol.png'; ?>">
-            </div>
-            <div class="pa-text-wrap">
-                <p>
-                    <?php echo __('Black Friday Deal is ON! Get <b>25% Discount</b> for a Limited Time Only', 'premium-addons-for-elementor'); ?>
-                    <a class="button button-primary" href="<?php echo esc_url( $link ); ?>" target="_blank">
-                        <span><?php echo __('Get The Deal','premium-addons-for-elementor'); ?></span>
-                    </a>
-                </p>
-            </div>
-            <div class="pa-notice-close" data-notice="black-friday">
-                <span class="dashicons dashicons-dismiss"></span>
-            </div>
-        </div>
-
-        <?php
-
-    }
-    
     /**
      * Required plugin check
      * 

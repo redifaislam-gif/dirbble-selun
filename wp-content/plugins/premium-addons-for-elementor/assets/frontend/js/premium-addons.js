@@ -1523,18 +1523,26 @@
 
     /****** Premium Team Members Handler ******/
     var PremiumTeamMembersHandler = function ($scope, $) {
+
         var $persons = $scope.find(".multiple-persons");
+
         if (!$persons.length) return;
+
         var carousel = $persons.data("carousel");
+
         if (carousel) {
+
             var autoPlay = $persons.data("play"),
                 speed = $persons.data("speed"),
                 rtl = $persons.data("rtl"),
                 colsNumber = $persons.data("col"),
+                colsTablet = $persons.data("col-tablet"),
+                colsMobile = $persons.data("col-mobile"),
                 prevArrow =
                     '<a type="button" data-role="none" class="carousel-arrow carousel-prev" aria-label="Next" role="button" style=""><i class="fas fa-angle-left" aria-hidden="true"></i></a>',
                 nextArrow =
                     '<a type="button" data-role="none" class="carousel-arrow carousel-next" aria-label="Next" role="button" style=""><i class="fas fa-angle-right" aria-hidden="true"></i></a>';
+
             $persons.slick({
                 infinite: true,
                 slidesToShow: colsNumber,
@@ -1542,14 +1550,14 @@
                 responsive: [{
                     breakpoint: 1025,
                     settings: {
-                        slidesToShow: 1,
+                        slidesToShow: colsTablet,
                         slidesToScroll: 1
                     }
                 },
                 {
                     breakpoint: 768,
                     settings: {
-                        slidesToShow: 1,
+                        slidesToShow: colsMobile,
                         slidesToScroll: 1
                     }
                 }
@@ -1563,6 +1571,7 @@
                 pauseOnHover: true
             });
         }
+
         if ($persons.hasClass("premium-person-style1")) return;
 
         if ("yes" !== $persons.data("persons-equal")) return;

@@ -291,6 +291,8 @@ class Premium_Person extends Widget_Base {
                     '16.667%'=> __('6 Columns', 'premium-addons-for-elementor'),
                 ],
                 'default'           => '33.33%',
+                'tablet_default'    => '100%',
+                'mobile_default'    => '100%',
                 'render_type'       => 'template',
                 'selectors'         => [
                     '{{WRAPPER}} .premium-person-container' => 'width: {{VALUE}}'
@@ -1496,18 +1498,23 @@ class Premium_Person extends Widget_Base {
             $this->add_render_attribute('persons_container', 'data-carousel', $carousel );
             
             $columns = intval ( 100 / substr( $settings['persons_per_row'], 0, strpos( $settings['persons_per_row'], '%') ) );
+
+            $columns_tablet = intval ( 100 / substr( $settings['persons_per_row_tablet'], 0, strpos( $settings['persons_per_row_tablet'], '%') ) );
+
+            $columns_mobile = intval ( 100 / substr( $settings['persons_per_row_mobile'], 0, strpos( $settings['persons_per_row_mobile'], '%') ) );
         
-            $this->add_render_attribute('persons_container', 'data-col', $columns );
-            
             $play = 'yes' === $settings['carousel_play'] ? true : false;
             
             $speed = ! empty( $settings['carousel_autoplay_speed'] ) ? $settings['carousel_autoplay_speed'] : 5000;
             
-            $this->add_render_attribute('persons_container', 'data-play', $play );
-            
-            $this->add_render_attribute('persons_container', 'data-speed', $speed );
-            
-            $this->add_render_attribute('persons_container', 'data-rtl', is_rtl() );
+            $this->add_render_attribute('persons_container', [
+                'data-col' => $columns,
+                'data-col-tablet' => $columns_tablet,
+                'data-col-mobile' => $columns_mobile,
+                'data-play' => $play,
+                'data-speed'=> $speed,
+                'data-rtl'  => is_rtl()
+            ]);
             
         }
             
@@ -1792,18 +1799,23 @@ class Premium_Person extends Widget_Base {
         
         if( carousel ) {
             
-            view.addRenderAttribute('persons_container', 'data-carousel', carousel );
+            view.addRenderAttribute('persons_container',  );
             
             var play = 'yes' === settings.carousel_play ? true : false,
                 speed = '' !== settings.carousel_autoplay_speed ? settings.carousel_autoplay_speed : 5000;
                 
-            var columns = parseInt( 100 / settings.persons_per_row.substr( 0, settings.persons_per_row.indexOf('%') ) );
+            var columns = parseInt( 100 / settings.persons_per_row.substr( 0, settings.persons_per_row.indexOf('%') ) ),
+                columnsTablet = parseInt( 100 / settings.persons_per_row_tablet.substr( 0, settings.persons_per_row_tablet.indexOf('%') ) ),
+                columnsMob  = parseInt( 100 / settings.persons_per_row_mobile.substr( 0, settings.persons_per_row_mobile.indexOf('%') ) );
         
-            view.addRenderAttribute('persons_container', 'data-col', columns );
-            
-            view.addRenderAttribute('persons_container', 'data-play', play );
-            
-            view.addRenderAttribute('persons_container', 'data-speed', speed );
+            view.addRenderAttribute('persons_container', {
+                'data-carousel': carousel,
+                'data-col': columns,
+                'data-col-tablet': columnsTablet,
+                'data-col-mobile': columnsMob,
+                'data-play':  play,
+                'data-speed':  speed
+            });
             
         }
             
