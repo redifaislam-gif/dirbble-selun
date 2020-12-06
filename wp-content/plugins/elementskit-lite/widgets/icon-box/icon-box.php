@@ -38,6 +38,23 @@ class ElementsKit_Widget_Icon_Box extends Widget_Base {
         );
 
         $this->add_control(
+            'enable_equal_height',
+            [
+                'label'     => esc_html__( 'Equal Height?', 'elementskit-lite' ),
+                'type'      => Controls_Manager::SELECT,
+                'options'   => [
+                    'enable' => esc_html__( 'Enable', 'elementskit-lite' ),
+                    'disable' => esc_html__( 'Disable', 'elementskit-lite' ),
+                ],
+                'default'   => 'disable',
+                'prefix_class'  => 'ekit-equal-height-',
+                'selectors' => [
+					'{{WRAPPER}}.ekit-equal-height-enable, {{WRAPPER}}.ekit-equal-height-enable .elementor-widget-container, {{WRAPPER}}.ekit-equal-height-enable .ekit-wid-con, {{WRAPPER}}.ekit-equal-height-enable .ekit-wid-con .elementskit-infobox' => 'height: 100%;',
+                ],
+            ]
+        );
+
+        $this->add_control(
             'ekit_icon_box_enable_header_icon', [
                 'label'       => esc_html__( 'Icon Type', 'elementskit-lite' ),
                 'type'        => Controls_Manager::CHOOSE,

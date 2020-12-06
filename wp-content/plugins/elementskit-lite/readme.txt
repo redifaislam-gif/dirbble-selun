@@ -3,7 +3,7 @@ Contributors: Ataurr, wpmet, emranio, pobonpaul1994, easin55474, khalidjubair, e
 Tags: elementor addons, mega menu, header footer builder, elements, elementor extensions, elementor modules, page builder addons, elementor addon, elementor widget, addons
 Requires at least: 5.0
 Tested up to: 5.5
-Stable tag: 2.0.11
+Stable tag: 2.0.12
 Requires PHP: 7.0
 License: GPLv3 or later
 License URI: https://www.gnu.org/licenses/gpl-3.0.html
@@ -345,9 +345,14 @@ Our Hotspot Widget for Elementor page builder offers lots of styles including: H
 - Widgets area
 
 == Changelog ==
+Version: 2.0.12 (06-12-2020)
+New: Added 'Equal Height' feature on 'Icon Box' and 'Image Box' widgets.
+Fix: Dashboard modal css not found on some clients site.
+Fix: JS conflict issues fixed with 'WoodMart' theme and 'Rank Math' plugin.
+Fix: text-domain missing bug is fixed
+
 Version: 2.0.11
 Fix: Updated Facebook community link
-
 
 Version: 2.0.10 (30-11-2020)
 New: Option to set Pricing Table Widget button 'text-align' and 'width'.

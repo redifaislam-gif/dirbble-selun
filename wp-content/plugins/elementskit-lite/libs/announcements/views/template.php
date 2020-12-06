@@ -133,15 +133,15 @@ foreach ($this->announcements as $announcements) {
 <div class="wpmet-dashboard-widget-block">
     <div class="wpmet-footer-bar">
         <a href="https://help.wpmet.com/" target="_blank">
-            <?php echo esc_html__('Need Help?'); ?> 
+            <?php echo esc_html__('Need Help?', $this->text_domain); ?> 
             <span aria-hidden="true" class="dashicons dashicons-external"></span>
         </a>
         <a href="https://wpmet.com/blog/" target="_blank">
-        <?php echo esc_html__('Blog') ;?> 
+        <?php echo esc_html__('Blog', $this->text_domain) ;?> 
             <span aria-hidden="true" class="dashicons dashicons-external"></span>
         </a>
         <a href="https://go.wpmet.com/facebook-group" target="_blank" style="color: #27ae60;">
-            <?php echo esc_html__('Facebook Community'); ?> 
+            <?php echo esc_html__('Facebook Community', $this->text_domain); ?> 
             <span aria-hidden="true" class="dashicons dashicons-external"></span>
         </a>
     </div>

@@ -7,13 +7,13 @@ if(!class_exists('\Wpmet\Libs\Banner\Init')):
 
 class Init {
 
-    protected $script_version = '1.0.6';
+    protected $script_version = '1.0.7';
 
     protected $key;
     protected $api;
     protected $data;
     protected $last_check;
-    protected $check_interval = (3600 * 2);
+    protected $check_interval = (3600 * 3);
     
     protected $plugin_screens;
     

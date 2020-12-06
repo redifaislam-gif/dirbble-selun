@@ -18,7 +18,7 @@ class Init{
 		// enqueue styles and scripts
 		add_action('elementor/frontend/after_enqueue_styles', [$this, 'load_styles']);
 		add_action('elementor/frontend/before_enqueue_scripts', [$this, 'load_scripts']);
-		add_action('elementor/editor/before_enqueue_scripts', [$this, 'editor_scripts']);
+		add_action('elementor/frontend/before_enqueue_scripts', [$this, 'editor_scripts']);
 
 		// include all necessary files
 		$this->include_files();
@@ -46,7 +46,7 @@ class Init{
 	}
 
 	public function editor_scripts(){
-		wp_enqueue_script( 'ekit-onepage-scroll-editor', $this->url . 'assets/js/editor.js', ['jquery', 'elementor-editor'], \ElementsKit_Lite::version(), true );
+		wp_enqueue_script( 'ekit-onepage-scroll-editor', $this->url . 'assets/js/editor.js', ['jquery', 'elementor-frontend'], \ElementsKit_Lite::version(), true );
 	}
 
 	public static function get_page_setting($id) {

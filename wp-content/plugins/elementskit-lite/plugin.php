@@ -112,7 +112,7 @@ class Plugin{
         ->set_parent_menu_slug('elementskit')
         ->set_pro_link((
             (\ElementsKit_Lite::package_type() != 'free') ? '' :
-            'https://wpmet.com/plugin/elementskit/?utm_source=elementskit&utm_medium=inplugin_campaign&utm_campaign=go_pro_menu'
+            'https://wpmet.com/plugin/elementskit/?utm_source=elementskit_lite&utm_medium=inplugin_campaign&utm_campaign=go_pro_menu'
             )
         )
         ->set_default_grid_thumbnail(\ElementsKit_Lite::lib_url() . 'pro-awareness/assets/support.png')

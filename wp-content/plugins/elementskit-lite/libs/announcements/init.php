@@ -7,15 +7,15 @@ if (!class_exists('\Wpmet\Libs\Announcements\Init')):
 
     class Init {
 
-        protected $script_version = '1.0.0';
+        protected $script_version = '1.0.1';
 
         protected $key;
         protected $api;
         protected $data;
         protected $title;
         protected $plugin_link = [];
-        protected $last_check = 3600 * 2; 
-        protected $check_interval;
+        protected $last_check; 
+        protected $check_interval = (3600 * 3);
 
         protected $plugin_screens;
 
@@ -40,7 +40,7 @@ if (!class_exists('\Wpmet\Libs\Announcements\Init')):
          * @return string
          */
         public function get_script_location() {
-            return dirname(__FILE__);
+            return __FILE__;
         }
 
         public function set_plugin($link_title, $weblink = 'https://wpmet.com/') {
@@ -272,7 +272,7 @@ if (!class_exists('\Wpmet\Libs\Announcements\Init')):
                 return $a['priority'] <=> $b['priority'];
             });
 
-            include_once $this->get_script_location() . '/views/template.php';
+            include_once 'views/template.php';
             
         }
 

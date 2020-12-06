@@ -82,6 +82,26 @@ class ElementsKit_Widget_Image_Box extends Widget_Base {
         );
 
         $this->add_control(
+            'enable_equal_height',
+            [
+                'label'     => esc_html__( 'Equal Height?', 'elementskit-lite' ),
+                'type'      => Controls_Manager::SELECT,
+                'options'   => [
+                    'enable' => esc_html__( 'Enable', 'elementskit-lite' ),
+                    'disable' => esc_html__( 'Disable', 'elementskit-lite' ),
+                ],
+                'default'   => 'disable',
+                'prefix_class'  => 'ekit-equal-height-',
+                'selectors' => [
+					'{{WRAPPER}}.ekit-equal-height-enable, {{WRAPPER}}.ekit-equal-height-enable .elementor-widget-container, {{WRAPPER}}.ekit-equal-height-enable .ekit-wid-con, {{WRAPPER}}.ekit-equal-height-enable .ekit-wid-con .elementskit-info-image-box' => 'height: 100%;',
+                ],
+                'condition' => [
+                    'ekit_image_box_style_simple!'   => 'floating-style'
+                ]
+            ]
+        );
+
+        $this->add_control(
             'ekit_image_box_enable_link',
             [
                 'label' => esc_html__( 'Enable Link', 'elementskit-lite' ),

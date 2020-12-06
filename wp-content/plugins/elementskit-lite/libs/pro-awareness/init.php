@@ -36,7 +36,7 @@ class Init {
     * @return string
     */
     public function get_script_location() {
-        return dirname(__FILE__);
+        return __FILE__;
     }
     
 
