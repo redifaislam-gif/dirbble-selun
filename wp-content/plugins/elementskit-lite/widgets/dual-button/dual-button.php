@@ -28,6 +28,10 @@ class ElementsKit_Widget_Dual_Button extends Widget_Base {
         return Handler::get_categories();
     }
 
+    public function get_help_url() {
+        return '';
+    }
+
     protected function _register_controls() {
 
         $this->start_controls_section(
@@ -166,7 +170,7 @@ class ElementsKit_Widget_Dual_Button extends Widget_Base {
                 [
                     'label' => esc_html__( 'Link', 'elementskit-lite' ),
                     'type' => Controls_Manager::URL,
-                    'placeholder' => esc_html__( 'https://your-link.com', 'elementskit-lite' ),
+                    'placeholder' => esc_html__( 'https://wpmet.com', 'elementskit-lite' ),
                     'show_external' => true,
                     'default' => [
                         'url' => '#',
@@ -295,7 +299,7 @@ class ElementsKit_Widget_Dual_Button extends Widget_Base {
                 [
                     'label' => esc_html__( 'Link', 'elementskit-lite' ),
                     'type' => Controls_Manager::URL,
-                    'placeholder' => esc_html__( 'https://your-link.com', 'elementskit-lite' ),
+                    'placeholder' => esc_html__( 'https://wpmet.com', 'elementskit-lite' ),
                     'show_external' => true,
                     'default' => [
                         'url' => '#',
@@ -438,7 +442,6 @@ class ElementsKit_Widget_Dual_Button extends Widget_Base {
                         [
                             'name' => 'ekit_double_button_one_typography',
                             'label' => esc_html__( 'Typography', 'elementskit-lite' ),
-                            'scheme' => Scheme_Typography::TYPOGRAPHY_1,
                             'selector' => '{{WRAPPER}} .ekit-double-btn.ekit-double-btn-one',
                         ]
                     );
@@ -659,7 +662,6 @@ class ElementsKit_Widget_Dual_Button extends Widget_Base {
                         [
                             'name' => 'ekit_double_button_two_typography',
                             'label' => esc_html__( 'Typography', 'elementskit-lite' ),
-                            'scheme' => Scheme_Typography::TYPOGRAPHY_1,
                             'selector' => '{{WRAPPER}} .ekit-double-btn.ekit-double-btn-two',
                         ]
                     );
@@ -870,7 +872,6 @@ class ElementsKit_Widget_Dual_Button extends Widget_Base {
                 [
                     'name' => 'ekit_double_button_middletext_typography',
                     'label' => esc_html__( 'Typography', 'elementskit-lite' ),
-                    'scheme' => Scheme_Typography::TYPOGRAPHY_1,
                     'selector' => '{{WRAPPER}} .ekit-wid-con .ekit_button_middle_text',
                 ]
             );
@@ -1077,6 +1078,4 @@ class ElementsKit_Widget_Dual_Button extends Widget_Base {
             <?php
         }
     }
-
-    protected function _content_template() { }
 }

@@ -28,6 +28,10 @@ class ElementsKit_Widget_Header_Info extends Widget_Base
         return Handler::get_categories();
     }
 
+    public function get_help_url() {
+        return '';
+    }
+
     protected function _register_controls()
     {
 
@@ -70,7 +74,7 @@ class ElementsKit_Widget_Header_Info extends Widget_Base
             [
                 'label' => esc_html__( 'Link', 'elementskit-lite' ),
                 'type' => Controls_Manager::URL,
-                'placeholder' => esc_html__( 'https://your-link.com', 'elementskit-lite' ),
+                'placeholder' => esc_html__( 'https://wpmet.com', 'elementskit-lite' ),
                 'show_external' => true,
                 'default' => [
                     'url' => '',
@@ -160,7 +164,6 @@ class ElementsKit_Widget_Header_Info extends Widget_Base
             [
                 'name' => 'elementskit_content_typography',
                 'label' => esc_html__( 'Typography', 'elementskit-lite' ),
-                'scheme' => Scheme_Typography::TYPOGRAPHY_1,
                 'selector' => '{{WRAPPER}} .ekit-header-info > li > a',
             ]
         );

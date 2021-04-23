@@ -1,10 +1,15 @@
 <?php
+/**
+ * PA WPML Carousel.
+ */
 
 namespace PremiumAddons\Compatibility\WPML\Widgets;
 
 use WPML_Elementor_Module_With_Items;
 
-if ( ! defined('ABSPATH') ) exit; // No access of directly access
+if ( ! defined( 'ABSPATH' ) ) {
+	exit; // No access of directly access.
+}
 
 /**
  * Carousel
@@ -46,9 +51,9 @@ class Carousel extends WPML_Elementor_Module_With_Items {
 	 * @return string
 	 */
 	protected function get_title( $field ) {
-		
-        return __( 'Carousel: Template', 'premium-addons-for-elementor' );
-		
+
+		return __( 'Carousel: Template', 'premium-addons-for-elementor' );
+
 	}
 
 	/**
@@ -56,7 +61,7 @@ class Carousel extends WPML_Elementor_Module_With_Items {
 	 *
 	 * @since 3.2.4
 	 *
-	 * @return string
+	 * @return string field type
 	 */
 	protected function get_editor_type( $field ) {
 

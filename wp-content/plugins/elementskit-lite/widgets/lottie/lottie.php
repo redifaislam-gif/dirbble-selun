@@ -39,6 +39,10 @@ class ElementsKit_Widget_Lottie extends Widget_Base {
         return Handler::get_categories();
     }
 
+    public function get_help_url() {
+        return '';
+    }
+
     protected function _register_controls() {
         $this->start_controls_section(
             'ekit_lottie',

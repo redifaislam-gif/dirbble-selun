@@ -37,8 +37,6 @@
     if( !in_array($value, $no_demo) ) :
         if($value === 'parallax'){
             $value = 'effects';
-        } elseif($value === 'megamenu'){
-            $slug = '';
         }
     ?>
         <a target="_blank" href="https://wpmet.com/plugin/<?php echo esc_attr($slug) . esc_attr($value); ?>/?utm_source=elementskit_lite&utm_medium=inplugin_campaign&utm_campaign=widgets_modules_demo_link" class="ekit-admin-demo-tooltip"><i class="fa fa-laptop"></i><?php esc_html_e('View Demo', 'elementskit-lite'); ?></a>

@@ -12,7 +12,7 @@
 						$iconStart = 'fas fa-star active';
 					}
 				?>
-				<li><a href="#"><i class="<?php esc_attr_e( $iconStart );?>"></i></a></li>
+				<li><a href="#"><i class="<?php esc_attr_e( $iconStart, 'elementskit-lite' );?>"></i></a></li>
 
 				<?php }?>
 			</ul>
@@ -39,6 +39,11 @@
 			</div>
 			<?php endif;?>
 		</div>
+		
+        <?php if ( isset($testimonial['review']) && !empty($testimonial['review'])) : ?>
+			<div class="elementskit-commentor-content"><p><?php echo isset($testimonial['review']) ? \ElementsKit_Lite\Utils::kses($testimonial['review']) : ''; ?></p></div>
+		<?php endif;  ?>
+
 		<div class="elementskit-commentor-bio">
 			<div class="elementkit-commentor-details <?php echo esc_attr($ekit_testimonial_client_area_alignment); ?>">
 				<?php
@@ -46,7 +51,7 @@
 					$clientLogo = isset($testimonial['client_photo']['url']) ? $testimonial['client_photo']['url'] : '';
 				?>
 					<div class="elementskit-commentor-image">
-						<img src="<?php echo esc_url($clientLogo); ?>"  height="<?php echo esc_attr($ekit_testimonial_client_image_size['size']); ?>" width="<?php echo esc_attr($ekit_testimonial_client_image_size['size']); ?>" alt="<?php esc_attr_e("Client Logo", "agmycoo");?>">
+						<img src="<?php echo esc_url($clientLogo); ?>"  height="<?php echo esc_attr($ekit_testimonial_client_image_size['size']); ?>" width="<?php echo esc_attr($ekit_testimonial_client_image_size['size']); ?>" alt="<?php esc_attr_e("Client Logo", "elementskit-lite");?>">
 					</div>
 				<?php
 					}
@@ -75,9 +80,7 @@
 			</div>
 			<?php endif;?>
 		</div>
-        <?php if ( isset($testimonial['review']) && !empty($testimonial['review'])) : ?>
-			<div class="elementskit-commentor-content"><p><?php echo isset($testimonial['review']) ? \ElementsKit_Lite\Utils::kses($testimonial['review']) : ''; ?></p></div>
-		<?php endif;  ?>
+		
 	</div>
 	<?php endforeach; ?>
 </div><!-- .testimonial-block-slider2 END -->

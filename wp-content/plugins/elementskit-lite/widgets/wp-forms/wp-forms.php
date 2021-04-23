@@ -32,6 +32,10 @@ class ElementsKit_Widget_Wp_Forms extends Widget_Base {
         return Handler::get_categories();
 	}
 
+    public function get_help_url() {
+        return '';
+    }
+
     protected function _register_controls() {
         $this->start_controls_section(
             'ekit_wpform_section_tab', [
@@ -77,7 +81,6 @@ class ElementsKit_Widget_Wp_Forms extends Widget_Base {
             [
                 'name'              => 'ekit_wpForms_typography_label',
                 'label'             => __( 'Typography', 'elementskit-lite' ),
-                'scheme'            => Scheme_Typography::TYPOGRAPHY_4,
                 'selector'          => '{{WRAPPER}} .ekit_wpForms_container .wpforms-field label',
             ]
         );
@@ -377,7 +380,6 @@ class ElementsKit_Widget_Wp_Forms extends Widget_Base {
             [
                 'name'              => 'ekit_wpForms_field_typography',
                 'label'             => __( 'Typography', 'elementskit-lite' ),
-                'scheme'            => Scheme_Typography::TYPOGRAPHY_4,
                 'selector'          => '{{WRAPPER}} .ekit_wpForms_container .wpforms-field input:not([type=radio]):not([type=checkbox]):not([type=submit]):not([type=button]):not([type=image]):not([type=file]), {{WRAPPER}} .ekit_wpForms_container .wpforms-field textarea, {{WRAPPER}} .ekit_wpForms_container .wpforms-field select',
                 'separator'         => 'before',
             ]
@@ -486,7 +488,6 @@ class ElementsKit_Widget_Wp_Forms extends Widget_Base {
             [
                 'name'              => 'ekit_wpForms_button_typography',
                 'label'             => __( 'Typography', 'elementskit-lite' ),
-                'scheme'            => Scheme_Typography::TYPOGRAPHY_4,
                 'selector'          => '{{WRAPPER}} .ekit_wpForms_container .wpforms-submit-container .wpforms-submit',
                 'separator'         => 'before',
             ]
@@ -648,7 +649,7 @@ class ElementsKit_Widget_Wp_Forms extends Widget_Base {
 			Group_Control_Border::get_type(),
 			[
 				'name' => 'ekit_wpForms_error_field_input_border',
-				'label' => __( 'Border', 'plugin-domain' ),
+				'label' => __( 'Border', 'elementskit-lite' ),
 				'selector' => '{{WRAPPER}} .ekit_wpForms_container input.wpforms-error, {{WRAPPER}} .ekit_wpForms_container textarea.wpforms-error',
 			]
 		);
@@ -669,7 +670,7 @@ class ElementsKit_Widget_Wp_Forms extends Widget_Base {
 
 		if ( ! empty( $settings['ekit_wpform_form_id'] ) ) {
             echo \ElementsKit_Lite\Utils::ekit_do_shortcode( 'wpforms', [
-                'id' => $settings['ekit_wpform_form_id'],
+                'id' => intval($settings['ekit_wpform_form_id']),
             ] );
 		}
 

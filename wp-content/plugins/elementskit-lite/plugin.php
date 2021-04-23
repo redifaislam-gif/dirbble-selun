@@ -1,6 +1,8 @@
 <?php
 namespace ElementsKit_Lite;
 
+
+
 defined( 'ABSPATH' ) || exit;
 
 
@@ -50,6 +52,8 @@ class Plugin{
         // Register default modules
         Core\Build_Modules::instance();
 
+        add_action('wp_head', [$this, 'add_meta_for_search_excluded']);
+        
         // Register ElementsKit supported widgets to Elementor from 3rd party plugins.
         add_action( 'elementor/widgets/widgets_registered', [$this, 'register_widgets'], 1050);
 
@@ -57,77 +61,96 @@ class Plugin{
         Compatibility\Wpml\Init::instance();
         Compatibility\Conflicts\Init::instance();
 
-        // Register data migration class
-         //Compatibility\Data_Migration\Translate_File::instance()->init();
-         //Libs\Xs_Migration\Initiator::instance()->init();
+        $is_pro_active = in_array('elementskit/elementskit.php', apply_filters('active_plugins', get_option('active_plugins')));
 
-        add_action('wp_head', [$this, 'add_meta_for_search_excluded']);
+        $filter_string = ''; // elementskit,metform-pro
+        $filter_string .= ((!$is_pro_active) ? '' : ',elementskit');
+        $filter_string .= (!class_exists('\MetForm\Plugin') ? '' : ',metform');
+        $filter_string .= (!class_exists('\MetForm_Pro\Plugin') ? '' : ',metform-pro');
 
-        // Add banner class
-        add_action('admin_head', function() {
 
-            $filter_string = ''; // elementskit,metform-pro
-            $filter_string .= ((!in_array('elementskit/elementskit.php', apply_filters('active_plugins', get_option('active_plugins')))) ? '' : ',elementskit');
-            $filter_string .= (!class_exists('\MetForm\Plugin') ? '' : ',metform');
-            $filter_string .= (!class_exists('\MetForm_Pro\Plugin') ? '' : ',metform-pro');
+        if(Libs\Framework\Classes\Utils::instance()->get_settings('ekit_user_consent_for_banner', 'yes') == 'yes'){
+            /**
+             * Show WPMET stories widget in dashboard
+             */
+            \Wpmet\Libs\Stories::instance('elementskit-lite')
+            // ->is_test(true)
+            ->set_filter($filter_string)
+            ->set_plugin('ElementsKit', 'https://wpmet.com/plugin/elementskit/')
+            ->set_api_url('https://api.wpmet.com/public/stories/')
+            ->call();
 
-            //die('filter test:: '.$filter_string);
 
-	        \Wpmet\Libs\Banner\Init::instance('elementskit-lite')
-                // ->is_test(true)
-		        ->set_filter(ltrim($filter_string, ','))
-		        ->set_api_url('https://api.wpmet.com/public/jhanda/index.php')
-		        ->set_plugin_screens('edit-elementskit_template')
-		        ->set_plugin_screens('toplevel_page_elementskit')
-                ->call();
-        });
+            /**
+             * Show WPMET banner (codename: jhanda)
+             */
+            \Wpmet\Libs\Banner::instance('elementskit-lite')
+            // ->is_test(true)
+            ->set_filter(ltrim($filter_string, ','))
+            ->set_api_url('https://api.wpmet.com/public/jhanda')
+            ->set_plugin_screens('edit-elementskit_template')
+            ->set_plugin_screens('toplevel_page_elementskit')
+            ->call();
 
-        // Adding pro lebel
+                    
+            /**
+             *  Ask for rating
+             *  A rating notice will appear depends on 
+             *  @set_first_appear_day methods 
+             */
+            \Wpmet\Libs\Rating::instance('elementskit-lite')
+            ->set_plugin('ElementsKit', 'https://wpmet.com/wordpress.org/rating/elementskit')
+            ->set_plugin_logo('https://ps.w.org/elementskit-lite/assets/icon-128x128.png','width:150px !important')
+            ->set_allowed_screens('edit-elementskit_template')
+            ->set_allowed_screens('toplevel_page_elementskit')
+            ->set_allowed_screens('elementskit_page_elementskit-lite_get_help')
+            ->set_priority(10)
+            ->set_first_appear_day(7)
+            ->set_condition(true)
+            ->call();
+
+        }
+        
+
+        /**
+         * Show go Premium menu
+         */
+	    \Wpmet\Libs\Pro_Awareness::instance('elementskit-lite')
+		    ->set_parent_menu_slug('elementskit')
+		    ->set_plugin_file('elementskit-lite/elementskit-lite.php')
+		    ->set_pro_link(
+		    	((\ElementsKit_Lite::package_type() != 'free') ? '' : 'http://go.wpmet.com/ekitpro')
+		    )
+		    ->set_default_grid_thumbnail(\ElementsKit_Lite::lib_url() . 'pro-awareness/assets/support.png')
+
+		    ->set_page_grid([
+			    'url' => 'https://go.wpmet.com/facebook-group',
+			    'title' => 'Join the Community',
+			    'thumbnail' => \ElementsKit_Lite::lib_url() . 'pro-awareness/assets/community.png',
+		    ])
+		    ->set_page_grid([
+			    'url' => 'https://www.youtube.com/playlist?list=PL3t2OjZ6gY8MVnyA4OLB6qXb77-roJOuY',
+			    'title' => 'Video Tutorials',
+			    'thumbnail' => \ElementsKit_Lite::lib_url() . 'pro-awareness/assets/videos.png',
+		    ])
+		    ->set_page_grid([
+			    'url' => 'https://wpmet.com/plugin/elementskit/roadmaps#ideas',
+			    'title' => 'Request a feature',
+			    'thumbnail' => \ElementsKit_Lite::lib_url() . 'pro-awareness/assets/request.png',
+		    ])
+		    ->set_plugin_row_meta('Documentation','https://go.wpmet.com/ekitdoc', ['target'=>'_blank'])
+		    ->set_plugin_row_meta('Facebook Community','http://go.wpmet.com/facebook-group', ['target'=>'_blank'])
+		    ->set_plugin_row_meta('Rate the plugin ★★★★★','https://wordpress.org/support/plugin/elementskit-lite/reviews/#new-post', ['target'=>'_blank'])
+		    ->set_plugin_action_link('Settings',admin_url() . 'admin.php?page=elementskit')
+		    ->set_plugin_action_link(($is_pro_active ? '' : 'Go Premium'),'https://wpmet.com/plugin/elementskit', ['target'=>'_blank', 'style' => 'color: #FCB214; font-weight: bold;'])
+		    ->call();
+
+
+
+	    // Adding pro lebel
         if(\ElementsKit_Lite::package_type() == 'free'){
             new Libs\Pro_Label\Init();
         }
-
-        // Asking rating service
-        // require_once 'libs/rating/rating.php';
-        // (new \Wpmet\Rating\Rating())
-        //     ->plugin_name('elementskit')
-        //     ->first_appear_day(7)
-        //     ->condition($this->should_show_rating_notice())
-        //     ->rating_url('https://wordpress.org/plugins/elementskit-lite/')
-        //     ->init();
-
-        /**
-         * Show WPMET announcements widget in dashboard
-         */
-        \Wpmet\Libs\Announcements\Init::instance('elementskit-lite')
-        // ->is_test(true)
-        // ->set_filter('elementskit')
-        ->set_plugin('ElementsKit', 'https://wpmet.com/plugin/elementskit/?ref=wpmet')
-        ->set_api_url('https://api.wpmet.com/public/announcements/index.php')
-        ->call();
-
-        
-        // pro menu
-        \Wpmet\Libs\Pro_Awareness\Init::instance('elementskit-lite')
-        ->set_parent_menu_slug('elementskit')
-        ->set_pro_link((
-            (\ElementsKit_Lite::package_type() != 'free') ? '' :
-            'https://wpmet.com/plugin/elementskit/?utm_source=elementskit_lite&utm_medium=inplugin_campaign&utm_campaign=go_pro_menu'
-            )
-        )
-        ->set_default_grid_thumbnail(\ElementsKit_Lite::lib_url() . 'pro-awareness/assets/support.png')
-        ->set_grid([
-            'url' => 'https://go.wpmet.com/facebook-group',
-            'title' => 'Join the Community',
-            'thumbnail' => \ElementsKit_Lite::lib_url() . 'pro-awareness/assets/community.png',
-        ])
-        ->set_grid([
-            'url' => 'https://www.youtube.com/playlist?list=PL3t2OjZ6gY8MVnyA4OLB6qXb77-roJOuY',
-            'title' => 'Video Tutorials',
-            'thumbnail' => \ElementsKit_Lite::lib_url() . 'pro-awareness/assets/videos.png',
-        ])
-        // ->set_default_grid_thumbnail(WSLU_LOGIN_PLUGIN_URL . 'assets/get-help/test.jpg')
-        ->call();
 
     }
 
@@ -205,13 +228,17 @@ class Plugin{
         wp_enqueue_style( 'elementskit-lib-css-admin' );
         wp_enqueue_style( 'elementskit-init-css-admin' );
         wp_enqueue_style( 'elementskit-init-css-admin-ems' );
-
+        
         wp_enqueue_script( 'ekit-admin-core', \ElementsKit_Lite::lib_url() . 'framework/assets/js/ekit-admin-core.js', ['jquery'], \ElementsKit_Lite::version(), true );
 
-        $data['rest_url'] = get_rest_url();
-	    $data['nonce']    = wp_create_nonce('wp_rest');
+        $data['rest_url']   = get_rest_url();
+	    $data['nonce']      = wp_create_nonce('wp_rest');
 
 	    wp_localize_script('ekit-admin-core', 'rest_config', $data);
+
+        wp_localize_script('ekit-admin-core', 'ekit_ajax_var', array(
+            'nonce' => wp_create_nonce('ajax-nonce')
+        ));
     }
 
     /**

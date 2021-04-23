@@ -2,6 +2,7 @@
 /**
  * Templates Loader View
  */
+
 ?>
 <div class="premium-filters-list"></div>
 <div class="premium-templates-wrap">

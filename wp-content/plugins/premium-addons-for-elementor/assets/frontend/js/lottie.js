@@ -840,7 +840,7 @@
 
         /*
          Copyright 2014 David Bau.
-        
+
          Permission is hereby granted, free of charge, to any person obtaining
          a copy of this software and associated documentation files (the
          "Software"), to deal in the Software without restriction, including
@@ -848,10 +848,10 @@
          distribute, sublicense, and/or sell copies of the Software, and to
          permit persons to whom the Software is furnished to do so, subject to
          the following conditions:
-        
+
          The above copyright notice and this permission notice shall be
          included in all copies or substantial portions of the Software.
-        
+
          THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND,
          EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF
          MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT.
@@ -859,7 +859,7 @@
          CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT,
          TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE
          SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
-        
+
          */
 
         (function (pool, math) {
@@ -2141,7 +2141,7 @@
                     i += 1;
                 }
                 if ((typeof char === 'string' && char.charCodeAt(0) !== 13 || !char) && console && console.warn) {
-                    console.warn('Missing character from exported characters list: ', char, style, font);
+                    // console.warn('Missing character from exported characters list: ', char, style, font);
                 }
                 return emptyChar;
             }
@@ -2196,7 +2196,7 @@
                 this.isLoaded = false;
                 this.initTime = Date.now();
             };
-            //TODO: for now I'm adding these methods to the Class and not the prototype. Think of a better way to implement it. 
+            //TODO: for now I'm adding these methods to the Class and not the prototype. Think of a better way to implement it.
             Font.getCombinedCharacterCodes = getCombinedCharacterCodes;
 
             Font.prototype.addChars = addChars;
@@ -7303,7 +7303,7 @@
         };
 
         /**
-         * @file 
+         * @file
          * Handles AE's layer parenting property.
          *
          */
@@ -7312,7 +7312,7 @@
 
         HierarchyElement.prototype = {
             /**
-             * @function 
+             * @function
              * Initializes hierarchy properties
              *
              */
@@ -7324,7 +7324,7 @@
                 this.checkParenting();
             },
             /**
-             * @function 
+             * @function
              * Sets layer's hierarchy.
              * @param {array} hierarch
              * layer's parent list
@@ -7334,7 +7334,7 @@
                 this.hierarchy = hierarchy;
             },
             /**
-             * @function 
+             * @function
              * Sets layer as parent.
              *
              */
@@ -7342,7 +7342,7 @@
                 this._isParent = true;
             },
             /**
-             * @function 
+             * @function
              * Searches layer's parenting chain
              *
              */
@@ -7353,7 +7353,7 @@
             }
         };
         /**
-         * @file 
+         * @file
          * Handles element's layer frame update.
          * Checks layer in point and out point
          *
@@ -7363,7 +7363,7 @@
 
         FrameElement.prototype = {
             /**
-             * @function 
+             * @function
              * Initializes frame related properties.
              *
              */
@@ -7376,14 +7376,14 @@
                 this._mdf = false;
             },
             /**
-             * @function 
+             * @function
              * Calculates all dynamic values
              *
              * @param {number} num
              * current frame number in Layer's time
              * @param {boolean} isVisible
              * if layers is currently in range
-             * 
+             *
              */
             prepareProperties: function (num, isVisible) {
                 var i, len = this.dynamicProperties.length;
@@ -7523,12 +7523,12 @@
                 }
             },
             /**
-             * @function 
+             * @function
              * Initializes frame related properties.
              *
              * @param {number} num
              * current frame number in Layer's time
-             * 
+             *
              */
             checkLayerLimits: function (num) {
                 if (this.data.ip - this.data.st <= num && this.data.op - this.data.st > num) {
@@ -7667,7 +7667,7 @@
             this.lStr = '';
             this.sh = shape;
             this.lvl = level;
-            //TODO find if there are some cases where _isAnimated can be false. 
+            //TODO find if there are some cases where _isAnimated can be false.
             // For now, since shapes add up with other shapes. They have to be calculated every time.
             // One way of finding out is checking if all styles associated to this shape depend only of this shape
             this._isAnimated = !!shape.k;
@@ -15351,16 +15351,13 @@
 
     function premiumLottieHandler($scope) {
 
-        var isEditor = elementorFrontend.isEditMode();
-
         var target = $scope,
-            settings = {};
+            sectionId = target.data("id"),
+            settings = {},
+            isEditor = elementorFrontend.isEditMode(),
+            targetID = isEditor ? target.find('#premium-lottie-' + sectionId) : target;
 
-        if (isEditor) {
-            settings = generateEditorSettings();
-        } else {
-            settings = generatePreviewSettings();
-        }
+        settings = generateSettings(targetID);
 
         if (!settings) {
             return false;
@@ -15388,40 +15385,17 @@
 
         }
 
+        function generateSettings(target) {
 
+            var lottieSettings = target.data("pa-lottie");
 
-        function generateEditorSettings() {
-
-            var id = $scope.data('id'),
-                $lottieWrap = target.find("#premium-lottie-" + id);
-
-            var editorSettings = $lottieWrap.data("pa-lottie");
-
-            if (!editorSettings) {
+            if (!lottieSettings) {
                 return false;
             }
 
             settings.lottieLayers = [];
 
-            $.each(editorSettings, function (index, layer) {
-                settings.lottieLayers.push(layer);
-            });
-
-            if (0 !== Object.keys(settings).length) {
-                return settings;
-            }
-        }
-
-        function generatePreviewSettings() {
-            var previewSettings = target.data("pa-lottie");
-
-            if (!previewSettings) {
-                return false;
-            }
-
-            settings.lottieLayers = [];
-
-            $.each(previewSettings["layers"], function (index, layer) {
+            $.each(lottieSettings, function (index, layer) {
                 settings.lottieLayers.push(layer);
             });
 
@@ -15435,7 +15409,7 @@
             var currentDevice = elementorFrontend.getCurrentDeviceMode();
 
             if (isEditor) {
-                target.find(".premium-lottie-layer").remove();
+                target.find(".premium-lottie-layer svg, .premium-lottie-layer canvas").remove();
             }
 
             var layout = "";
@@ -15444,18 +15418,21 @@
 
                 layer.lottie_url = 'url' === layer.source ? layer.lottie_url : layer.lottie_file.url;
 
-
                 if ("" === layer.lottie_url || !layer.show_layer_on.includes(currentDevice))
                     return;
 
                 var renderer = layer.lottie_renderer;
 
-                layout +=
-                    '<div class="premium-lottie-layer premium-lottie-animation premium-lottie-' + renderer + ' elementor-repeater-item-' + layer._id + '"></div>';
+                if (!isEditor) {
 
-                target.prepend(layout);
+                    layout +=
+                        '<div class="premium-lottie-layer premium-lottie-animation premium-lottie-' + renderer + ' elementor-repeater-item-' + layer._id + '"></div>';
 
-                layout = "";
+                    target.prepend(layout);
+
+                    layout = "";
+
+                }
 
                 var $layer = jQuery('.elementor-repeater-item-' + layer._id);
 
@@ -15474,7 +15451,6 @@
                     path: layer.lottie_url,
                     autoplay: true
                 });
-
 
                 if (layer.lottie_speed && 1 !== layer.lottie_speed) {
                     animItem.setSpeed(layer.lottie_speed);
@@ -15561,9 +15537,7 @@
 
                 });
 
-
                 function initLottie(event) {
-                    // function visible(selector, partial, hidden) {
 
                     var vpHeight = $(window).outerHeight(),
                         clientSize = true;

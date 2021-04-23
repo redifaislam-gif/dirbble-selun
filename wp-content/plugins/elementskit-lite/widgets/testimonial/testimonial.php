@@ -13,7 +13,7 @@ class ElementsKit_Widget_Testimonial extends Widget_Base {
     
     public function __construct( $data = [], $args = null ) {
 		parent::__construct( $data, $args );
-		$this->add_script_depends('jquery-slick');
+		// $this->add_script_depends('ekit-slick'); // deprecated
 	}
 
     public function get_name() {
@@ -30,6 +30,10 @@ class ElementsKit_Widget_Testimonial extends Widget_Base {
 
     public function get_categories() {
         return Handler::get_categories();
+    }
+
+    public function get_help_url() {
+        return '';
     }
 
     protected function _register_controls() {
@@ -108,7 +112,7 @@ class ElementsKit_Widget_Testimonial extends Widget_Base {
                 'label_on' => esc_html__( 'Yes', 'elementskit-lite' ),
                 'label_off' => esc_html__( 'No', 'elementskit-lite' ),
                 'return_value' => 'yes',
-				'default' => 'no',
+				'default' => 'yes',
 				'condition' => [
 					'ekit_testimonial_style' => ['style2', 'style4', 'style5', 'style6']
 				]
@@ -123,7 +127,7 @@ class ElementsKit_Widget_Testimonial extends Widget_Base {
 				'type' => Controls_Manager::ICONS,
 				'fa4compatibility' => 'ekit_testimonial_wartermark',
                 'default' => [
-                    'value' => 'icon icon-quote1',
+                    'value' => 'icon icon-quote',
                     'library' => 'ekiticons',
                 ],
                 'condition' => [
@@ -139,7 +143,7 @@ class ElementsKit_Widget_Testimonial extends Widget_Base {
 			[
 				'label' => esc_html__( 'Quote Icon Position', 'elementskit-lite' ),
 				'type' => Controls_Manager::SELECT,
-				'default' => 'top',
+				'default' => 'bottom',
 				'separator'    => 'before',
 				'options' => [
 					'top'  => esc_html__( 'Top', 'elementskit-lite' ),
@@ -160,7 +164,7 @@ class ElementsKit_Widget_Testimonial extends Widget_Base {
 				'label_on' => esc_html__( 'Show', 'elementskit-lite' ),
 				'label_off' => esc_html__( 'Hide', 'elementskit-lite' ),
 				'return_value' => 'yes',
-				'default' => 'no',
+				'default' => 'yes',
 				'separator'    => 'before',
 				'condition' => [
 					'ekit_testimonial_wartermark_enable' => 'yes',
@@ -340,10 +344,10 @@ class ElementsKit_Widget_Testimonial extends Widget_Base {
         );
         $repeater->add_control(
             'use_hover_logo', [
-				'label' => esc_html__( 'Display different logo on hover?', 'elements-test' ),
+				'label' => esc_html__( 'Display different logo on hover?', 'elementskit-lite' ),
 				'type' => Controls_Manager::SWITCHER,
-				'label_on' => esc_html__( 'Yes', 'elements-test' ),
-				'label_off' => esc_html__( 'No', 'elements-test' ),
+				'label_on' => esc_html__( 'Yes', 'elementskit-lite' ),
+				'label_off' => esc_html__( 'No', 'elementskit-lite' ),
 				'default' => 'no',
 				'separator' => 'before',
             ]
@@ -757,8 +761,8 @@ class ElementsKit_Widget_Testimonial extends Widget_Base {
                     '{{WRAPPER}} .elementskit-commentor-content' => 'text-align: {{VALUE}};',
                     '{{WRAPPER}} .elementskit-testimonial_card' => 'text-align: {{VALUE}};',
                     '{{WRAPPER}} .elementskit-profile-info' => 'text-align: {{VALUE}};',
-                ],
-				'default' => 'left',
+                    '{{WRAPPER}} .ekit_testimonial_style_5 .elementskit-commentor-header' => 'text-align: {{VALUE}};',
+                ]
 			]
 		);
 
@@ -832,7 +836,6 @@ class ElementsKit_Widget_Testimonial extends Widget_Base {
 			[
 				'name' => 'ekit_testimonial_description_typography',
 				'label' => esc_html__( 'Typography', 'elementskit-lite' ),
-				'scheme' => Scheme_Typography::TYPOGRAPHY_1,
 				'selector' => '{{WRAPPER}} .elementskit-single-testimonial-slider  .elementskit-commentor-content > p, {{WRAPPER}} .elementskit-testimonial_card .elementskit-commentor-coment',
 			]
 		);
@@ -1071,15 +1074,9 @@ class ElementsKit_Widget_Testimonial extends Widget_Base {
 						'step' => 1,
 					],
 				],
-				'default' => [
-					'unit' => 'px',
-					'size' => 23,
-				],
 				'selectors' => [
 					'{{WRAPPER}} .elementskit-testimonial-slider-block-style .elementskit-commentor-content > i' => 'margin-bottom: {{SIZE}}{{UNIT}};',
-					// '{{WRAPPER}} .elementskit-testimonial-slider-block-style-two .elementskit-icon-content > i' => 'margin-bottom: {{SIZE}}{{UNIT}};',
 					'{{WRAPPER}} .elementskit-testimonial-slider-block-style-three .elementskit-icon-content > i' => 'margin-bottom: {{SIZE}}{{UNIT}};',
-					// '{{WRAPPER}} .elementskit-watermark-icon svg'	=> 'margin-bottom: {{SIZE}}{{UNIT}};',
 					'{{WRAPPER}} .elementskit-watermark-icon'	=> 'margin-bottom: {{SIZE}}{{UNIT}};',
 				],
 			]
@@ -1584,7 +1581,6 @@ class ElementsKit_Widget_Testimonial extends Widget_Base {
 						'icon' => 'fa fa-align-right',
 					],
 				],
-				'default' => 'client_center',
 				'condition' => [
 					'ekit_testimonial_style' => ['style4', 'style5', 'style6']
 				]
@@ -2326,6 +2322,4 @@ class ElementsKit_Widget_Testimonial extends Widget_Base {
 			require Handler::get_dir() . 'style/'.$style.'.php';
 	 	endif; // end if check testimonila array
     }
-
-    protected function _content_template() { }
 }

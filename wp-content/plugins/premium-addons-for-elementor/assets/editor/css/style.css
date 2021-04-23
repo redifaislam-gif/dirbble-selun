@@ -181,6 +181,11 @@
 }
 
 .pa-extension-icon.pa-dash-icon {
-    font-size: 14px;
-    vertical-align: top;
+    font-size: 11px;
+    padding-right: 1px;
+}
+
+.elementor-update-preview.editor-pa-preview-update {
+    margin: 0;
+    margin-bottom: 8px;
 }

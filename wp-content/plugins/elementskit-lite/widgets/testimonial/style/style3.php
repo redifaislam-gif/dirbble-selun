@@ -1,10 +1,11 @@
 <div class="elementskit-testimonial-slider" <?php echo $this->get_render_attribute_string('wrapper'); ?>>
 <?php
 	foreach ($testimonials as $testimonial):
+		$clientPhoto = '';
 		if (isset($testimonial['client_photo']) && !empty($testimonial['client_photo']['url']) &&  sizeof($testimonial['client_photo']) > 0) {
 			$clientPhoto = isset($testimonial['client_photo']['url']) ? $testimonial['client_photo']['url'] : '';  } ?>
 
-			<div class="elementskit-testimonial_card" style="background-image: url(<?php esc_attr_e($clientPhoto );?>);">
+			<div class="elementskit-testimonial_card" style="background-image: url(<?php esc_attr_e($clientPhoto, 'elementskit-lite' );?>);">
 				<?php if ($ekit_testimonial_rating_enable == 'yes') : ?>
 				<ul class="elementskit-stars">
 					<?php
@@ -15,19 +16,19 @@
 							$iconStart = 'fas fa-star active';
 						}
 					?>
-					<li><a href="#"><i class="<?php esc_attr_e( $iconStart );?>"></i></a></li>
+					<li><a href="#"><i class="<?php esc_attr_e( $iconStart, 'elementskit-lite' );?>"></i></a></li>
 
 					<?php }?>
 				</ul>
 				<?php endif; ?>
 
 				<?php if ( isset($testimonial['review']) && !empty($testimonial['review'])) : ?>
-					<p class="elementskit-commentor-coment"><em><?php echo isset($testimonial['review']) ? \ElementsKit_Lite\Utils::kses($testimonial['review']) : ''; ?></em></p>
+					<p class="elementskit-commentor-coment"><?php echo isset($testimonial['review']) ? \ElementsKit_Lite\Utils::kses($testimonial['review']) : ''; ?></p>
 				<?php endif;  ?>
 
 				<?php if ( isset($testimonial['review_youtube_link']) && !empty($testimonial['review_youtube_link'])) : ?>
 					<div class="elementskit-video-popup-content">
-						<a href="<?php esc_attr_e($review_youtube_link);?>" class="video-popup"><i class="icon icon-play"></i></a>
+						<a href="<?php esc_attr_e($review_youtube_link, 'elementskit-lite');?>" class="video-popup"><i class="icon icon-play"></i></a>
 					</div><!-- .elementskit-video-popup-content END -->
 				<?php endif;  ?>
 

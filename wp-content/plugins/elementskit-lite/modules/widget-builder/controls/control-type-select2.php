@@ -18,7 +18,6 @@ class Control_Type_Select2 extends CT_Base
 
       if (!empty($conf->default)) {
 
-         //$ret .= "\t\t\t\t" . '\'default\' =>  esc_html( \'' . var_dump($conf->default) . '\' ),' . PHP_EOL;
          if (gettype($conf->default) == 'string') {
             $ret .= "\t\t\t\t" . '\'default\' =>  esc_html( \'' . esc_html($conf->default) . '\' ),' . PHP_EOL;
          } else {

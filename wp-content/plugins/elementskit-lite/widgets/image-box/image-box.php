@@ -28,6 +28,10 @@ class ElementsKit_Widget_Image_Box extends Widget_Base {
         return Handler::get_categories();
     }
 
+    public function get_help_url() {
+        return '';
+    }
+
     protected function _register_controls() {
 
         // start content section for set Image
@@ -117,7 +121,7 @@ class ElementsKit_Widget_Image_Box extends Widget_Base {
             [
                 'label' => esc_html__( 'Link', 'elementskit-lite' ),
                 'type' => Controls_Manager::URL,
-                'placeholder' => esc_html__( 'https://your-link.com', 'elementskit-lite' ),
+                'placeholder' => esc_html__( 'https://wpmet.com', 'elementskit-lite' ),
                 'show_external' => true,
                 'condition' => [
                     'ekit_image_box_enable_link' => 'yes'
@@ -309,7 +313,7 @@ class ElementsKit_Widget_Image_Box extends Widget_Base {
 			[
 				'label' =>esc_html__( 'URL', 'elementskit-lite' ),
 				'type' => Controls_Manager::URL,
-				'placeholder' =>esc_url('http://your-link.com'),
+				'placeholder' =>esc_url('https://wpmet.com'),
 				'default' => [
                     'url' => '#',
                 ],
@@ -1174,7 +1178,6 @@ class ElementsKit_Widget_Image_Box extends Widget_Base {
             [
                 'name' => 'ekit_image_box_title_typography',
                 'label' => esc_html__( 'Typography', 'elementskit-lite' ),
-                'scheme' => Scheme_Typography::TYPOGRAPHY_1,
                 'selector' => '{{WRAPPER}} .elementskit-info-image-box .elementskit-info-box-title, {{WRAPPER}} .elementskit-info-image-box .elementskit-info-box-title a',
             ]
         );
@@ -1518,10 +1521,25 @@ class ElementsKit_Widget_Image_Box extends Widget_Base {
 
         $settings = $this->get_settings_for_display();
 
+        // Data Sanitization/Escaping
+        $options_ekit_image_box_title_size = array_keys([
+			'h1'   => 'H1',
+			'h2'   => 'H2',
+			'h3'   => 'H3',
+			'h4'   => 'H4',
+			'h5'   => 'H5',
+			'h6'   => 'H6',
+			'div'  => 'div',
+			'span' => 'span',
+			'p'    => 'p',
+		]);
+
+        $ekit_image_box_content_text_align_value_escape = \ElementsKit_Lite\Utils::esc_options($settings['ekit_image_box_content_text_align'], ['left', 'center', 'right'], 'center');
+
         // Wrapper settion
 
         $this->add_render_attribute('wrapper', 'class', 'elementskit-info-image-box ekit-image-box');
-        $this->add_render_attribute('wrapper', 'class', 'text-' . $settings['ekit_image_box_content_text_align']);
+        $this->add_render_attribute('wrapper', 'class', 'text-' . $ekit_image_box_content_text_align_value_escape);
 
 
         if ($settings['ekit_image_box_style_simple'] == 'hover-border-bottom') {
@@ -1532,7 +1550,7 @@ class ElementsKit_Widget_Image_Box extends Widget_Base {
 
 
 
-        // Image sectionn
+        // Image section
 		$image_html = '';
         if (!empty($settings['ekit_image_box_image']['url'])) {
 
@@ -1552,7 +1570,6 @@ class ElementsKit_Widget_Image_Box extends Widget_Base {
             $link_wrapper_end .= ' </a>';
         }
 
-
         // Button
         $btn_text = $settings['ekit_image_box_btn_text'];
 
@@ -1560,7 +1577,8 @@ class ElementsKit_Widget_Image_Box extends Widget_Base {
         if ( ! empty( $settings['ekit_image_box_btn_url']['url'] ) ) {
             $this->add_link_attributes( 'button-2', $settings['ekit_image_box_btn_url'] );
         }
-        $image_pos = 'image-box-img-'.$settings['ekit_image_box_content_text_align'];
+
+        $image_pos = 'image-box-img-' . $ekit_image_box_content_text_align_value_escape;
 ?>
 
             <div <?php echo \ElementsKit_Lite\Utils::render($this->get_render_attribute_string('wrapper')); ?> >
@@ -1586,7 +1604,7 @@ class ElementsKit_Widget_Image_Box extends Widget_Base {
                         <?php
                         if ($settings['ekit_image_box_title_text'] != '') :
                         ?>
-                        <<?php echo \ElementsKit_Lite\Utils::render($settings['ekit_image_box_title_size']); ?> class="elementskit-info-box-title">
+                        <<?php echo \ElementsKit_Lite\Utils::esc_options($settings['ekit_image_box_title_size'], $options_ekit_image_box_title_size, 'h3'); ?> class="elementskit-info-box-title">
 
                         <?php if(($settings['ekit_image_box_front_title_icons'] != '') && ($settings['ekit_image_box_front_title_icon_position'] == 'left') && ($settings['ekit_image_box_style_simple'] == 'floating-style')) : ?>
 
@@ -1607,7 +1625,7 @@ class ElementsKit_Widget_Image_Box extends Widget_Base {
 
                         <?php endif; ?>
 
-                        <?php echo \ElementsKit_Lite\Utils::render($link_wrapper_start . $settings['ekit_image_box_title_text'] . $link_wrapper_end); ?>
+                        <?php echo \ElementsKit_Lite\Utils::render($link_wrapper_start . esc_html($settings['ekit_image_box_title_text']) . $link_wrapper_end); ?>
 
                         <?php if(($settings['ekit_image_box_front_title_icons'] != '') && ($settings['ekit_image_box_front_title_icon_position'] == 'right') && ($settings['ekit_image_box_style_simple'] == 'floating-style')) : ?>
                                 
@@ -1628,7 +1646,7 @@ class ElementsKit_Widget_Image_Box extends Widget_Base {
 
                         <?php endif; ?>
 
-                    </<?php echo \ElementsKit_Lite\Utils::render($settings['ekit_image_box_title_size']); ?>>
+                    </<?php echo \ElementsKit_Lite\Utils::esc_options($settings['ekit_image_box_title_size'], $options_ekit_image_box_title_size, 'h3'); ?>>
                     <?php
 
                         endif;
@@ -1647,7 +1665,7 @@ class ElementsKit_Widget_Image_Box extends Widget_Base {
                     <div class="box-footer">
                         <div class="btn-wraper">
                             <?php if($settings['ekit_image_box_icon_align'] == 'right'): ?>
-                                <a <?php echo $this->get_render_attribute_string( 'button-2' ); ?> class="elementskit-btn">
+                                <a <?php echo $this->get_render_attribute_string( 'button-2' ); ?> class="elementskit-btn whitespace--normal">
                                     <?php echo esc_html( $btn_text ); ?>
 
                                     <?php
@@ -1667,7 +1685,7 @@ class ElementsKit_Widget_Image_Box extends Widget_Base {
 
                                 </a>
                                 <?php elseif ($settings['ekit_image_box_icon_align'] == 'left') : ?>
-                                <a <?php echo $this->get_render_attribute_string( 'button-2' ); ?> class="elementskit-btn">
+                                <a <?php echo $this->get_render_attribute_string( 'button-2' ); ?> class="elementskit-btn whitespace--normal">
                                     
                                     <?php
                                         // new icon
@@ -1687,7 +1705,7 @@ class ElementsKit_Widget_Image_Box extends Widget_Base {
                                     <?php echo esc_html( $btn_text ); ?>
                                 </a>
                                 <?php else : ?>
-                                <a <?php echo $this->get_render_attribute_string( 'button-2' ); ?> class="elementskit-btn">
+                                <a <?php echo $this->get_render_attribute_string( 'button-2' ); ?> class="elementskit-btn whitespace--normal">
                                     <?php echo esc_html( $btn_text ); ?>
                                 </a>
                             <?php endif; ?>

@@ -2,11 +2,13 @@
 
 namespace PremiumAddons\Includes\Templates\Documents;
 
-if ( ! defined( 'ABSPATH' ) ) exit; // Exit if accessed directly
+if ( ! defined( 'ABSPATH' ) ) {
+	exit; // Exit if accessed directly
+}
 
 class Premium_Section_Document extends Premium_Document_Base {
-    
-     public function get_name() {
+
+	public function get_name() {
 		return 'premium_page';
 	}
 

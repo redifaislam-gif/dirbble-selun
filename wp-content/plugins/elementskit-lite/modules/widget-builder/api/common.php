@@ -108,7 +108,6 @@ class Common extends \ElementsKit_Lite\Core\Handler_Api {
 
         $widget_data = get_post_meta($id, 'elementskit_custom_widget_data', true);
 
-        // var_dump(is_object($widget_data));
         return is_object($widget_data) ? $widget_data : $default;
     }
 

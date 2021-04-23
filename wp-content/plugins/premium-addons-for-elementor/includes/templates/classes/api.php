@@ -4,60 +4,61 @@ namespace PremiumAddons\Includes\Templates\Classes;
 
 use PremiumAddons\Includes\Templates;
 
-if( ! defined( 'ABSPATH' ) ) exit; // No access of directly access
+if ( ! defined( 'ABSPATH' ) ) {
+	exit; // No access of directly access
+}
 
 if ( ! class_exists( 'Premium_Templates_API' ) ) {
-    
-    /**
-     * Premium API.
-     *
-     * Premium API class is responsible for getting API data.
-     *
-     * @since 3.6.0
-     * 
-     */
+
+	/**
+	 * Premium API.
+	 *
+	 * Premium API class is responsible for getting API data.
+	 *
+	 * @since 3.6.0
+	 */
 	class Premium_Templates_API {
 
-        /**
+		/**
 		 * API URL which is used to get the response from.
 		 *
 		 * @since  3.6.0
 		 * @var (String) URL
 		 */
-		private $config     = array();
-        
-        /**
+		private $config = array();
+
+		/**
 		 * API enabled
 		 *
 		 * @since  3.6.0
 		 * @var (Boolean)
 		 */
-		private $enabled    = null;
+		private $enabled = null;
 
 		/**
-        * Premium_API constructor.
-        *
-        * Get all API data.
-        *
-        * @since 3.6.0
-        * @access public
-        */
+		 * Premium_API constructor.
+		 *
+		 * Get all API data.
+		 *
+		 * @since 3.6.0
+		 * @access public
+		 */
 		public function __construct() {
-            
-			$this->config  = Templates\premium_templates()->config->get( 'api' );
-            
+
+			$this->config = Templates\premium_templates()->config->get( 'api' );
+
 		}
 
-        /**
-         * Is Enabled.
-         *
-         * Check if remote API is enabled.
-         *
-         * @since 3.6.0
-         * @access public
-         *
-         * @return boolean
-         */
+		/**
+		 * Is Enabled.
+		 *
+		 * Check if remote API is enabled.
+		 *
+		 * @since 3.6.0
+		 * @access public
+		 *
+		 * @return boolean
+		 */
 		public function is_enabled() {
 
 			if ( null !== $this->enabled ) {
@@ -80,16 +81,15 @@ if ( ! class_exists( 'Premium_Templates_API' ) ) {
 		}
 
 		/**
-         * API URL.
-         *
-         * Get API for template library area data.
-         *
-         * @since 3.6.0
-         * @access public
-         *
-         */
+		 * API URL.
+		 *
+		 * Get API for template library area data.
+		 *
+		 * @since 3.6.0
+		 * @access public
+		 */
 		public function api_url( $flag ) {
-            
+
 			if ( ! $this->is_enabled() ) {
 				return false;
 			}
@@ -97,19 +97,18 @@ if ( ! class_exists( 'Premium_Templates_API' ) ) {
 			if ( empty( $this->config['endpoints'][ $flag ] ) ) {
 				return false;
 			}
-            
+
 			return $this->config['base'] . $this->config['path'] . $this->config['endpoints'][ $flag ];
 		}
-        
-        /**
-         * Get Info from the remote server.
-         *
-         * Get remote system info.
-         *
-         * @since 3.6.0
-         * @access public
-         *
-         */
+
+		/**
+		 * Get Info from the remote server.
+		 *
+		 * Get remote system info.
+		 *
+		 * @since 3.6.0
+		 * @access public
+		 */
 		public function get_info( $key = '' ) {
 
 			$api_url = $this->api_url( 'info' );
@@ -149,22 +148,21 @@ if ( ! class_exists( 'Premium_Templates_API' ) ) {
 			}
 
 		}
-        
-        /**
-         * Request Args
-         *
-         * Get request arguments for the remote request.
-         *
-         * @since 3.6.0
-         * @access public
-         * 
-         * @return array
-         *
-         */
+
+		/**
+		 * Request Args
+		 *
+		 * Get request arguments for the remote request.
+		 *
+		 * @since 3.6.0
+		 * @access public
+		 *
+		 * @return array
+		 */
 		public function request_args() {
 			return array(
 				'timeout'   => 60,
-				'sslverify' => false
+				'sslverify' => false,
 			);
 		}
 

@@ -30,8 +30,8 @@ class Icon extends \Elementor\Base_Data_Control {
 		<div class="elementor-control-field">
 			<label class="elementor-control-title">{{{ data.label }}}</label>
 			<div class="elementor-control-input-wrapper">
-				<select class="elementor-control-icon" data-setting="{{ data.name }}" data-placeholder="<?php esc_attr_e( 'Select Icon', 'elementskit-hederfooter' ); ?>">
-					<option value=""><?php esc_html_e( 'Select Icon', 'elementskit-hederfooter' ); ?></option>
+				<select class="elementor-control-icon" data-setting="{{ data.name }}" data-placeholder="<?php esc_attr_e( 'Select Icon', 'elementskit-lite' ); ?>">
+					<option value=""><?php esc_html_e( 'Select Icon', 'elementskit-lite' ); ?></option>
 					<# _.each( data.options, function( option_title, option_value ) { #>
 					<option value="{{ option_value }}">{{{ option_title }}}</option>
 					<# } ); #>

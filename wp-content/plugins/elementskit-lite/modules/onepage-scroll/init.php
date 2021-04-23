@@ -46,7 +46,8 @@ class Init{
 	}
 
 	public function editor_scripts(){
-		wp_enqueue_script( 'ekit-onepage-scroll-editor', $this->url . 'assets/js/editor.js', ['jquery', 'elementor-frontend'], \ElementsKit_Lite::version(), true );
+		// todo: has some conflicts with dependency.
+		// wp_enqueue_script( 'ekit-onepage-scroll-editor', $this->url . 'assets/js/editor.js', ['jquery', 'elementor-editor', 'elementor-frontend'], \ElementsKit_Lite::version(), true );
 	}
 
 	public static function get_page_setting($id) {

@@ -1,10 +1,15 @@
 <?php
+/**
+ * PA WPML Progress Bar.
+ */
 
 namespace PremiumAddons\Compatibility\WPML\Widgets;
 
 use WPML_Elementor_Module_With_Items;
 
-if ( ! defined('ABSPATH') ) exit; // No access of directly access
+if ( ! defined( 'ABSPATH' ) ) {
+	exit; // No access of directly access.
+}
 
 /**
  * Fancy Text
@@ -46,9 +51,9 @@ class Progress_Bar extends WPML_Elementor_Module_With_Items {
 	 * @return string
 	 */
 	protected function get_title( $field ) {
-		
-        return __( 'Progress Bar: Label Text', 'premium-addons-for-elementor' );
-		
+
+		return __( 'Progress Bar: Label Text', 'premium-addons-for-elementor' );
+
 	}
 
 	/**
@@ -60,8 +65,8 @@ class Progress_Bar extends WPML_Elementor_Module_With_Items {
 	 */
 	protected function get_editor_type( $field ) {
 
-        return 'LINE';
-		
+		return 'LINE';
+
 	}
 
 }

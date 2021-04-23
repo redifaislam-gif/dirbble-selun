@@ -5,7 +5,7 @@
         pull_id: <?php echo $id ;?>,
         nonce: '<?php echo wp_create_nonce( 'wp_rest' ); ?>',
         live_url: '<?php echo str_replace(['&amp;', 'action=edit'], ['&','action=elementor'], get_edit_post_link($id)); ?>',
-        pro: false,
+        pro: <?php echo \ElementsKit_Lite::package_type() == 'pro' ? 'true' : 'false'; ?>,
         assets: {
             'wysiwyg': '<?php echo $this->url; ?>assets/img/wysiwyg.png',
             'noImagePreview': '<?php echo $this->url; ?>assets/img/no-image.png',

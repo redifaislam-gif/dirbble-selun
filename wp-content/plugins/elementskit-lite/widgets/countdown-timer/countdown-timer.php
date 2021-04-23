@@ -33,6 +33,9 @@ class ElementsKit_Widget_Countdown_Timer extends Widget_Base {
         return Handler::get_categories();
     }
 
+    public function get_help_url() {
+        return '';
+    }
 
     protected function _register_controls() {
         $this->start_controls_section(
@@ -1104,7 +1107,7 @@ class ElementsKit_Widget_Countdown_Timer extends Widget_Base {
 				{{WRAPPER}} .elementskit-countdown-timer-3 .elementskit-timer-container.elementskit-minutes .elementskit-timer-count,
 				{{WRAPPER}} .elementskit-countdown-timer-3.elementskit-version-box .elementskit-timer-container.elementskit-minutes .elementskit-timer-count,
 				{{WRAPPER}} .elementskit-countdown-timer-4 .elementskit-timer-container.elementskit-minutes .elementskit-timer-count,
-				{{WRAPPER}} .elementskit-flip-clock .eins .eount',
+				{{WRAPPER}} .elementskit-flip-clock .eins .eount, {{WRAPPER}} .elementskit-flip-clock .elementskit-mins .elementskit-count',
             ]
         );
 
@@ -1732,26 +1735,26 @@ class ElementsKit_Widget_Countdown_Timer extends Widget_Base {
 
 	   $data = '';
 		if(isset($ekit_countdown_timer_weeks_label)){
-			$data .= ' data-date-ekit-week="'.$ekit_countdown_timer_weeks_label.'"';
+			$data .= ' data-date-ekit-week="'.esc_attr($ekit_countdown_timer_weeks_label).'"';
 		}
 		if(isset($ekit_countdown_timer_days_label)){
-			$data .= ' data-date-ekit-day="'.$ekit_countdown_timer_days_label.'"';
+			$data .= ' data-date-ekit-day="'.esc_attr($ekit_countdown_timer_days_label).'"';
 		}
 		if(isset($ekit_countdown_timer_hours_label)){
-			$data .= ' data-date-ekit-hour="'.$ekit_countdown_timer_hours_label.'"';
+			$data .= ' data-date-ekit-hour="'.esc_attr($ekit_countdown_timer_hours_label).'"';
 		}
 		if(isset($ekit_countdown_timer_minutes_hours_label)){
-			$data .= ' data-date-ekit-minute="'.$ekit_countdown_timer_minutes_hours_label.'"';
+			$data .= ' data-date-ekit-minute="'.esc_attr($ekit_countdown_timer_minutes_hours_label).'"';
 		}
 		if(isset($ekit_countdown_timer_seconds_hours_label)){
-			$data .= ' data-date-ekit-second="'.$ekit_countdown_timer_seconds_hours_label.'"';
+			$data .= ' data-date-ekit-second="'.esc_attr($ekit_countdown_timer_seconds_hours_label).'"';
 		}
 		if(isset($ekit_countdown_timer_due_time)){
-			$data .= ' data-ekit-countdown="'.$ekit_countdown_timer_due_time.'"';
+			$data .= ' data-ekit-countdown="'.esc_attr($ekit_countdown_timer_due_time).'"';
         }
 
-        $data .= ' data-finish-title="'.$ekit_countdown_timer_title.'"';
-        $data .= ' data-finish-content="'.$ekit_countdown_timer_expiry_content.'"';
+        $data .= ' data-finish-title="'.esc_attr($ekit_countdown_timer_title).'"';
+        $data .= ' data-finish-content="'.esc_attr($ekit_countdown_timer_expiry_content).'"';
 
         switch ( $ekit_countdown_timer_style ) {
             case 'style1':
@@ -1778,5 +1781,4 @@ class ElementsKit_Widget_Countdown_Timer extends Widget_Base {
 
         }
     }
-    protected function _content_template() { }
 }

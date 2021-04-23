@@ -25,7 +25,7 @@
 	<# } else { #>
 		<a class="elementor-template-library-template-action elementor-button elementskit-template-library-template-go-pro" href="https://go.wpmet.com/ekitpro" target="_blank">
 			<i class="eicon-heart"></i><span class="elementor-button-title"><?php
-				esc_html_e( 'Go Pro', 'elementskit-lite' );
+				esc_html_e( 'Go Premium', 'elementskit-lite' );
 			?></span>
 		</a>
 	<# } #>

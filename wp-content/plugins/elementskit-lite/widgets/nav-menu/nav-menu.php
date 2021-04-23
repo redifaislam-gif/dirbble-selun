@@ -33,6 +33,10 @@ class ElementsKit_Widget_Nav_Menu extends Widget_Base {
         return Handler::get_categories();
     }
 
+    public function get_help_url() {
+        return '';
+    }
+
     public function get_menus(){
         $list = [];
         $menus = wp_get_nav_menus();
@@ -48,7 +52,7 @@ class ElementsKit_Widget_Nav_Menu extends Widget_Base {
         $this->start_controls_section(
             'elementskit_content_tab',
             [
-                'label' => esc_html__('Menu settings', 'elementskit'),
+                'label' => esc_html__('Menu settings', 'elementskit-lite'),
                 'tab' => Controls_Manager::TAB_CONTENT,
             ]
         );
@@ -58,7 +62,7 @@ class ElementsKit_Widget_Nav_Menu extends Widget_Base {
         $this->add_control(
             'elementskit_nav_menu',
             [
-                'label'     =>esc_html__( 'Select menu', 'elementskit' ),
+                'label'     => esc_html__( 'Select menu', 'elementskit-lite' ),
                 'type'      => Controls_Manager::SELECT,
                 'options'   => $this->get_menus(),
             ]
@@ -67,14 +71,14 @@ class ElementsKit_Widget_Nav_Menu extends Widget_Base {
         $this->add_responsive_control(
             'elementskit_main_menu_position',
             [
-                'label' => esc_html__( 'Horizontal menu position', 'elementskit' ),
+                'label' => esc_html__( 'Horizontal menu position', 'elementskit-lite' ),
                 'type' => Controls_Manager::SELECT,
                 'default' => 'elementskit-menu-po-left',
                 'options' => [
-                    'elementskit-menu-po-left'  => esc_html__( 'Left', 'elementskit' ),
-                    'elementskit-menu-po-center' => esc_html__( 'Center', 'elementskit' ),
-                    'elementskit-menu-po-right' => esc_html__( 'Right', 'elementskit' ),
-                    'elementskit-menu-po-justified'  => esc_html__( 'Justified', 'elementskit' ),
+                    'elementskit-menu-po-left'  => esc_html__( 'Left', 'elementskit-lite' ),
+                    'elementskit-menu-po-center' => esc_html__( 'Center', 'elementskit-lite' ),
+                    'elementskit-menu-po-right' => esc_html__( 'Right', 'elementskit-lite' ),
+                    'elementskit-menu-po-justified'  => esc_html__( 'Justified', 'elementskit-lite' ),
                 ],
             ]
 
@@ -89,7 +93,7 @@ class ElementsKit_Widget_Nav_Menu extends Widget_Base {
         $this->start_controls_section(
             'elementskit_mobile_menu',
             [
-                'label' => esc_html__('Mobile Menu Settings', 'elementskit'),
+                'label' => esc_html__('Mobile Menu Settings', 'elementskit-lite'),
                 'tab' => Controls_Manager::TAB_CONTENT,
             ]
         );
@@ -97,7 +101,7 @@ class ElementsKit_Widget_Nav_Menu extends Widget_Base {
         $this->add_control(
             'elementskit_nav_menu_logo',
             [
-                'label' => esc_html__( 'Mobile Menu Logo', 'elementskit' ),
+                'label' => esc_html__( 'Mobile Menu Logo', 'elementskit-lite' ),
                 'type' => Controls_Manager::MEDIA,
                 'default' => [
                     'url' => Utils::get_placeholder_image_src(),
@@ -108,12 +112,12 @@ class ElementsKit_Widget_Nav_Menu extends Widget_Base {
         $this->add_control(
             'elementskit_nav_menu_logo_link_to',
             [
-                'label' => esc_html__( 'Menu link', 'elementskit' ),
+                'label' => esc_html__( 'Menu link', 'elementskit-lite' ),
                 'type' => Controls_Manager::SELECT,
                 'default' => 'home',
                 'options' => [
-                    'home' => esc_html__( 'Default(Home)', 'elementskit' ),
-                    'custom' => esc_html__( 'Custom URL', 'elementskit' ),
+                    'home' => esc_html__( 'Default(Home)', 'elementskit-lite' ),
+                    'custom' => esc_html__( 'Custom URL', 'elementskit-lite' ),
                 ],
             ]
         );
@@ -121,9 +125,9 @@ class ElementsKit_Widget_Nav_Menu extends Widget_Base {
         $this->add_control(
             'elementskit_nav_menu_logo_link',
             [
-                'label' => esc_html__( ' Custom Link', 'elementskit' ),
+                'label' => esc_html__( ' Custom Link', 'elementskit-lite' ),
                 'type' => Controls_Manager::URL,
-                'placeholder' => 'https://your-link.com',
+                'placeholder' => 'https://wpmet.com',
                 'condition' => [
                     'elementskit_nav_menu_logo_link_to' => 'custom',
                 ],
@@ -137,7 +141,7 @@ class ElementsKit_Widget_Nav_Menu extends Widget_Base {
         $this->add_control(
             'elementskit_hamburger_icon',
             [
-                'label' => __( 'Hamburger Icon (Optional)', 'elementskit' ),
+                'label' => __( 'Hamburger Icon (Optional)', 'elementskit-lite' ),
                 'type' => Controls_Manager::ICONS,
                 'separator' => 'before',
             ]
@@ -145,10 +149,10 @@ class ElementsKit_Widget_Nav_Menu extends Widget_Base {
 			$this->add_control(
 				'submenu_click_area',
 				[
-					'label'         => esc_html__('Submenu Click Area', 'elementskit'),
+					'label'         => esc_html__('Submenu Click Area', 'elementskit-lite'),
 					'type'          => Controls_Manager::SWITCHER,
-					'label_on'      => esc_html__('Icon', 'elementskit'),
-					'label_off'     => esc_html__('Text', 'elementskit'),
+					'label_on'      => esc_html__('Icon', 'elementskit-lite'),
+					'label_off'     => esc_html__('Text', 'elementskit-lite'),
 					'return_value'  => 'icon',
 					'default'       => 'icon',
 				]
@@ -159,7 +163,7 @@ class ElementsKit_Widget_Nav_Menu extends Widget_Base {
         $this->start_controls_section(
             'elementskit_menu',
             [
-                'label' => esc_html__('Menu Settings', 'elementskit'),
+                'label' => esc_html__('Menu Settings', 'elementskit-lite'),
                 'tab' => Controls_Manager::TAB_CONTENT,
             ]
         );
@@ -170,23 +174,23 @@ class ElementsKit_Widget_Nav_Menu extends Widget_Base {
         $this->add_control(
             'elementskit_one_page_enable',
             [
-                'label' => esc_html__('Enable one page? ', 'elementskit'),
-                'description'	=> esc_html__('This works in the current page.', 'elementskit'),
+                'label' => esc_html__('Enable one page? ', 'elementskit-lite'),
+                'description'	=> esc_html__('This works in the current page.', 'elementskit-lite'),
                 'type' => Controls_Manager::SWITCHER,
                 'default' => 'no',
-                'label_on' =>esc_html__( 'Yes', 'elementskit' ),
-                'label_off' =>esc_html__( 'No', 'elementskit' ),
+                'label_on' =>esc_html__( 'Yes', 'elementskit-lite' ),
+                'label_off' =>esc_html__( 'No', 'elementskit-lite' ),
             ]
         );
         $this->add_control(
             'elementskit_responsive_breakpoint',
             [
-                'label' => __( 'Responsive Breakpoint', 'elementskit' ),
+                'label' => __( 'Responsive Breakpoint', 'elementskit-lite' ),
                 'type' => Controls_Manager::SELECT,
                 'default' => 'ekit_menu_responsive_tablet',
                 'options' => [
-                    'ekit_menu_responsive_tablet'  => __( 'Tablet', 'elementskit' ),
-                    'ekit_menu_responsive_mobile' => __( 'Mobile', 'elementskit' ),
+                    'ekit_menu_responsive_tablet'  => __( 'Tablet', 'elementskit-lite' ),
+                    'ekit_menu_responsive_mobile' => __( 'Mobile', 'elementskit-lite' ),
                 ],
             ]
         );
@@ -195,7 +199,7 @@ class ElementsKit_Widget_Nav_Menu extends Widget_Base {
         $this->start_controls_section(
             'elementskit_menu_style_tab',
             [
-                'label' => esc_html__('Menu Wrapper', 'elementskit'),
+                'label' => esc_html__('Menu Wrapper', 'elementskit-lite'),
                 'tab' => Controls_Manager::TAB_STYLE,
             ]
         );
@@ -203,7 +207,7 @@ class ElementsKit_Widget_Nav_Menu extends Widget_Base {
         $this->add_responsive_control(
             'elementskit_menubar_height',
             [
-                'label' => esc_html__( 'Menu Height', 'elementskit' ),
+                'label' => esc_html__( 'Menu Height', 'elementskit-lite' ),
                 'type' => Controls_Manager::SLIDER,
                 'size_units' => [ 'px', '%' ],
                 'range' => [
@@ -236,7 +240,7 @@ class ElementsKit_Widget_Nav_Menu extends Widget_Base {
         $this->add_control(
             'elementskit_menu_wrap_h',
             [
-                'label' => esc_html__( 'Menu wrapper background', 'elementskit' ),
+                'label' => esc_html__( 'Menu wrapper background', 'elementskit-lite' ),
                 'type' => Controls_Manager::HEADING,
             ]
         );
@@ -245,7 +249,7 @@ class ElementsKit_Widget_Nav_Menu extends Widget_Base {
             Group_Control_Background::get_type(),
             [
                 'name' => 'elementskit_menubar_background',
-                'label' => esc_html__( 'Menu Panel Background', 'elementskit' ),
+                'label' => esc_html__( 'Menu Panel Background', 'elementskit-lite' ),
                 'types' => [ 'classic', 'gradient' ],
                 'devices' => [ 'desktop' ],
                 'selector' => '{{WRAPPER}} .elementskit-menu-container',
@@ -255,7 +259,7 @@ class ElementsKit_Widget_Nav_Menu extends Widget_Base {
         $this->add_responsive_control(
             'wrapper_color_mobile',
             [
-                'label'     => esc_html__( 'Mobile Wrapper Background', 'elementskit' ),
+                'label'     => esc_html__( 'Mobile Wrapper Background', 'elementskit-lite' ),
                 'type'      => Controls_Manager::COLOR,
                 'devices'   => [ 'tablet', 'mobile' ],
                 'selectors' => [
@@ -267,7 +271,7 @@ class ElementsKit_Widget_Nav_Menu extends Widget_Base {
         $this->add_responsive_control(
             'elementskit_mobile_menu_panel_spacing',
             [
-                'label' => esc_html__( 'Padding', 'elementskit' ),
+                'label' => esc_html__( 'Padding', 'elementskit-lite' ),
                 'type' => Controls_Manager::DIMENSIONS,
                 'size_units' => [ 'px', '%', 'em' ],
                 'tablet_default' => [
@@ -287,7 +291,7 @@ class ElementsKit_Widget_Nav_Menu extends Widget_Base {
         $this->add_responsive_control(
             'elementskit_mobile_menu_panel_width',
             [
-                'label' => esc_html__( 'Width', 'elementskit' ),
+                'label' => esc_html__( 'Width', 'elementskit-lite' ),
                 'type' => Controls_Manager::SLIDER,
                 'size_units' => [ 'px', '%' ],
                 'devices' => ['tablet', 'mobile'],
@@ -315,7 +319,7 @@ class ElementsKit_Widget_Nav_Menu extends Widget_Base {
         $this->add_responsive_control(
             'elementskit_border_radius',
             [
-                'label' => esc_html__( 'Menu border radius', 'elementskit' ),
+                'label' => esc_html__( 'Menu border radius', 'elementskit-lite' ),
                 'type' => Controls_Manager::DIMENSIONS,
                 'size_units' => [ 'px' ],
                 'separator' => [ 'before' ],
@@ -341,8 +345,8 @@ class ElementsKit_Widget_Nav_Menu extends Widget_Base {
         $this->add_responsive_control(
             'ekit_menu_item_icon_spacing',
             [
-                'label' => esc_html__( 'Menu Icon Spacing', 'elementskit' ),
-                'description' => esc_html__( 'This is only work with Mega menu icon option', 'elementskit' ),
+                'label' => esc_html__( 'Menu Icon Spacing', 'elementskit-lite' ),
+                'description' => esc_html__( 'This is only work with Mega menu icon option', 'elementskit-lite' ),
                 'type' => Controls_Manager::DIMENSIONS,
                 'size_units' => [ 'px', '%', 'em' ],
                 'selectors' => [
@@ -356,7 +360,7 @@ class ElementsKit_Widget_Nav_Menu extends Widget_Base {
         $this->start_controls_section(
             'elementskit_style_tab_menuitem',
             [
-                'label' => esc_html__('Menu item style', 'elementskit'),
+                'label' => esc_html__('Menu item style', 'elementskit-lite'),
                 'tab' => Controls_Manager::TAB_STYLE,
             ]
         );
@@ -367,8 +371,7 @@ class ElementsKit_Widget_Nav_Menu extends Widget_Base {
             Group_Control_Typography::get_type(),
             [
                 'name' => 'elementskit_content_typography',
-                'label' => esc_html__( 'Typography', 'elementskit' ),
-                'scheme' => Scheme_Typography::TYPOGRAPHY_1,
+                'label' => esc_html__( 'Typography', 'elementskit-lite' ),
                 'selector' => '{{WRAPPER}} .elementskit-navbar-nav > li > a',
             ]
         );
@@ -378,7 +381,7 @@ class ElementsKit_Widget_Nav_Menu extends Widget_Base {
         $this->add_control(
             'elementskit_menu_item_h',
             [
-                'label' => esc_html__( 'Menu Item Style', 'elementskit' ),
+                'label' => esc_html__( 'Menu Item Style', 'elementskit-lite' ),
                 'type' => Controls_Manager::HEADING,
                 'separator' => 'before',
             ]
@@ -392,7 +395,7 @@ class ElementsKit_Widget_Nav_Menu extends Widget_Base {
         $this->start_controls_tab(
             'elementskit_nav_menu_normal_tab',
             [
-                'label' => esc_html__( 'Normal', 'elementskit' ),
+                'label' => esc_html__( 'Normal', 'elementskit-lite' ),
             ]
         );
 
@@ -400,7 +403,7 @@ class ElementsKit_Widget_Nav_Menu extends Widget_Base {
             Group_Control_Background::get_type(),
             [
                 'name' => 'elementskit_item_background',
-                'label' => esc_html__( 'Item background', 'elementskit' ),
+                'label' => esc_html__( 'Item background', 'elementskit-lite' ),
                 'types' => ['classic', 'gradient'],
                 'selector' => '{{WRAPPER}} .elementskit-navbar-nav > li > a',
             ]
@@ -409,7 +412,7 @@ class ElementsKit_Widget_Nav_Menu extends Widget_Base {
         $this->add_responsive_control(
             'elementskit_menu_text_color',
             [
-                'label' => esc_html__( 'Item text color', 'elementskit' ),
+                'label' => esc_html__( 'Item text color', 'elementskit-lite' ),
                 'type' => Controls_Manager::COLOR,
                 'desktop_default' => '#000000',
                 'tablet_default' => '#000000',
@@ -425,7 +428,7 @@ class ElementsKit_Widget_Nav_Menu extends Widget_Base {
         $this->start_controls_tab(
             'elementskit_nav_menu_hover_tab',
             [
-                'label' => esc_html__( 'Hover', 'elementskit' ),
+                'label' => esc_html__( 'Hover', 'elementskit-lite' ),
             ]
         );
 
@@ -433,7 +436,7 @@ class ElementsKit_Widget_Nav_Menu extends Widget_Base {
             Group_Control_Background::get_type(),
             [
                 'name' => 'elementskit_item_background_hover',
-                'label' => esc_html__( 'Item background', 'elementskit' ),
+                'label' => esc_html__( 'Item background', 'elementskit-lite' ),
                 'types' => ['classic', 'gradient'],
                 'selector' => '{{WRAPPER}} .elementskit-navbar-nav > li > a:hover, {{WRAPPER}} .elementskit-navbar-nav > li > a:focus, {{WRAPPER}} .elementskit-navbar-nav > li > a:active, {{WRAPPER}} .elementskit-navbar-nav > li:hover > a',
             ]
@@ -442,7 +445,7 @@ class ElementsKit_Widget_Nav_Menu extends Widget_Base {
         $this->add_responsive_control(
             'elementskit_item_color_hover',
             [
-                'label' => esc_html__( 'Item text color', 'elementskit' ),
+                'label' => esc_html__( 'Item text color', 'elementskit-lite' ),
                 'type' => Controls_Manager::COLOR,
                 'default' => '#707070',
                 'selectors' => [
@@ -464,7 +467,7 @@ class ElementsKit_Widget_Nav_Menu extends Widget_Base {
         $this->start_controls_tab(
             'elementskit_nav_menu_active_tab',
             [
-                'label' => esc_html__( 'Active', 'elementskit' ),
+                'label' => esc_html__( 'Active', 'elementskit-lite' ),
             ]
         );
 
@@ -472,7 +475,7 @@ class ElementsKit_Widget_Nav_Menu extends Widget_Base {
             Group_Control_Background::get_type(),
             [
                 'name'		=> 'elementskit_nav_menu_active_bg_color',
-                'label' 	=> esc_html__( 'Item background', 'elementskit' ),
+                'label' 	=> esc_html__( 'Item background', 'elementskit-lite' ),
                 'types'		=> ['classic', 'gradient'],
                 'selector'	=> '{{WRAPPER}} .elementskit-navbar-nav > li.current-menu-item > a,{{WRAPPER}} .elementskit-navbar-nav > li.current-menu-ancestor > a'
             ]
@@ -481,7 +484,7 @@ class ElementsKit_Widget_Nav_Menu extends Widget_Base {
         $this->add_responsive_control(
             'elementskit_nav_menu_active_text_color',
             [
-                'label' => esc_html__( 'Item text color (Active)', 'elementskit' ),
+                'label' => esc_html__( 'Item text color (Active)', 'elementskit-lite' ),
                 'type' => Controls_Manager::COLOR,
                 'default' => '#707070',
                 'selectors' => [
@@ -499,7 +502,7 @@ class ElementsKit_Widget_Nav_Menu extends Widget_Base {
         $this->add_responsive_control(
             'elementskit_menu_item_spacing',
             [
-                'label' => esc_html__( 'Item Spacing', 'elementskit' ),
+                'label' => esc_html__( 'Item Spacing', 'elementskit-lite' ),
                 'type' => Controls_Manager::DIMENSIONS,
                 'separator' => [ 'before' ],
                 'desktop_default' => [
@@ -527,7 +530,7 @@ class ElementsKit_Widget_Nav_Menu extends Widget_Base {
         $this->start_controls_section(
             'elementskit_style_tab_submenu_item',
             [
-                'label' => esc_html__('Submenu item style', 'elementskit'),
+                'label' => esc_html__('Submenu item style', 'elementskit-lite'),
                 'tab' => Controls_Manager::TAB_STYLE,
             ]
         );
@@ -535,14 +538,14 @@ class ElementsKit_Widget_Nav_Menu extends Widget_Base {
         $this->add_control(
             'elementskit_style_tab_submenu_item_arrow',
             [
-                'label' => esc_html__( 'Submenu Indicator', 'elementskit' ),
+                'label' => esc_html__( 'Submenu Indicator', 'elementskit-lite' ),
                 'type' => Controls_Manager::SELECT,
                 'default' => 'elementskit_line_arrow',
                 'options' => [
-                    'elementskit_line_arrow'  => esc_html__( 'Line Arrow', 'elementskit' ),
-                    'elementskit_plus_icon' => esc_html__( 'Plus', 'elementskit' ),
-                    'elementskit_fill_arrow' => esc_html__( 'Fill Arrow', 'elementskit' ),
-                    'elementskit_none' => esc_html__( 'None', 'elementskit' ),
+                    'elementskit_line_arrow'  => esc_html__( 'Line Arrow', 'elementskit-lite' ),
+                    'elementskit_plus_icon' => esc_html__( 'Plus', 'elementskit-lite' ),
+                    'elementskit_fill_arrow' => esc_html__( 'Fill Arrow', 'elementskit-lite' ),
+                    'elementskit_none' => esc_html__( 'None', 'elementskit-lite' ),
                 ],
             ]
         );
@@ -550,7 +553,7 @@ class ElementsKit_Widget_Nav_Menu extends Widget_Base {
         $this->add_responsive_control(
             'elementskit_style_tab_submenu_indicator_color',
             [
-                'label' => esc_html__( 'Indicator color', 'elementskit' ),
+                'label' => esc_html__( 'Indicator color', 'elementskit-lite' ),
                 'type' => Controls_Manager::COLOR,
                 'default' =>  '#000000',
                 'selectors' => [
@@ -564,7 +567,7 @@ class ElementsKit_Widget_Nav_Menu extends Widget_Base {
         $this->add_responsive_control(
             'ekit_submenu_indicator_spacing',
             [
-                'label' => esc_html__( 'Indicator Margin', 'elementskit' ),
+                'label' => esc_html__( 'Indicator Margin', 'elementskit-lite' ),
                 'type' => Controls_Manager::DIMENSIONS,
                 'size_units' => [ 'px', '%', 'em' ],
                 'selectors' => [
@@ -580,8 +583,7 @@ class ElementsKit_Widget_Nav_Menu extends Widget_Base {
             Group_Control_Typography::get_type(),
             [
                 'name' => 'elementskit_menu_item_typography',
-                'label' => esc_html__( 'Typography', 'elementskit' ),
-                'scheme' => Scheme_Typography::TYPOGRAPHY_1,
+                'label' => esc_html__( 'Typography', 'elementskit-lite' ),
                 'selector' => '{{WRAPPER}} .elementskit-navbar-nav .elementskit-submenu-panel > li > a',
             ]
         );
@@ -589,7 +591,7 @@ class ElementsKit_Widget_Nav_Menu extends Widget_Base {
         $this->add_responsive_control(
             'elementskit_submenu_item_spacing',
             [
-                'label' => esc_html__( 'Spacing', 'elementskit' ),
+                'label' => esc_html__( 'Spacing', 'elementskit-lite' ),
                 'type' => Controls_Manager::DIMENSIONS,
                 'devices' => [ 'desktop', 'tablet' ],
                 'desktop_default' => [
@@ -619,14 +621,14 @@ class ElementsKit_Widget_Nav_Menu extends Widget_Base {
         $this->start_controls_tab(
             'elementskit_submenu_normal_tab',
             [
-                'label'	=> esc_html__('Normal', 'elementskit')
+                'label'	=> esc_html__('Normal', 'elementskit-lite')
             ]
         );
 
         $this->add_responsive_control(
             'elementskit_submenu_item_color',
             [
-                'label' => esc_html__( 'Item text color', 'elementskit' ),
+                'label' => esc_html__( 'Item text color', 'elementskit-lite' ),
                 'type' => Controls_Manager::COLOR,
                 'default' => '#000000',
                 'selectors' => [
@@ -640,7 +642,7 @@ class ElementsKit_Widget_Nav_Menu extends Widget_Base {
             Group_Control_Background::get_type(),
             [
                 'name' => 'elementskit_menu_item_background',
-                'label' => esc_html__( 'Item background', 'elementskit' ),
+                'label' => esc_html__( 'Item background', 'elementskit-lite' ),
                 'types' => [ 'classic', 'gradient' ],
                 'selector' => '{{WRAPPER}} .elementskit-navbar-nav .elementskit-submenu-panel > li > a',
             ]
@@ -651,14 +653,14 @@ class ElementsKit_Widget_Nav_Menu extends Widget_Base {
         $this->start_controls_tab(
             'elementskit_submenu_hover_tab',
             [
-                'label'	=> esc_html__('Hover', 'elementskit')
+                'label'	=> esc_html__('Hover', 'elementskit-lite')
             ]
         );
 
         $this->add_responsive_control(
             'elementskit_item_text_color_hover',
             [
-                'label' => esc_html__( 'Item text color (hover)', 'elementskit' ),
+                'label' => esc_html__( 'Item text color (hover)', 'elementskit-lite' ),
                 'type' => Controls_Manager::COLOR,
                 'default' => '#707070',
                 'selectors' => [
@@ -674,7 +676,7 @@ class ElementsKit_Widget_Nav_Menu extends Widget_Base {
             Group_Control_Background::get_type(),
             [
                 'name' => 'elementskit_menu_item_background_hover',
-                'label' => esc_html__( 'Item background (hover)', 'elementskit' ),
+                'label' => esc_html__( 'Item background (hover)', 'elementskit-lite' ),
                 'types' => [ 'classic', 'gradient' ],
                 'selector' => '
 					{{WRAPPER}} .elementskit-navbar-nav .elementskit-submenu-panel > li > a:hover,
@@ -689,14 +691,14 @@ class ElementsKit_Widget_Nav_Menu extends Widget_Base {
         $this->start_controls_tab(
             'elementskit_submenu_active_tab',
             [
-                'label'	=> esc_html__('Active', 'elementskit')
+                'label'	=> esc_html__('Active', 'elementskit-lite')
             ]
         );
 
         $this->add_responsive_control(
             'elementskit_nav_sub_menu_active_text_color',
             [
-                'label' => esc_html__( 'Item text color (Active)', 'elementskit' ),
+                'label' => esc_html__( 'Item text color (Active)', 'elementskit-lite' ),
                 'type' => Controls_Manager::COLOR,
                 'default' => '#707070',
                 'selectors' => [
@@ -709,7 +711,7 @@ class ElementsKit_Widget_Nav_Menu extends Widget_Base {
             Group_Control_Background::get_type(),
             [
                 'name'		=> 'elementskit_nav_sub_menu_active_bg_color',
-                'label' 	=> esc_html__( 'Item background (Active)', 'elementskit' ),
+                'label' 	=> esc_html__( 'Item background (Active)', 'elementskit-lite' ),
                 'types'		=> ['classic', 'gradient'],
                 'selector'	=> '{{WRAPPER}} .elementskit-navbar-nav .elementskit-submenu-panel > li.current-menu-item > a',
             ]
@@ -722,7 +724,7 @@ class ElementsKit_Widget_Nav_Menu extends Widget_Base {
         $this->add_control(
             'elementskit_menu_item_border_heading',
             [
-                'label' => esc_html__( 'Sub Menu Items Border', 'elementskit' ),
+                'label' => esc_html__( 'Sub Menu Items Border', 'elementskit-lite' ),
                 'type' => Controls_Manager::HEADING,
                 'separator' => 'before',
             ]
@@ -732,7 +734,7 @@ class ElementsKit_Widget_Nav_Menu extends Widget_Base {
             Group_Control_Border::get_type(),
             [
                 'name' => 'elementskit_menu_item_border',
-                'label' => esc_html__( 'Border', 'elementskit' ),
+                'label' => esc_html__( 'Border', 'elementskit-lite' ),
                 'selector' => '{{WRAPPER}} .elementskit-navbar-nav .elementskit-submenu-panel > li > a',
             ]
         );
@@ -740,7 +742,7 @@ class ElementsKit_Widget_Nav_Menu extends Widget_Base {
         $this->add_control(
             'elementskit_menu_item_border_last_child_heading',
             [
-                'label' => esc_html__( 'Border Last Child', 'elementskit' ),
+                'label' => esc_html__( 'Border Last Child', 'elementskit-lite' ),
                 'type' => Controls_Manager::HEADING,
                 'separator' => 'before',
             ]
@@ -750,7 +752,7 @@ class ElementsKit_Widget_Nav_Menu extends Widget_Base {
             Group_Control_Border::get_type(),
             [
                 'name' => 'elementskit_menu_item_border_last_child',
-                'label' => esc_html__( 'Border last Child', 'elementskit' ),
+                'label' => esc_html__( 'Border last Child', 'elementskit-lite' ),
                 'selector' => '{{WRAPPER}} .elementskit-navbar-nav .elementskit-submenu-panel > li:last-child > a',
             ]
         );
@@ -758,7 +760,7 @@ class ElementsKit_Widget_Nav_Menu extends Widget_Base {
         $this->add_control(
             'elementskit_menu_item_border_first_child_heading',
             [
-                'label' => esc_html__( 'Border First Child', 'elementskit' ),
+                'label' => esc_html__( 'Border First Child', 'elementskit-lite' ),
                 'type' => Controls_Manager::HEADING,
                 'separator' => 'before',
             ]
@@ -768,7 +770,7 @@ class ElementsKit_Widget_Nav_Menu extends Widget_Base {
             Group_Control_Border::get_type(),
             [
                 'name' => 'elementskit_menu_item_border_first_child',
-                'label' => esc_html__( 'Border First Child', 'elementskit' ),
+                'label' => esc_html__( 'Border First Child', 'elementskit-lite' ),
                 'selector' => '{{WRAPPER}} .elementskit-navbar-nav .elementskit-submenu-panel > li:first-child > a',
             ]
         );
@@ -778,7 +780,7 @@ class ElementsKit_Widget_Nav_Menu extends Widget_Base {
         $this->start_controls_section(
             'elementskit_style_tab_submenu_panel',
             [
-                'label' => esc_html__('Submenu panel style', 'elementskit'),
+                'label' => esc_html__('Submenu panel style', 'elementskit-lite'),
                 'tab' => Controls_Manager::TAB_STYLE,
             ]
         );
@@ -786,7 +788,7 @@ class ElementsKit_Widget_Nav_Menu extends Widget_Base {
         $this->add_responsive_control(
 			'sub_panel_padding',
 			[
-				'label'         => esc_html__('Padding', 'elementskit'),
+				'label'         => esc_html__('Padding', 'elementskit-lite'),
                 'type'          => Controls_Manager::DIMENSIONS,
                 'default'       => [
                     'top'       => '15',
@@ -805,7 +807,7 @@ class ElementsKit_Widget_Nav_Menu extends Widget_Base {
             Group_Control_Border::get_type(),
             [
                 'name' => 'elementskit_panel_submenu_border',
-                'label' => esc_html__( 'Panel Menu Border', 'elementskit' ),
+                'label' => esc_html__( 'Panel Menu Border', 'elementskit-lite' ),
                 'selector' => '{{WRAPPER}} .elementskit-navbar-nav .elementskit-submenu-panel',
             ]
         );
@@ -814,7 +816,7 @@ class ElementsKit_Widget_Nav_Menu extends Widget_Base {
             Group_Control_Background::get_type(),
             [
                 'name' => 'elementskit_submenu_container_background',
-                'label' => esc_html__( 'Container background', 'elementskit' ),
+                'label' => esc_html__( 'Container background', 'elementskit-lite' ),
                 'types' => [ 'classic','gradient' ],
                 'selector' => '{{WRAPPER}} .elementskit-navbar-nav .elementskit-submenu-panel',
             ]
@@ -823,7 +825,7 @@ class ElementsKit_Widget_Nav_Menu extends Widget_Base {
         $this->add_responsive_control(
             'elementskit_submenu_panel_border_radius',
             [
-                'label' => esc_html__( 'Border Radius', 'elementskit' ),
+                'label' => esc_html__( 'Border Radius', 'elementskit-lite' ),
                 'type' => Controls_Manager::DIMENSIONS,
                 'desktop_default' => [
                     'top' => 0,
@@ -849,7 +851,7 @@ class ElementsKit_Widget_Nav_Menu extends Widget_Base {
         $this->add_responsive_control(
             'elementskit_submenu_container_width',
             [
-                'label' => esc_html__( 'Conatiner width', 'elementskit' ),
+                'label' => esc_html__( 'Conatiner width', 'elementskit-lite' ),
                 'type' => Controls_Manager::TEXT,
                 'devices' => [ 'desktop' ],
                 'desktop_default' => '220px',
@@ -865,7 +867,7 @@ class ElementsKit_Widget_Nav_Menu extends Widget_Base {
             Group_Control_Box_Shadow::get_type(),
             [
                 'name' => 'elementskit_panel_box_shadow',
-                'label' => esc_html__( 'Box Shadow', 'elementskit' ),
+                'label' => esc_html__( 'Box Shadow', 'elementskit-lite' ),
                 'selector' => '{{WRAPPER}} .elementskit-navbar-nav .elementskit-submenu-panel',
             ]
         );
@@ -875,7 +877,7 @@ class ElementsKit_Widget_Nav_Menu extends Widget_Base {
         $this->start_controls_section(
             'elementskit_menu_toggle_style_tab',
             [
-                'label' => esc_html__( 'Humburger Style', 'elementskit' ),
+                'label' => esc_html__( 'Humburger Style', 'elementskit-lite' ),
                 'tab' => Controls_Manager::TAB_STYLE,
             ]
         );
@@ -883,7 +885,7 @@ class ElementsKit_Widget_Nav_Menu extends Widget_Base {
         $this->add_control(
             'elementskit_menu_toggle_style_title',
             [
-                'label' => esc_html__( 'Humburger Toggle', 'elementskit' ),
+                'label' => esc_html__( 'Humburger Toggle', 'elementskit-lite' ),
                 'type' => Controls_Manager::HEADING,
                 'separator' => 'before',
             ]
@@ -892,16 +894,16 @@ class ElementsKit_Widget_Nav_Menu extends Widget_Base {
         $this->add_responsive_control(
             'elementskit_menu_toggle_icon_position',
             [
-                'label' => esc_html__( 'Position', 'elementskit' ),
+                'label' => esc_html__( 'Position', 'elementskit-lite' ),
                 'type' => Controls_Manager::CHOOSE,
                 'label_block' => false,
                 'options' => [
                     'left' => [
-                        'title' => esc_html__( 'Top', 'elementskit' ),
+                        'title' => esc_html__( 'Top', 'elementskit-lite' ),
                         'icon' => 'fa fa-angle-left',
                     ],
                     'right' => [
-                        'title' => esc_html__( 'Middle', 'elementskit' ),
+                        'title' => esc_html__( 'Middle', 'elementskit-lite' ),
                         'icon' => 'fa fa-angle-right',
                     ],
                 ],
@@ -915,7 +917,7 @@ class ElementsKit_Widget_Nav_Menu extends Widget_Base {
         $this->add_responsive_control(
             'elementskit_menu_toggle_spacing',
             [
-                'label' => esc_html__( 'Padding', 'elementskit' ),
+                'label' => esc_html__( 'Padding', 'elementskit-lite' ),
                 'type' => Controls_Manager::DIMENSIONS,
                 'size_units' => [ 'px', ],
                 'devices' => [ 'tablet' ],
@@ -935,7 +937,7 @@ class ElementsKit_Widget_Nav_Menu extends Widget_Base {
         $this->add_responsive_control(
             'elementskit_menu_toggle_width',
             [
-                'label' => esc_html__( 'Width', 'elementskit' ),
+                'label' => esc_html__( 'Width', 'elementskit-lite' ),
                 'type' => Controls_Manager::SLIDER,
                 'size_units' => [ 'px' ],
                 'range' => [
@@ -959,7 +961,7 @@ class ElementsKit_Widget_Nav_Menu extends Widget_Base {
         $this->add_responsive_control(
             'elementskit_menu_toggle_border_radius',
             [
-                'label' => esc_html__( 'Border Radius', 'elementskit' ),
+                'label' => esc_html__( 'Border Radius', 'elementskit-lite' ),
                 'type' => Controls_Manager::SLIDER,
                 'size_units' => [ 'px', '%' ],
                 'range' => [
@@ -987,7 +989,7 @@ class ElementsKit_Widget_Nav_Menu extends Widget_Base {
         $this->add_responsive_control(
             'elementskit_menu_open_typography',
             [
-                'label' => esc_html__( 'Icon Size', 'elementskit' ),
+                'label' => esc_html__( 'Icon Size', 'elementskit-lite' ),
                 'type' => Controls_Manager::SLIDER,
                 'size_units' => [ 'px' ],
                 'range' => [
@@ -1013,7 +1015,7 @@ class ElementsKit_Widget_Nav_Menu extends Widget_Base {
         $this->start_controls_tab(
             'elementskit_menu_toggle_normal',
             [
-                'label' => esc_html__( 'Normal', 'elementskit' ),
+                'label' => esc_html__( 'Normal', 'elementskit-lite' ),
             ]
         );
 
@@ -1021,7 +1023,7 @@ class ElementsKit_Widget_Nav_Menu extends Widget_Base {
             Group_Control_Background::get_type(),
             [
                 'name' => 'elementskit_menu_toggle_background',
-                'label' => esc_html__( 'Background', 'elementskit' ),
+                'label' => esc_html__( 'Background', 'elementskit-lite' ),
                 'types' => [ 'classic' ],
                 'selector' => '{{WRAPPER}} .elementskit-menu-hamburger',
             ]
@@ -1031,7 +1033,7 @@ class ElementsKit_Widget_Nav_Menu extends Widget_Base {
             Group_Control_Border::get_type(),
             [
                 'name' => 'elementskit_menu_toggle_border',
-                'label' => esc_html__( 'Border', 'elementskit' ),
+                'label' => esc_html__( 'Border', 'elementskit-lite' ),
                 'separator' => 'before',
                 'selector' => '{{WRAPPER}} .elementskit-menu-hamburger',
             ]
@@ -1040,7 +1042,7 @@ class ElementsKit_Widget_Nav_Menu extends Widget_Base {
         $this->add_control(
             'elementskit_menu_toggle_icon_color',
             [
-                'label' => esc_html__( 'Humber Icon Color', 'elementskit' ),
+                'label' => esc_html__( 'Humber Icon Color', 'elementskit-lite' ),
                 'type' => Controls_Manager::COLOR,
                 'default' => 'rgba(0, 0, 0, 0.5)',
                 'selectors' => [
@@ -1055,7 +1057,7 @@ class ElementsKit_Widget_Nav_Menu extends Widget_Base {
         $this->start_controls_tab(
             'elementskit_menu_toggle_hover',
             [
-                'label' => esc_html__( 'Hover', 'elementskit' ),
+                'label' => esc_html__( 'Hover', 'elementskit-lite' ),
             ]
         );
 
@@ -1063,7 +1065,7 @@ class ElementsKit_Widget_Nav_Menu extends Widget_Base {
             Group_Control_Background::get_type(),
             [
                 'name' => 'elementskit_menu_toggle_background_hover',
-                'label' => esc_html__( 'Background', 'elementskit' ),
+                'label' => esc_html__( 'Background', 'elementskit-lite' ),
                 'types' => [ 'classic' ],
                 'selector' => '{{WRAPPER}} .elementskit-menu-hamburger:hover',
             ]
@@ -1073,7 +1075,7 @@ class ElementsKit_Widget_Nav_Menu extends Widget_Base {
             Group_Control_Border::get_type(),
             [
                 'name' => 'elementskit_menu_toggle_border_hover',
-                'label' => esc_html__( 'Border', 'elementskit' ),
+                'label' => esc_html__( 'Border', 'elementskit-lite' ),
                 'separator' => 'before',
                 'selector' => '{{WRAPPER}} .elementskit-menu-hamburger:hover',
             ]
@@ -1082,12 +1084,8 @@ class ElementsKit_Widget_Nav_Menu extends Widget_Base {
         $this->add_control(
             'elementskit_menu_toggle_icon_color_hover',
             [
-                'label' => esc_html__( 'Humber Icon Color', 'elementskit' ),
+                'label' => esc_html__( 'Humber Icon Color', 'elementskit-lite' ),
                 'type' => Controls_Manager::COLOR,
-                'scheme' => [
-                    'type' => Scheme_Color::get_type(),
-                    'value' => Scheme_Color::COLOR_1,
-                ],
                 'default' => 'rgba(0, 0, 0, 0.5)',
                 'selectors' => [
                     '{{WRAPPER}} .elementskit-menu-hamburger:hover .elementskit-menu-hamburger-icon' => 'background-color: {{VALUE}}',
@@ -1104,7 +1102,7 @@ class ElementsKit_Widget_Nav_Menu extends Widget_Base {
         $this->add_control(
             'elementskit_menu_close_style_title',
             [
-                'label' => esc_html__( 'Close Toggle', 'elementskit' ),
+                'label' => esc_html__( 'Close Toggle', 'elementskit-lite' ),
                 'type' => Controls_Manager::HEADING,
                 'separator' => 'before',
             ]
@@ -1114,8 +1112,7 @@ class ElementsKit_Widget_Nav_Menu extends Widget_Base {
             Group_Control_Typography::get_type(),
             [
                 'name' => 'elementskit_menu_close_typography',
-                'label' => esc_html__( 'Typography', 'elementskit' ),
-                'scheme' => Scheme_Typography::TYPOGRAPHY_1,
+                'label' => esc_html__( 'Typography', 'elementskit-lite' ),
                 'selector' => '{{WRAPPER}} .elementskit-menu-close',
             ]
         );
@@ -1123,7 +1120,7 @@ class ElementsKit_Widget_Nav_Menu extends Widget_Base {
         $this->add_responsive_control(
             'elementskit_menu_close_spacing',
             [
-                'label' => esc_html__( 'Padding', 'elementskit' ),
+                'label' => esc_html__( 'Padding', 'elementskit-lite' ),
                 'type' => Controls_Manager::DIMENSIONS,
                 'size_units' => [ 'px', ],
                 'devices' => [ 'tablet' ],
@@ -1143,7 +1140,7 @@ class ElementsKit_Widget_Nav_Menu extends Widget_Base {
         $this->add_responsive_control(
             'elementskit_menu_close_margin',
             [
-                'label' => esc_html__( 'Margin', 'elementskit' ),
+                'label' => esc_html__( 'Margin', 'elementskit-lite' ),
                 'type' => Controls_Manager::DIMENSIONS,
                 'size_units' => [ 'px', ],
                 'devices' => [ 'tablet' ],
@@ -1163,7 +1160,7 @@ class ElementsKit_Widget_Nav_Menu extends Widget_Base {
         $this->add_responsive_control(
             'elementskit_menu_close_width',
             [
-                'label' => esc_html__( 'Width', 'elementskit' ),
+                'label' => esc_html__( 'Width', 'elementskit-lite' ),
                 'type' => Controls_Manager::SLIDER,
                 'size_units' => [ 'px' ],
                 'range' => [
@@ -1187,7 +1184,7 @@ class ElementsKit_Widget_Nav_Menu extends Widget_Base {
         $this->add_responsive_control(
             'elementskit_menu_close_border_radius',
             [
-                'label' => esc_html__( 'Border Radius', 'elementskit' ),
+                'label' => esc_html__( 'Border Radius', 'elementskit-lite' ),
                 'type' => Controls_Manager::SLIDER,
                 'size_units' => [ 'px', '%' ],
                 'range' => [
@@ -1219,7 +1216,7 @@ class ElementsKit_Widget_Nav_Menu extends Widget_Base {
         $this->start_controls_tab(
             'elementskit_menu_close_normal',
             [
-                'label' => esc_html__( 'Normal', 'elementskit' ),
+                'label' => esc_html__( 'Normal', 'elementskit-lite' ),
             ]
         );
 
@@ -1227,7 +1224,7 @@ class ElementsKit_Widget_Nav_Menu extends Widget_Base {
             Group_Control_Background::get_type(),
             [
                 'name' => 'elementskit_menu_close_background',
-                'label' => esc_html__( 'Background', 'elementskit' ),
+                'label' => esc_html__( 'Background', 'elementskit-lite' ),
                 'types' => [ 'classic' ],
                 'selector' => '{{WRAPPER}} .elementskit-menu-close',
             ]
@@ -1237,7 +1234,7 @@ class ElementsKit_Widget_Nav_Menu extends Widget_Base {
             Group_Control_Border::get_type(),
             [
                 'name' => 'elementskit_menu_close_border',
-                'label' => esc_html__( 'Border', 'elementskit' ),
+                'label' => esc_html__( 'Border', 'elementskit-lite' ),
                 'separator' => 'before',
                 'selector' => '{{WRAPPER}} .elementskit-menu-close',
             ]
@@ -1246,12 +1243,8 @@ class ElementsKit_Widget_Nav_Menu extends Widget_Base {
         $this->add_control(
             'elementskit_menu_close_icon_color',
             [
-                'label' => esc_html__( 'Humber Icon Color', 'elementskit' ),
+                'label' => esc_html__( 'Humber Icon Color', 'elementskit-lite' ),
                 'type' => Controls_Manager::COLOR,
-                'scheme' => [
-                    'type' => Scheme_Color::get_type(),
-                    'value' => Scheme_Color::COLOR_1,
-                ],
                 'default' => 'rgba(51, 51, 51, 1)',
                 'selectors' => [
                     '{{WRAPPER}} .elementskit-menu-close' => 'color: {{VALUE}}',
@@ -1264,7 +1257,7 @@ class ElementsKit_Widget_Nav_Menu extends Widget_Base {
         $this->start_controls_tab(
             'elementskit_menu_close_hover',
             [
-                'label' => esc_html__( 'Hover', 'elementskit' ),
+                'label' => esc_html__( 'Hover', 'elementskit-lite' ),
             ]
         );
 
@@ -1272,7 +1265,7 @@ class ElementsKit_Widget_Nav_Menu extends Widget_Base {
             Group_Control_Background::get_type(),
             [
                 'name' => 'elementskit_menu_close_background_hover',
-                'label' => esc_html__( 'Background', 'elementskit' ),
+                'label' => esc_html__( 'Background', 'elementskit-lite' ),
                 'types' => [ 'classic' ],
                 'selector' => '{{WRAPPER}} .elementskit-menu-close:hover',
             ]
@@ -1282,7 +1275,7 @@ class ElementsKit_Widget_Nav_Menu extends Widget_Base {
             Group_Control_Border::get_type(),
             [
                 'name' => 'elementskit_menu_close_border_hover',
-                'label' => esc_html__( 'Border', 'elementskit' ),
+                'label' => esc_html__( 'Border', 'elementskit-lite' ),
                 'separator' => 'before',
                 'selector' => '{{WRAPPER}} .elementskit-menu-close:hover',
             ]
@@ -1291,12 +1284,8 @@ class ElementsKit_Widget_Nav_Menu extends Widget_Base {
         $this->add_control(
             'elementskit_menu_close_icon_color_hover',
             [
-                'label' => esc_html__( 'Humber Icon Color', 'elementskit' ),
+                'label' => esc_html__( 'Humber Icon Color', 'elementskit-lite' ),
                 'type' => Controls_Manager::COLOR,
-                'scheme' => [
-                    'type' => Scheme_Color::get_type(),
-                    'value' => Scheme_Color::COLOR_1,
-                ],
                 'default' => 'rgba(0, 0, 0, 0.5)',
                 'selectors' => [
                     '{{WRAPPER}} .elementskit-menu-close:hover' => 'color: {{VALUE}}',
@@ -1313,7 +1302,7 @@ class ElementsKit_Widget_Nav_Menu extends Widget_Base {
         $this->start_controls_section(
             'elementskit_mobile_menu_logo_style_tab',
             [
-                'label' => esc_html__( 'Mobile Menu Logo', 'elementskit' ),
+                'label' => esc_html__( 'Mobile Menu Logo', 'elementskit-lite' ),
                 'tab' => Controls_Manager::TAB_STYLE,
             ]
         );
@@ -1321,7 +1310,7 @@ class ElementsKit_Widget_Nav_Menu extends Widget_Base {
         $this->add_responsive_control(
             'elementskit_mobile_menu_logo_width',
             [
-                'label' => esc_html__( 'Width', 'elementskit' ),
+                'label' => esc_html__( 'Width', 'elementskit-lite' ),
                 'type' => Controls_Manager::SLIDER,
                 'size_units' => [ 'px' ],
                 'range' => [
@@ -1348,7 +1337,7 @@ class ElementsKit_Widget_Nav_Menu extends Widget_Base {
         $this->add_responsive_control(
             'elementskit_mobile_menu_logo_height',
             [
-                'label' => esc_html__( 'Height', 'elementskit' ),
+                'label' => esc_html__( 'Height', 'elementskit-lite' ),
                 'type' => Controls_Manager::SLIDER,
                 'size_units' => [ 'px' ],
                 'range' => [
@@ -1375,7 +1364,7 @@ class ElementsKit_Widget_Nav_Menu extends Widget_Base {
         $this->add_responsive_control(
             'elementskit_mobile_menu_logo_margin',
             [
-                'label' => esc_html__( 'Margin', 'elementskit' ),
+                'label' => esc_html__( 'Margin', 'elementskit-lite' ),
                 'type' => Controls_Manager::DIMENSIONS,
                 'size_units' => [ 'px', '%', 'em' ],
                 'tablet_default' => [
@@ -1395,7 +1384,7 @@ class ElementsKit_Widget_Nav_Menu extends Widget_Base {
         $this->add_responsive_control(
             'elementskit_mobile_menu_logo_padding',
             [
-                'label' => esc_html__( 'Padding', 'elementskit' ),
+                'label' => esc_html__( 'Padding', 'elementskit-lite' ),
                 'type' => Controls_Manager::DIMENSIONS,
                 'size_units' => [ 'px', '%', 'em' ],
                 'tablet_default' => [
@@ -1439,7 +1428,7 @@ class ElementsKit_Widget_Nav_Menu extends Widget_Base {
             $responsive_menu_breakpoint = "767";
         }
 
-        echo '<div class="ekit-wid-con '.$settings['elementskit_responsive_breakpoint'].'" data-hamburger-icon="'.$hamburger_icon_value.'" data-hamburger-icon-type="'.$hamburger_icon_type.'" data-responsive-breakpoint="'.$responsive_menu_breakpoint.'">';
+        echo '<div class="ekit-wid-con '.esc_attr($settings['elementskit_responsive_breakpoint']).'" data-hamburger-icon="'.$hamburger_icon_value.'" data-hamburger-icon-type="'.$hamburger_icon_type.'" data-responsive-breakpoint="'.esc_attr($responsive_menu_breakpoint).'">';
         $this->render_raw();
         echo '</div>';
     }
@@ -1448,6 +1437,32 @@ class ElementsKit_Widget_Nav_Menu extends Widget_Base {
         $settings = $this->get_settings_for_display();
 
         if($settings['elementskit_nav_menu'] != '' && wp_get_nav_menu_items($settings['elementskit_nav_menu']) !== false && count(wp_get_nav_menu_items($settings['elementskit_nav_menu'])) > 0){
+            /**
+             * Hamburger Toggler Button
+             */
+            ?>
+            <button class="elementskit-menu-hamburger elementskit-menu-toggler">
+                <?php
+                /**
+                 * Show Default Icon
+                 */
+                if ( $settings['elementskit_hamburger_icon']['value'] === '' ):
+                ?>
+                    <span class="elementskit-menu-hamburger-icon"></span><span class="elementskit-menu-hamburger-icon"></span><span class="elementskit-menu-hamburger-icon"></span>
+                <?php
+                endif;
+                
+                /**
+                 * Show Icon or, SVG
+                 */
+                Icons_Manager::render_icon( $settings['elementskit_hamburger_icon'], [ 'aria-hidden' => 'true', 'class' => 'ekit-menu-icon' ] );
+                ?>
+            </button>
+            <?php
+
+            /**
+             * Main Menu Container
+             */
             $link = $target = $nofollow = '';
 
             if (isset($settings['elementskit_nav_menu_logo_link_to']) && $settings['elementskit_nav_menu_logo_link_to'] == 'home') {
@@ -1458,12 +1473,12 @@ class ElementsKit_Widget_Nav_Menu extends Widget_Base {
                 $nofollow = ($settings['elementskit_nav_menu_logo_link']['nofollow'] != "on" ? "" : "nofollow");
             }
 
-            $metadata = \ElementsKit_Lite\Utils::img_meta($settings['elementskit_nav_menu_logo']['id']);
+            $metadata = \ElementsKit_Lite\Utils::img_meta(esc_attr($settings['elementskit_nav_menu_logo']['id']));
             $markup = '
 				<div class="elementskit-nav-identity-panel">
 					<div class="elementskit-site-title">
-						<a class="elementskit-nav-logo" href="'.$link.'" target="'.(!empty($target) ? $target : '_self').'" rel="'.$nofollow.'">
-							<img src="'.$settings['elementskit_nav_menu_logo']['url'].'" alt="'.(isset($metadata['alt']) ? $metadata['alt'] : '').'">
+						<a class="elementskit-nav-logo" href="'.esc_url($link).'" target="'.(!empty($target) ? esc_attr($target) : '_self').'" rel="'.esc_attr($nofollow).'">
+							<img src="'.esc_url($settings['elementskit_nav_menu_logo']['url']).'" alt="'.(isset($metadata['alt']) ? esc_attr($metadata['alt']) : '').'">
 						</a>
 					</div>
 					<button class="elementskit-menu-close elementskit-menu-toggler" type="button">X</button>
@@ -1484,7 +1499,20 @@ class ElementsKit_Widget_Nav_Menu extends Widget_Base {
             ];
 
             wp_nav_menu($args);
+            
+
+            /**
+             * Mobile Menu Overlay
+             */
+            ?><div class="elementskit-menu-overlay elementskit-menu-offcanvas-elements elementskit-menu-toggler ekit-nav-menu--overlay"></div><?php
+
+
+            /**
+             * Editor: Widget Empty Fallback on Responsive View
+             */
+            if ( Plugin::$instance->editor->is_edit_mode() ):
+                ?><span class="ekit-nav-menu--empty-fallback">&nbsp;</span><?php
+            endif;
         }
     }
-    protected function _content_template() { }
 }

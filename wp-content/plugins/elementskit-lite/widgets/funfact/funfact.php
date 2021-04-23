@@ -40,6 +40,9 @@ class ElementsKit_Widget_Funfact extends Widget_Base {
 		return Handler::get_categories();
 	}
 
+    public function get_help_url() {
+        return '';
+    }
 
 	protected function _register_controls() {
 
@@ -776,7 +779,6 @@ class ElementsKit_Widget_Funfact extends Widget_Base {
 			[
 				'name'     => 'ekit_funfact_number_typography',
 				'label'    => esc_html__('Typography', 'elementskit-lite'),
-				'scheme'   => Scheme_Typography::TYPOGRAPHY_1,
 				'selector' => '{{WRAPPER}} .elementskit-funfact .funfact-content .number-percentage-wraper',
 			]
 		);
@@ -860,7 +862,6 @@ class ElementsKit_Widget_Funfact extends Widget_Base {
 			[
 				'name'     => 'ekit_funfact_title_typography',
 				'selector' => '{{WRAPPER}} .elementskit-funfact .funfact-title',
-				'scheme'   => Scheme_Typography::TYPOGRAPHY_1,
 			]
 		);
 
@@ -911,7 +912,6 @@ class ElementsKit_Widget_Funfact extends Widget_Base {
 			[
 				'name'     => 'ekit_funfact_super_typography',
 				'label'    => esc_html__('Typography', 'elementskit-lite'),
-				'scheme'   => Scheme_Typography::TYPOGRAPHY_1,
 				'selector' => '{{WRAPPER}} .elementskit-funfact .super',
 			]
 		);
@@ -1191,6 +1191,18 @@ class ElementsKit_Widget_Funfact extends Widget_Base {
 	protected function render_raw() {
 		$settings = $this->get_settings_for_display();
 
+		$options_ekit_funfact_title_size = array_keys([
+			'h1'   => 'H1',
+			'h2'   => 'H2',
+			'h3'   => 'H3',
+			'h4'   => 'H4',
+			'h5'   => 'H5',
+			'h6'   => 'H6',
+			'div'  => 'div',
+			'span' => 'span',
+			'p'    => 'p',
+		]);
+
 
 		$text_align = $settings['ekit_funfact_text_align'];
 
@@ -1272,18 +1284,24 @@ class ElementsKit_Widget_Funfact extends Widget_Base {
 				
 				<div class="funfact-content">
 					<div class="number-percentage-wraper">
-						<?php echo esc_html($settings['ekit_funfact_number_prefix']); ?>
+						<?php echo esc_html( $settings['ekit_funfact_number_prefix'] ); ?>
 						<span class="number-percentage"
-						      data-value="<?php echo esc_attr($settings['ekit_funfact_number']); ?>"
+						      data-value="<?php echo esc_attr( $settings['ekit_funfact_number'] ); ?>"
 						      data-animation-duration="3500">0</span>
-						<?php echo esc_html($settings['ekit_funfact_number_suffix']); ?>
+						<?php echo esc_html( $settings['ekit_funfact_number_suffix'] ); ?>
 						<?php if($settings['ekit_funfact_super'] == 'yes') : ?>
 							<span class="super"><?php echo \ElementsKit_Lite\Utils::kses($settings['ekit_funfact_super_text']); ?></span>
 						<?php endif; ?>
 					</div>
-					<<?php echo \ElementsKit_Lite\Utils::render($settings['ekit_funfact_title_size']); ?>
-					class="funfact-title"><?php echo esc_html($settings['ekit_funfact_title_text']); ?>
-				</<?php echo esc_html($settings['ekit_funfact_title_size']); ?>>
+
+					<?php
+						// Validate Title Tag
+						$title_tag = \ElementsKit_Lite\Utils::esc_options($settings['ekit_funfact_title_size'], $options_ekit_funfact_title_size, 'h3');
+
+						echo '<'. $title_tag .' class="funfact-title">';
+						echo 	esc_html( $settings['ekit_funfact_title_text'] );
+						echo '</'. $title_tag .'>';
+					?>
 				<?php echo $enable_ovelry_color; ?>
 			</div>
 		</div>

@@ -28,6 +28,10 @@ class ElementsKit_Widget_Business_Hours extends Widget_Base {
         return Handler::get_categories();
     }
 
+    public function get_help_url() {
+        return '';
+    }
+
     protected function _register_controls() {
 
 
@@ -257,7 +261,6 @@ class ElementsKit_Widget_Business_Hours extends Widget_Base {
 			Group_Control_Typography::get_type(),
 			[
 				'name' => 'ekit_business_day_typography',
-				'scheme' => Scheme_Typography::TYPOGRAPHY_1,
 				'selector' => '{{WRAPPER}} .ekit-wid-con .ekit-single-day .ekit-business-day',
 			]
 		);
@@ -321,7 +324,6 @@ class ElementsKit_Widget_Business_Hours extends Widget_Base {
 			Group_Control_Typography::get_type(),
 			[
 				'name' => 'ekit_business_time_typography',
-				'scheme' => Scheme_Typography::TYPOGRAPHY_1,
 				'selector' => '{{WRAPPER}} .ekit-wid-con .ekit-single-day .ekit-business-time',
 			]
 		);
@@ -379,9 +381,9 @@ class ElementsKit_Widget_Business_Hours extends Widget_Base {
 			<?php foreach ($settings['ekit_business_openday_list'] as $item) : ?>
 			<div class="ekit-single-day elementor-repeater-item-<?php echo esc_attr($item['_id']); ?> <?php if( $item['ekit_highlight_this_day'] == 'yes' ){ echo esc_attr( 'ekit-closed-day','elementskit-lite'); }?>">
 				<?php if( !empty( $item['ekit_business_day'] ) ) : ?>
-				<span class="ekit-business-day"><?php echo esc_html__( $item['ekit_business_day'],'elementskit-lite' ); ?></span>
+				<span class="ekit-business-day"><?php echo esc_html($item['ekit_business_day']); ?></span>
 				<?php endif; if( !empty( $item['ekit_business_time'] ) ): ?>
-				<span class="ekit-business-time"><?php echo esc_html__( $item['ekit_business_time'],'elementskit-lite' ); ?></span>
+				<span class="ekit-business-time"><?php echo esc_html($item['ekit_business_time']); ?></span>
 				<?php endif; ?>
 			</div>
 			<?php endforeach; ?>

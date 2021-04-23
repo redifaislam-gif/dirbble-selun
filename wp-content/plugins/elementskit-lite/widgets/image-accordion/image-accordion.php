@@ -28,6 +28,10 @@ class ElementsKit_Widget_Image_Accordion extends Widget_Base {
         return Handler::get_categories();
     }
 
+    public function get_help_url() {
+        return '';
+    }
+
     protected function _register_controls() {
 
         $this->start_controls_section(
@@ -67,7 +71,7 @@ class ElementsKit_Widget_Image_Accordion extends Widget_Base {
                     'label'         => esc_html__('Title', 'elementskit-lite'),
                     'type'          => Controls_Manager::TEXT,
                     'label_block'   => true,
-                    'default'       => esc_html__('Image accordion Title'),
+                    'default'       => esc_html__('Image accordion Title', 'elementskit-lite'),
                 ]
             );
 
@@ -199,7 +203,7 @@ class ElementsKit_Widget_Image_Accordion extends Widget_Base {
                 [
                     'label'         => esc_html__( 'Project Link', 'elementskit-lite' ),
                     'type'          => Controls_Manager::URL,
-                    'placeholder'   => esc_html__( 'https://your-link.com', 'elementskit-lite' ),
+                    'placeholder'   => esc_html__( 'https://wpmet.com', 'elementskit-lite' ),
                     'condition'     => [
                         'ekit_img_accordion_enable_project_link' => 'yes'
                     ],
@@ -907,10 +911,10 @@ class ElementsKit_Widget_Image_Accordion extends Widget_Base {
         $settings = $this->get_settings_for_display();
         extract($settings);
         ?>
-        <div class="elementskit-image-accordion-wraper ekit-image-accordion">
+        <div class="ekit-image-accordion elementskit-image-accordion-wraper">
             <?php foreach ( $ekit_img_accordion_items as $key => $item ) : ?>
-            <input type="radio" name="ekit_ia_<?php echo $this->get_id(); ?>" id="ekit_ia_<?php echo $this->get_id() .'_'. $key; ?>" class="elementskit-single-image-accordion--input" <?php echo \ElementsKit_Lite\Utils::render(($item['ekit_img_accordion_active'] == 'yes') ? 'checked' : '') ; ?> hidden>
-            <label for="ekit_ia_<?php echo $this->get_id() .'_'. $key; ?>" class="elementskit-single-image-accordion ekit-image-accordion-item" style="background-image: url(<?php echo esc_url($item['ekit_img_accordion_bg']['url']); ?>)">
+            <input type="radio" name="ekit_ia_<?php echo esc_attr($this->get_id()); ?>" id="ekit_ia_<?php echo esc_attr($this->get_id()) .'_'. $key; ?>" class="elementskit-single-image-accordion--input" <?php echo \ElementsKit_Lite\Utils::render(($item['ekit_img_accordion_active'] == 'yes') ? 'checked' : '') ; ?> hidden>
+            <label for="ekit_ia_<?php echo esc_attr($this->get_id()) .'_'. $key; ?>" class="elementskit-single-image-accordion ekit-image-accordion-item" style="background-image: url(<?php echo esc_url($item['ekit_img_accordion_bg']['url']); ?>)">
                 <span class="elementskit-accordion-content">
                    <?php if($item['ekit_img_accordion_enable_pupup'] == 'yes' || $item['ekit_img_accordion_enable_project_link'] == 'yes') {
 
@@ -943,7 +947,7 @@ class ElementsKit_Widget_Image_Accordion extends Widget_Base {
                                     Icons_Manager::render_icon( $item['ekit_img_accordion_pup_up_icons'], [ 'aria-hidden' => 'true'] );
                                 } else {
                                     ?>
-                                    <i class="<?php echo $item['ekit_img_accordion_pup_up_icon']; ?>" aria-hidden="true"></i>
+                                    <i class="<?php echo esc_attr($item['ekit_img_accordion_pup_up_icon']); ?>" aria-hidden="true"></i>
                                     <?php
                                 }
                             ?>
@@ -965,7 +969,7 @@ class ElementsKit_Widget_Image_Accordion extends Widget_Base {
                                     Icons_Manager::render_icon( $item['ekit_img_accordion_project_link_icons'], [ 'aria-hidden' => 'true'] );
                                 } else {
                                     ?>
-                                    <i class="<?php echo $item['ekit_img_accordion_project_link_icon']; ?>" aria-hidden="true"></i>
+                                    <i class="<?php echo esc_attr($item['ekit_img_accordion_project_link_icon']); ?>" aria-hidden="true"></i>
                                     <?php
                                 }
                             ?>
@@ -989,7 +993,7 @@ class ElementsKit_Widget_Image_Accordion extends Widget_Base {
                                     Icons_Manager::render_icon( $item['ekit_img_accordion_title_icons'], [ 'aria-hidden' => 'true'] );
                                 } else {
                                     ?>
-                                    <i class="<?php echo $item['ekit_img_accordion_title_icon']; ?>" aria-hidden="true"></i>
+                                    <i class="<?php echo esc_attr($item['ekit_img_accordion_title_icon']); ?>" aria-hidden="true"></i>
                                     <?php
                                 }
                             ?>
@@ -1012,7 +1016,7 @@ class ElementsKit_Widget_Image_Accordion extends Widget_Base {
                                     Icons_Manager::render_icon( $item['ekit_img_accordion_title_icons'], [ 'aria-hidden' => 'true'] );
                                 } else {
                                     ?>
-                                    <i class="<?php echo $item['ekit_img_accordion_title_icon']; ?>" aria-hidden="true"></i>
+                                    <i class="<?php echo esc_attr($item['ekit_img_accordion_title_icon']); ?>" aria-hidden="true"></i>
                                     <?php
                                 }
                             ?>
@@ -1027,7 +1031,7 @@ class ElementsKit_Widget_Image_Accordion extends Widget_Base {
                         }    
                     ?>
                         <span class="elementskit-btn-wraper">
-                            <a class="elementskit-btn" <?php echo $this->get_render_attribute_string( 'button-' . $key ); ?>>
+                            <a class="ekit-image-accordion--btn elementskit-btn whitespace--normal" <?php echo $this->get_render_attribute_string( 'button-' . $key ); ?>>
                                 <?php echo esc_html($item['ekit_img_accordion_button_label']);?>
                             </a>
                         </span>

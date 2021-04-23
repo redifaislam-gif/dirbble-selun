@@ -1,10 +1,15 @@
 <?php
+/**
+ * PA WPML Pricing Table.
+ */
 
 namespace PremiumAddons\Compatibility\WPML\Widgets;
 
 use WPML_Elementor_Module_With_Items;
 
-if ( ! defined('ABSPATH') ) exit; // No access of directly access
+if ( ! defined( 'ABSPATH' ) ) {
+	exit; // No access of directly access.
+}
 
 /**
  * Fancy Text
@@ -34,8 +39,8 @@ class Pricing_Table extends WPML_Elementor_Module_With_Items {
 	 */
 	public function get_fields() {
 		return array(
-            'premium_pricing_list_item_text'
-        );
+			'premium_pricing_list_item_text',
+		);
 	}
 
 	/**
@@ -46,9 +51,9 @@ class Pricing_Table extends WPML_Elementor_Module_With_Items {
 	 * @return string
 	 */
 	protected function get_title( $field ) {
-		
-        return __( 'Pricing Table: Item Text', 'premium-addons-for-elementor' );
-		
+
+		return __( 'Pricing Table: Item Text', 'premium-addons-for-elementor' );
+
 	}
 
 	/**
@@ -60,8 +65,8 @@ class Pricing_Table extends WPML_Elementor_Module_With_Items {
 	 */
 	protected function get_editor_type( $field ) {
 
-        return 'LINE';
-		
+		return 'LINE';
+
 	}
 
 }

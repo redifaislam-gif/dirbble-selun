@@ -27,6 +27,10 @@ class ElementsKit_Widget_Contact_Form7 extends Widget_Base {
         return Handler::get_categories();
     }
 
+    public function get_help_url() {
+        return '';
+    }
+
     function ekit_cf7form() {
         $wpcf7_form_list = get_posts( array(
             'post_type'	 => 'wpcf7_contact_form',
@@ -76,7 +80,6 @@ class ElementsKit_Widget_Contact_Form7 extends Widget_Base {
 			[
 				'name' => 'ekit_contact_form_input_label_typography',
 				'label' => esc_html__( 'Typography', 'elementskit-lite' ),
-				'scheme' => Scheme_Typography::TYPOGRAPHY_1,
 				'selector' => '{{WRAPPER}} .ekit-form form label',
 			]
 		);
@@ -119,7 +122,6 @@ class ElementsKit_Widget_Contact_Form7 extends Widget_Base {
 			[
 				'name' => 'ekit_contact_form_input_label_hint_typography',
 				'label' => esc_html__( 'Typography', 'elementskit-lite' ),
-				'scheme' => Scheme_Typography::TYPOGRAPHY_1,
 				'selector' => '{{WRAPPER}} .ekit-form form label span',
 			]
         );
@@ -475,7 +477,6 @@ class ElementsKit_Widget_Contact_Form7 extends Widget_Base {
             [
                 'name' => 'ekit_contact_form_input_typography',
                 'label' => esc_html__( 'Typography', 'elementskit-lite' ),
-                'scheme' => Scheme_Typography::TYPOGRAPHY_1,
                 'selector' => '{{WRAPPER}} .ekit-form form input:not([type="submit"]):not([type="checkbox"]):not([type="radio"]), .wpcf7-form input:not([type="submit"]):not([type="checkbox"]):not([type="radio"]), .wpcf7-form textarea, .ekit-wid-con .ekit-form form textarea, {{WRAPPER}} .ekit-form form select',
             ]
         );
@@ -597,7 +598,6 @@ class ElementsKit_Widget_Contact_Form7 extends Widget_Base {
 			[
 				'name' => 'ekit_contact_form_button_typography',
 				'label' => esc_html__( 'Typography', 'elementskit-lite' ),
-				'scheme' => Scheme_Typography::TYPOGRAPHY_1,
 				'selector' => '{{WRAPPER}} .ekit-form form input[type="submit"]',
 			]
 		);
@@ -879,9 +879,10 @@ class ElementsKit_Widget_Contact_Form7 extends Widget_Base {
     protected function render_raw( ) {
 
         $settings = $this->get_settings();
-   echo '<div class="ekit-form">';
-        echo do_shortcode('[contact-form-7 id="'.$settings['ekit_contact_form7'].'"]' );
-   echo '</div>';
+		
+		echo '<div class="ekit-form">';
+				echo do_shortcode('[contact-form-7 id="'.intval($settings['ekit_contact_form7']).'"]' );
+		echo '</div>';
 }
     protected function _content_template() { }
 }

@@ -27,7 +27,7 @@
     window.premiumVerticalScroll = function ($selector, settings) {
         var self = this,
             $window = $(window),
-            isTouch = false,
+            isTouch = 'desktop' !== elementorFrontend.getCurrentDeviceMode(),
             $instance = $selector,
             checkTemps = $selector.find(".premium-vscroll-sections-wrap")
                 .length,
@@ -58,10 +58,12 @@
 
         self.init = function () {
 
-            isTouch = self.isTouchDevice();
-
             if (settings.fullTouch || (!isTouch && settings.fullSection)) {
-                self.setSectionsOverflow();
+
+                if (settings.fullCheckOverflow) {
+
+                    self.setSectionsOverflow();
+                }
             }
 
             self.setSectionsData();
@@ -305,14 +307,14 @@
 
         };
 
-        self.isTouchDevice = function () {
+        // self.isTouchDevice = function () {
 
-            var isTouchDevice = navigator.userAgent.match(/(iPhone|iPod|iPad|Android|playbook|silk|BlackBerry|BB10|Windows Phone|Tizen|Bada|webOS|IEMobile|Opera Mini)/),
-                isTouch = (('ontouchstart' in window) || (navigator.msMaxTouchPoints > 0) || (navigator.maxTouchPoints));
+        //     var isTouchDevice = navigator.userAgent.match(/(iPhone|iPod|iPad|Android|playbook|silk|BlackBerry|BB10|Windows Phone|Tizen|Bada|webOS|IEMobile|Opera Mini)/),
+        //         isTouch = (('ontouchstart' in window) || (navigator.msMaxTouchPoints > 0) || (navigator.maxTouchPoints));
 
-            return isTouchDevice || isTouch;
+        //     return isTouchDevice || isTouch;
 
-        };
+        // };
 
         self.getEventsPage = function (e) {
 

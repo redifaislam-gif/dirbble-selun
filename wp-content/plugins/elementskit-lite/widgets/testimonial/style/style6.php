@@ -26,13 +26,25 @@
         <div class="elementskit-commentor-bio <?php echo esc_attr($ekit_testimonial_client_area_alignment); ?>">
 			<div class="elementkit-commentor-details">
 					<div class="elementskit-commentor-image">
-						<img src="<?php echo esc_url($clientLogo); ?>"  height="<?php echo esc_attr($ekit_testimonial_client_image_size['size']); ?>" width="<?php echo esc_attr($ekit_testimonial_client_image_size['size']); ?>" alt="<?php esc_attr_e("Client Logo", "agmycoo");?>">
+						<img src="<?php echo esc_url($clientLogo); ?>"  height="<?php echo esc_attr($ekit_testimonial_client_image_size['size']); ?>" width="<?php echo esc_attr($ekit_testimonial_client_image_size['size']); ?>" alt="<?php esc_attr_e("Client Logo", "elementskit-lite");?>">
 					</div>
 			</div>
 		</div>
 		<?php
 			}
 		?>
+
+		<?php if (!empty($testimonial['client_name']) || !empty($testimonial['designation'])) { ?>
+			<div class="elementskit-profile-info">
+				<?php if (!empty($testimonial['client_name'])) { ?>
+				<strong class="elementskit-author-name"><?php echo esc_html($testimonial['client_name']); ?></strong>
+				<?php }; ?>
+				<?php if (!empty($testimonial['designation'])) { ?>
+				<span class="elementskit-author-des"><?php echo \ElementsKit_Lite\Utils::kspan($testimonial['designation']); ?></span>
+				<?php }; ?>
+			</div>
+		<?php }; ?>
+
 		<?php if ( isset($testimonial['review']) && !empty($testimonial['review'])) : ?>
 			<div class="elementskit-commentor-content">
 				<?php if ($ekit_testimonial_rating_enable == 'yes') : ?>
@@ -45,7 +57,7 @@
                             $iconStart = 'fas fa-star active';
                         }
                     ?>
-                    <li><a href="#"><i class="<?php esc_attr_e( $iconStart );?>"></i></a></li>
+                    <li><a href="#"><i class="<?php esc_attr_e( $iconStart, 'elementskit-lite' );?>"></i></a></li>
 
                     <?php }?>
 				</ul>
@@ -54,16 +66,7 @@
             </div>
 		<?php endif;  ?>
 
-		<?php if (!empty($testimonial['client_name']) || !empty($testimonial['designation'])) { ?>
-		<div class="elementskit-profile-info">
-			<?php if (!empty($testimonial['client_name'])) { ?>
-			<strong class="elementskit-author-name"><?php echo esc_html($testimonial['client_name']); ?></strong>
-			<?php }; ?>
-			<?php if (!empty($testimonial['designation'])) { ?>
-			<span class="elementskit-author-des"><?php echo \ElementsKit_Lite\Utils::kspan($testimonial['designation']); ?></span>
-			<?php }; ?>
-		</div>
-		<?php }; ?>
+		
 	</div>
 	<?php endforeach; ?>
 </div><!-- .testimonial-block-slider2 END -->

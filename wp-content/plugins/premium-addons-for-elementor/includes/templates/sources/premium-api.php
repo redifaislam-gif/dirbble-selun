@@ -11,23 +11,23 @@ if ( ! defined( 'ABSPATH' ) ) {
 class Premium_Templates_Source_Api extends Premium_Templates_Source_Base {
 
 	private $_object_cache = array();
-    
+
 	/**
 	 * Return source slug.
 	 *
 	 * @since 3.6.0
 	 * @access public
-	*/
+	 */
 	public function get_slug() {
 		return 'premium-api';
 	}
-    
-    /**
+
+	/**
 	 * Return source version.
 	 *
 	 * @since 3.6.0
 	 * @access public
-	*/
+	 */
 	public function get_version() {
 
 		$key     = $this->get_slug() . '_version';
@@ -47,18 +47,18 @@ class Premium_Templates_Source_Api extends Premium_Templates_Source_Base {
 	 *
 	 * @since 3.6.0
 	 * @access public
-	*/
+	 */
 	public function get_items( $tab = null ) {
-        
+
 		if ( ! $tab ) {
-            
+
 			return array();
 		}
-        
+
 		$cached = $this->get_templates_cache();
-        
+
 		if ( ! empty( $cached[ $tab ] ) ) {
-            
+
 			return array_values( $cached[ $tab ] );
 		}
 
@@ -82,10 +82,10 @@ class Premium_Templates_Source_Api extends Premium_Templates_Source_Base {
 
 	/**
 	 * Prepare items tab
-     * 
+	 *
 	 * @return object $result templates data
-     * 
-     * @param string $tab tab slug
+	 *
+	 * @param string $tab tab slug.
 	 */
 	public function prepare_items_tab( $tab = '' ) {
 
@@ -136,21 +136,24 @@ class Premium_Templates_Source_Api extends Premium_Templates_Source_Base {
 	 * Get templates from remote server
 	 *
 	 * @param  string $tab tab slug.
-     * 
+	 *
 	 * @return array
 	 */
 	public function remote_get_templates( $tab ) {
-        
+
 		$api_url = Templates\premium_templates()->api->api_url( 'templates' );
-        
+
 		if ( ! $api_url ) {
 			return false;
 		}
 
-		$response = wp_remote_get( $api_url . $tab, array(
-			'timeout'   => 60,
-			'sslverify' => false
-		) );
+		$response = wp_remote_get(
+			$api_url . $tab,
+			array(
+				'timeout'   => 60,
+				'sslverify' => false,
+			)
+		);
 
 		$body = wp_remote_retrieve_body( $response );
 
@@ -176,7 +179,7 @@ class Premium_Templates_Source_Api extends Premium_Templates_Source_Base {
 	 * Get categories from remote server
 	 *
 	 * @param  string $tab tab slug.
-     * 
+	 *
 	 * @return array
 	 */
 	public function remote_get_categories( $tab ) {
@@ -187,10 +190,13 @@ class Premium_Templates_Source_Api extends Premium_Templates_Source_Base {
 			return false;
 		}
 
-		$response = wp_remote_get( $api_url . $tab, array(
-			'timeout'   => 60,
-			'sslverify' => false
-		) );
+		$response = wp_remote_get(
+			$api_url . $tab,
+			array(
+				'timeout'   => 60,
+				'sslverify' => false,
+			)
+		);
 
 		$body = wp_remote_retrieve_body( $response );
 
@@ -215,8 +221,8 @@ class Premium_Templates_Source_Api extends Premium_Templates_Source_Base {
 	/**
 	 * Get keywords from remote server
 	 *
-	 * @param string $tab tab slug
-     * 
+	 * @param string $tab tab slug.
+	 *
 	 * @return array
 	 */
 	public function remote_get_keywords( $tab ) {
@@ -227,10 +233,13 @@ class Premium_Templates_Source_Api extends Premium_Templates_Source_Base {
 			return false;
 		}
 
-		$response = wp_remote_get( $api_url . $tab, array(
-			'timeout'   => 60,
-			'sslverify' => false
-		) );
+		$response = wp_remote_get(
+			$api_url . $tab,
+			array(
+				'timeout'   => 60,
+				'sslverify' => false,
+			)
+		);
 
 		$body = wp_remote_retrieve_body( $response );
 
@@ -257,13 +266,13 @@ class Premium_Templates_Source_Api extends Premium_Templates_Source_Base {
 	 *
 	 * @since 3.6.0
 	 * @access public
-	*/
+	 */
 	public function get_categories( $tab = null ) {
 
 		if ( ! $tab ) {
 			return array();
 		}
-        
+
 		$cached = $this->get_categories_cache();
 
 		if ( ! empty( $cached[ $tab ] ) ) {
@@ -311,7 +320,7 @@ class Premium_Templates_Source_Api extends Premium_Templates_Source_Base {
 	 *
 	 * @since 3.6.0
 	 * @access public
-	*/
+	 */
 	public function get_keywords( $tab = null ) {
 
 		if ( ! $tab ) {
@@ -347,26 +356,28 @@ class Premium_Templates_Source_Api extends Premium_Templates_Source_Base {
 	 *
 	 * @since 3.6.0
 	 * @access public
-	*/
+	 */
 	public function get_item( $template_id, $tab = false ) {
 
-		$id  = str_replace( $this->id_prefix(), '', $template_id );
-        
+		$id = str_replace( $this->id_prefix(), '', $template_id );
+
 		if ( ! $tab ) {
-			$tab = isset( $_REQUEST['tab'] ) ? esc_attr( $_REQUEST['tab'] ) : false;
+			$tab = isset( $_REQUEST['tab'] ) ? sanitize_text_field( wp_unslash( $_REQUEST['tab'] ) ) : false;
 		}
-        
-        $license_key = Templates\premium_templates()->config->get( 'key' );
-        
+
+		$license_key = Templates\premium_templates()->config->get( 'key' );
+
 		$api_url = Templates\premium_templates()->api->api_url( 'template' );
-        
+
 		if ( ! $api_url ) {
-			wp_send_json_success( array(
-				'licenseError' => true,
-			) );
+			wp_send_json_success(
+				array(
+					'licenseError' => true,
+				)
+			);
 		}
-        
-        $request =  add_query_arg(
+
+		$request = add_query_arg(
 			array(
 				'license' => $license_key,
 				'url'     => urlencode( home_url( '/' ) ),
@@ -374,24 +385,29 @@ class Premium_Templates_Source_Api extends Premium_Templates_Source_Base {
 			$api_url . $id
 		);
 
-		$response = wp_remote_get( $request, array(
-			'timeout'   => 60,
-			'sslverify' => false
-		) );
+		$response = wp_remote_get(
+			$request,
+			array(
+				'timeout'   => 60,
+				'sslverify' => false,
+			)
+		);
 
 		$body = wp_remote_retrieve_body( $response );
 		$body = json_decode( $body, true );
 
 		if ( ! isset( $body['success'] ) ) {
-			wp_send_json_error( array(
-				'message' => 'Internal Error',
-			) );
+			wp_send_json_error(
+				array(
+					'message' => 'Internal Error',
+				)
+			);
 		}
-        
+
 		$content = isset( $body['content'] ) ? $body['content'] : '';
 		$type    = isset( $body['type'] ) ? $body['type'] : '';
-        $license = isset( $body['license'] ) ? $body['license'] : '';
-        
+		$license = isset( $body['license'] ) ? $body['license'] : '';
+
 		if ( ! empty( $content ) ) {
 			$content = $this->replace_elements_ids( $content );
 			$content = $this->process_export_import_content( $content, 'on_import' );
@@ -400,18 +416,18 @@ class Premium_Templates_Source_Api extends Premium_Templates_Source_Base {
 		return array(
 			'page_settings' => array(),
 			'type'          => $type,
-            'license'       => $license,
-			'content'       => $content
+			'license'       => $license,
+			'content'       => $content,
 		);
 
 	}
 
-    /**
+	/**
 	 * Return transient lifetime
 	 *
 	 * @since 3.6.0
 	 * @access public
-	*/
+	 */
 	public function transient_lifetime() {
 		return DAY_IN_SECONDS;
 	}

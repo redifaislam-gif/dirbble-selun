@@ -31,6 +31,10 @@ class ElementsKit_Widget_Page_List extends Widget_Base {
         return Handler::get_categories();
     }
 
+    public function get_help_url() {
+        return '';
+    }
+
 	protected function _register_controls() {
 		$this->start_controls_section(
 			'section_icon',
@@ -124,8 +128,8 @@ class ElementsKit_Widget_Page_List extends Widget_Base {
 			[
 				'label' => esc_html__( 'Selct Page / Custom Link', 'elementskit-lite' ),
 				'type' => Controls_Manager::SWITCHER,
-				'label_on' => esc_html__( 'Show', 'your-plugin' ),
-				'label_off' => esc_html__( 'Hide', 'your-plugin' ),
+				'label_on' => esc_html__( 'Show', 'elementskit-lite' ),
+				'label_off' => esc_html__( 'Hide', 'elementskit-lite' ),
 				'return_value' => 'yes',
 				'default' => 'yes',
 			]
@@ -150,7 +154,7 @@ class ElementsKit_Widget_Page_List extends Widget_Base {
 			[
 				'label' => esc_html__( 'Link', 'elementskit-lite' ),
 				'type' => Controls_Manager::URL,
-				'placeholder' => esc_html__( 'https://your-link.com', 'elementskit-lite' ),
+				'placeholder' => esc_html__( 'https://wpmet.com', 'elementskit-lite' ),
 				'show_external' => true,
 				'default' => [
 					'url' => '',
@@ -415,18 +419,18 @@ class ElementsKit_Widget_Page_List extends Widget_Base {
 				'options' => [
 					'left' => [
 						'title' => esc_html__( 'Left', 'elementskit-lite' ),
-						'icon' => 'eicon-h-align-left',
+						'icon' => 'eicon-text-align-left',
 					],
 					'center' => [
 						'title' => esc_html__( 'Center', 'elementskit-lite' ),
-						'icon' => 'eicon-h-align-center',
+						'icon' => 'eicon-text-align-center',
 					],
 					'right' => [
 						'title' => esc_html__( 'Right', 'elementskit-lite' ),
-						'icon' => 'eicon-h-align-right',
+						'icon' => 'eicon-text-align-right',
 					],
 				],
-				'prefix_class' => 'elementor-align%s-',
+				'prefix_class' => 'elementor%s-align-',
 			]
 		);
 
@@ -543,10 +547,6 @@ class ElementsKit_Widget_Page_List extends Widget_Base {
 				'label' => esc_html__( 'Color', 'elementskit-lite' ),
 				'type' => Controls_Manager::COLOR,
 				'default' => '#ddd',
-				'scheme' => [
-					'type' => Scheme_Color::get_type(),
-					'value' => Scheme_Color::COLOR_3,
-				],
 				'condition' => [
 					'divider' => 'yes',
 				],
@@ -772,10 +772,6 @@ class ElementsKit_Widget_Page_List extends Widget_Base {
 				'selectors' => [
 					'{{WRAPPER}} .elementor-icon-list-text' => 'color: {{VALUE}};',
 				],
-				'scheme' => [
-					'type' => Scheme_Color::get_type(),
-					'value' => Scheme_Color::COLOR_2,
-				],
 			]
 		);
 
@@ -824,7 +820,6 @@ class ElementsKit_Widget_Page_List extends Widget_Base {
 			[
 				'name' => 'icon_typography',
 				'selector' => '{{WRAPPER}} .elementor-icon-list-item',
-				'scheme' => Scheme_Typography::TYPOGRAPHY_3,
 			]
 		);
 
@@ -843,7 +838,6 @@ class ElementsKit_Widget_Page_List extends Widget_Base {
 			[
 				'name' => 'ekit_menu_subtitle_typography',
 				'label' => esc_html__( 'Typography', 'elementskit-lite' ),
-				'scheme' => Scheme_Typography::TYPOGRAPHY_1,
 				'selector' => '{{WRAPPER}} .ekit_menu_subtitle',
 			]
 		);
@@ -853,10 +847,6 @@ class ElementsKit_Widget_Page_List extends Widget_Base {
 			[
 				'label' => esc_html__( 'Color', 'elementskit-lite' ),
 				'type' => Controls_Manager::COLOR,
-				'scheme' => [
-					'type' => Scheme_Color::get_type(),
-					'value' => Scheme_Color::COLOR_1,
-				],
 				'selectors' => [
 					'{{WRAPPER}} .ekit_menu_subtitle' => 'color: {{VALUE}}',
 				],
@@ -868,10 +858,6 @@ class ElementsKit_Widget_Page_List extends Widget_Base {
 			[
 				'label' => esc_html__( 'Color Hover', 'elementskit-lite' ),
 				'type' => Controls_Manager::COLOR,
-				'scheme' => [
-					'type' => Scheme_Color::get_type(),
-					'value' => Scheme_Color::COLOR_1,
-				],
 				'selectors' => [
 					'{{WRAPPER}} .elementor-icon-list-item a:hover .ekit_menu_subtitle' => 'color: {{VALUE}}',
 				],
@@ -904,7 +890,6 @@ class ElementsKit_Widget_Page_List extends Widget_Base {
 			[
 				'name' => 'ekit_menu_list_label_title_typography',
 				'label' => esc_html__( 'Typography', 'elementskit-lite' ),
-				'scheme' => Scheme_Typography::TYPOGRAPHY_1,
 				'selector' => '{{WRAPPER}} .ekit_menu_label'
 			]
 		);
@@ -1050,7 +1035,7 @@ class ElementsKit_Widget_Page_List extends Widget_Base {
 					$text = empty($item['text']) ? $post->post_title : $item['text'];
 				?>
 				<div class="elementor-icon-list-item <?php echo esc_attr($grid_d); ?> <?php echo esc_attr($grid_t); ?> <?php echo esc_attr($grid_m); ?>" >
-					<a <?php echo esc_attr($target); ?> rel="<?php echo esc_attr($rel);?>"  href="<?php echo esc_url($href); ?>" class="elementor-repeater-item-<?php echo esc_attr( $item[ '_id' ] ); ?> <?php echo \ElementsKit_Lite\Utils::render($settings['ekit_menu_list_label_align'])?>">
+					<a <?php echo esc_attr($target); ?> rel="<?php echo esc_attr($rel);?>"  href="<?php echo esc_url($href); ?>" class="elementor-repeater-item-<?php echo esc_attr( $item[ '_id' ] ); ?> <?php echo \ElementsKit_Lite\Utils::render( esc_attr( $settings['ekit_menu_list_label_align'] ) ); ?>">
 						<div class="ekit_page_list_content">
 							<?php if ( ! empty( $item['icons'] ) && $item['ekit_page_list_show_icon'] == 'yes') : ?>
 								<span class="elementor-icon-list-icon">
@@ -1071,16 +1056,16 @@ class ElementsKit_Widget_Page_List extends Widget_Base {
 								</span>
 							<?php endif; ?>
 							<span class="elementor-icon-list-text">
-								<span class="ekit_page_list_title_title"><?php echo \ElementsKit_Lite\Utils::render($text); ?></span>
+								<span class="ekit_page_list_title_title"><?php echo \ElementsKit_Lite\Utils::render( esc_html( $text ) ); ?></span>
 								<?php if ($item['ekit_menu_widget_sub_title'] != '') : ?>
 								<span class="ekit_menu_subtitle"><?php echo esc_html($item['ekit_menu_widget_sub_title']); ?></span>
 								<?php endif; ?>
 							</span>
 						</div>
 						<?php if ( ! empty( $item['ekit_menu_list_label_title'] ) && $item['ekit_menu_list_show_label'] == 'yes') : ?>
-						<span class="ekit_menu_label">
-							<?php echo \ElementsKit_Lite\Utils::render( $item['ekit_menu_list_label_title'] ); ?>
-						</span>
+						    <span class="ekit_menu_label">
+                                <?php echo \ElementsKit_Lite\Utils::render( esc_html( $item['ekit_menu_list_label_title'] ) ); ?>
+						    </span>
 						<?php endif; ?>
 					</a>
 				</div>

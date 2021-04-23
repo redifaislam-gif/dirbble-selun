@@ -75,11 +75,11 @@ class Admin_Notices {
         $response = get_transient( $cache_key );
         
         $show_review = get_option( 'pa_review_notice' );
-
+        
         //Make sure Already did was not clicked before.
         if( '1' !== $show_review ) {
             if ( false == $response ) {
-                // $this->get_review_notice();
+                $this->get_review_notice();
             }
         }
         
@@ -187,7 +187,7 @@ class Admin_Notices {
     public function get_review_text( $review_url, $optout_url ) {
         
         $notice = sprintf(
-            '<p>' . __('Can we take only 2 minutes of your time? We\'d really appreciate it if you give ','premium-addons-for-elementor') . 
+            '<p>' . __('Can we take only 2 minutes of your time? We would be really grateful it if you give ','premium-addons-for-elementor') . 
             '<b>'  . __('Premium Addons for Elementor','premium-addons-for-elementor') . '</b> a 5 Stars Rating on WordPress.org. By speading the love, we can create even greater free stuff in the future!</p>
             <div>
                 <a class="button button-primary" href="%s" target="_blank"><span>' . __('Leave a Review','premium-addons-for-elementor') . '</span></a>

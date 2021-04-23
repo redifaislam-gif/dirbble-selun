@@ -28,6 +28,10 @@ class ElementsKit_Widget_Heading extends Widget_Base {
         return Handler::get_categories();
     }
 
+    public function get_help_url() {
+        return '';
+    }
+
     protected function _register_controls() {
 
 
@@ -312,11 +316,11 @@ class ElementsKit_Widget_Heading extends Widget_Base {
 				'label' => esc_html__( 'Seperator Style', 'elementskit-lite' ),
 				'type' => Controls_Manager::SELECT,
 				'options' => [
-					'elementskit-border-divider ekit-dotted' => esc_html__( 'Dotted', 'elementor' ),
-					'elementskit-border-divider elementskit-style-long' => esc_html__( 'Solid', 'elementor' ),
-					'elementskit-border-star' => esc_html__( 'Solid with star', 'elementor' ),
-					'elementskit-border-star elementskit-bullet' => esc_html__( 'Solid with bullet', 'elementor' ),
-					'ekit_border_custom' => esc_html__( 'Custom', 'elementor' ),
+					'elementskit-border-divider ekit-dotted' => esc_html__( 'Dotted', 'elementskit-lite' ),
+					'elementskit-border-divider elementskit-style-long' => esc_html__( 'Solid', 'elementskit-lite' ),
+					'elementskit-border-star' => esc_html__( 'Solid with star', 'elementskit-lite' ),
+					'elementskit-border-star elementskit-bullet' => esc_html__( 'Solid with bullet', 'elementskit-lite' ),
+					'ekit_border_custom' => esc_html__( 'Custom', 'elementskit-lite' ),
 				],
 				'default' => 'elementskit-border-divider',
 				'condition' => [
@@ -331,10 +335,10 @@ class ElementsKit_Widget_Heading extends Widget_Base {
 				'label' => esc_html__( 'Seperator Position', 'elementskit-lite' ),
 				'type' => Controls_Manager::SELECT,
 				'options' => [
-					'top' => esc_html__( 'Top', 'elementor' ),
-					'before' => esc_html__( 'Before Title', 'elementor' ),
-					'after' => esc_html__( 'After Title', 'elementor' ),
-					'bottom' => esc_html__( 'Bottom', 'elementor' ),
+					'top' => esc_html__( 'Top', 'elementskit-lite' ),
+					'before' => esc_html__( 'Before Title', 'elementskit-lite' ),
+					'after' => esc_html__( 'After Title', 'elementskit-lite' ),
+					'bottom' => esc_html__( 'Bottom', 'elementskit-lite' ),
 				],
 				'default' => 'after',
 				'condition' => [
@@ -991,7 +995,7 @@ class ElementsKit_Widget_Heading extends Widget_Base {
 			Group_Control_Border::get_type(),
 			[
 				'name' => 'subheading_outline',
-				'label' => __( 'Outline', 'plugin-domain' ),
+				'label' => __( 'Outline', 'elementskit-lite' ),
 				'selector' => '{{WRAPPER}} .ekit-heading__subtitle-has-border',
 				'condition' => [
 					'ekit_heading_sub_title_outline' => 'yes'	
@@ -1247,6 +1251,34 @@ class ElementsKit_Widget_Heading extends Widget_Base {
         $settings = $this->get_settings_for_display();
 		extract($settings);
 
+		// Sanitize Title & Sub-Title Tags
+		$options_ekit_heading_title_tag = array_keys([
+			'h1' => 'H1',
+			'h2' => 'H2',
+			'h3' => 'H3',
+			'h4' => 'H4',
+			'h5' => 'H5',
+			'h6' => 'H6',
+			'div' => 'div',
+			'span' => 'span',
+			'p' => 'p',
+		]);
+		$title_tag = \ElementsKit_Lite\Utils::esc_options($ekit_heading_title_tag, $options_ekit_heading_title_tag, 'h2');
+
+		// Sanitize Sub Title Tag
+		$options_ekit_heading_sub_title_tag = array_keys([
+			'h1' => 'H1',
+			'h2' => 'H2',
+			'h3' => 'H3',
+			'h4' => 'H4',
+			'h5' => 'H5',
+			'h6' => 'H6',
+			'div' => 'div',
+			'span' => 'span',
+			'p' => 'p',
+		]);
+		$sub_title_tag = \ElementsKit_Lite\Utils::esc_options($ekit_heading_sub_title_tag, $options_ekit_heading_sub_title_tag, 'h3');
+
 		// Image sectionn
         $image_html = '';
         if (!empty($settings['ekit_heading_seperator_image']['url'])) {
@@ -1261,9 +1293,9 @@ class ElementsKit_Widget_Heading extends Widget_Base {
 
 		$seperator = '';
 		if ($ekit_heading_seperator_style != 'ekit_border_custom') {
-			$seperator = ($ekit_heading_show_seperator == 'yes') ? '<div class="ekit_heading_separetor_wraper ekit_heading_'. $ekit_heading_seperator_style .'"><div class="'.$ekit_heading_seperator_style.'"></div></div>' : '';
+			$seperator = ($ekit_heading_show_seperator == 'yes') ? '<div class="ekit_heading_separetor_wraper ekit_heading_'. esc_attr($ekit_heading_seperator_style) .'"><div class="'. esc_attr($ekit_heading_seperator_style) .'"></div></div>' : '';
 		} else {
-			$seperator = ($ekit_heading_show_seperator == 'yes') ? '<div class="ekit_heading_separetor_wraper ekit_heading_'. $ekit_heading_seperator_style .'"><div class="'.$ekit_heading_seperator_style.'">'.$image_html.'</div></div>' : '';
+			$seperator = ($ekit_heading_show_seperator == 'yes') ? '<div class="ekit_heading_separetor_wraper ekit_heading_'. esc_attr($ekit_heading_seperator_style) .'"><div class="'. esc_attr($ekit_heading_seperator_style) .'">'.$image_html.'</div></div>' : '';
 		}
 
 
@@ -1273,14 +1305,14 @@ class ElementsKit_Widget_Heading extends Widget_Base {
 
 		$sub_title_border =	 ($settings['ekit_heading_sub_title_border'] == 'yes') ? 'elementskit-style-border' : '';
 
-		$title_border = (isset($show_title_border) && $show_title_border == 'yes') ? ' ekit-heading__title-has-border '. $title_border_position : '';
+		$title_border = (isset($show_title_border) && $show_title_border == 'yes') ? ' ekit-heading__title-has-border '. esc_attr($title_border_position) : '';
 		$subheading_outline = (isset($ekit_heading_sub_title_outline) && $ekit_heading_sub_title_outline == 'yes') ? ' ekit-heading__subtitle-has-border' : '';
 		$title_in_left = (isset($title_float_left) && $title_float_left == 'yes' ) ? ' ekit-heading__title-in-left' : '';
 
 		echo '<div class="ekit-heading elementskit-section-title-wraper '.$ekit_heading_title_align.'   ekit_heading_tablet-'. $settings['ekit_heading_title_align_tablet'] .'   ekit_heading_mobile-'. $settings['ekit_heading_title_align_mobile'] .''.$title_in_left.'">';
 
 			if(!empty($shadow_text_content) && $show_shadow_text == 'yes' ): ?>
-				<span class='ekit-heading__shadow-text'><?php echo esc_html__($shadow_text_content); ?></span>
+				<span class='ekit-heading__shadow-text'><?php echo \ElementsKit_Lite\Utils::kspan($shadow_text_content); ?></span>
 			<?php endif;
 
 			if($title_float_left == 'yes'):?>
@@ -1290,14 +1322,14 @@ class ElementsKit_Widget_Heading extends Widget_Base {
 			echo ($ekit_heading_seperator_position == 'top') ? $seperator : '';
 			if($ekit_heading_sub_title_position == 'before_title' && $title_float_left != 'yes'){
 				if((!empty($ekit_heading_sub_title) && ($settings['ekit_heading_sub_title_show'] == 'yes'))):
-					echo '<'.$ekit_heading_sub_title_tag.' class="elementskit-section-subtitle '.$sub_title_text_fill.' '.$sub_title_border.''.$subheading_outline.'">'.esc_html( $ekit_heading_sub_title ).'</'.$ekit_heading_sub_title_tag.'>';
+					echo '<'.$sub_title_tag.' class="elementskit-section-subtitle '.$sub_title_text_fill.' '.$sub_title_border.''.$subheading_outline.'">'.esc_html( $ekit_heading_sub_title ).'</'.$sub_title_tag.'>';
 				endif;
 			}
 			echo ($ekit_heading_seperator_position == 'before') ? $seperator : '';
 			if(!empty($ekit_heading_title)):
-				echo '<'.$ekit_heading_title_tag.' class="elementskit-section-title '.$title_text_fill.''.$title_border.'">
+				echo '<'.$title_tag.' class="ekit-heading--title elementskit-section-title '.$title_text_fill.''.$title_border.'">
 					'.\ElementsKit_Lite\Utils::kspan($ekit_heading_title).'
-				</'.$ekit_heading_title_tag.'>';
+				</'.$title_tag.'>';
 			endif;
 
 			echo (
@@ -1315,13 +1347,13 @@ class ElementsKit_Widget_Heading extends Widget_Base {
 
 			if($ekit_heading_sub_title_position == 'after_title' || ($ekit_heading_sub_title_position == 'before_title' && $title_float_left == 'yes')){
 				if(!empty($ekit_heading_sub_title) && ($settings['ekit_heading_sub_title_show'] == 'yes')):
-					echo '<'.$ekit_heading_sub_title_tag.' class="elementskit-section-subtitle '.$sub_title_text_fill.' '.$sub_title_border.''.$subheading_outline.'">'.esc_html( $ekit_heading_sub_title ).'</'.$ekit_heading_sub_title_tag.'>';
+					echo '<'.$sub_title_tag.' class="ekit-heading--subtitle elementskit-section-subtitle '.$sub_title_text_fill.' '.$sub_title_border.''.$subheading_outline.'">'.esc_html( $ekit_heading_sub_title ).'</'.$sub_title_tag.'>';
 				endif;
 			}
 
 			if((!empty($ekit_heading_extra_title)) && ($settings['ekit_heading_section_extra_title_show'] == 'yes')): ?>
 				<div class='ekit-heading__description'>
-					<?php echo \ElementsKit_Lite\Utils::kspan( wpautop($ekit_heading_extra_title) ); ?>
+					<?php echo \ElementsKit_Lite\Utils::kses( wpautop($ekit_heading_extra_title) ); ?>
 				</div>
 			<?php endif;
 

@@ -8,6 +8,7 @@ use Elementor\Controls_Stack;
 if ( ! defined( 'WPINC' ) ) {
 	die;
 }
+
 /*
  * Premium Cross Domain Copy Paste Feature
  */
@@ -19,9 +20,9 @@ if ( ! class_exists( 'Addons_Cross_CP' ) ) {
 	class Addons_Cross_CP {
 
 		/**
-		 * A reference to an instance of this class.
+		 * Class instance
 		 *
-		 * @since 3.21.1
+		 * @var instance
 		 */
 		private static $instance = null;
 
@@ -33,14 +34,14 @@ if ( ! class_exists( 'Addons_Cross_CP' ) ) {
 		public function __construct() {
 			add_action( 'wp_ajax_premium_cross_cp_import', array( $this, 'cross_cp_fetch_content_data' ) );
 		}
-		
+
 		/**
 		 * Cross copy paste fetch data.
 		 *
 		 * @since  3.21.1
 		 */
 		public static function cross_cp_fetch_content_data() {
-			
+
 			check_ajax_referer( 'premium_cross_cp_import', 'nonce' );
 
 			if ( ! current_user_can( 'edit_posts' ) ) {
@@ -51,25 +52,27 @@ if ( ! class_exists( 'Addons_Cross_CP' ) ) {
 			}
 
 			$media_import = isset( $_POST['copy_content'] ) ? wp_unslash( $_POST['copy_content'] ) : '';
-			
+
 			if ( empty( $media_import ) ) {
 				wp_send_json_error( __( 'Empty Content.', 'premium-addons-for-elementor' ) );
 			}
 
-			$media_import = array( json_decode( $media_import, true ) ); 
+			$media_import = array( json_decode( $media_import, true ) );
 			$media_import = self::cross_cp_import_elements_ids( $media_import );
 			$media_import = self::cross_cp_import_copy_content( $media_import );
 
 			wp_send_json_success( $media_import );
 		}
-		
+
 		/**
 		 * Replace media element id with random id.
 		 *
 		 * @since  3.21.1
+		 *
+		 * @param object $media_import media to import.
 		 */
 		protected static function cross_cp_import_elements_ids( $media_import ) {
-		
+
 			return \Elementor\Plugin::instance()->db->iterate_data(
 				$media_import,
 				function( $element ) {
@@ -77,16 +80,18 @@ if ( ! class_exists( 'Addons_Cross_CP' ) ) {
 					return $element;
 				}
 			);
-			
+
 		}
 
 		/**
 		 * Media import copy content.
 		 *
 		 * @since  3.21.1
+		 *
+		 * @param object $media_import media to import.
 		 */
 		protected static function cross_cp_import_copy_content( $media_import ) {
-		
+
 			return \Elementor\Plugin::instance()->db->iterate_data(
 				$media_import,
 				function( $element_data ) {
@@ -99,17 +104,19 @@ if ( ! class_exists( 'Addons_Cross_CP' ) ) {
 					return self::cross_cp_import_element( $elements );
 				}
 			);
-			
+
 		}
 
 		/**
 		 * Start element copy content for media import.
 		 *
 		 * @since  3.21.1
+		 *
+		 * @param Controls_Stack $element element to import.
 		 */
 		protected static function cross_cp_import_element( Controls_Stack $element ) {
 			$get_element_instance = $element->get_data();
-			$method = 'on_import';
+			$method               = 'on_import';
 
 			if ( method_exists( $element, $method ) ) {
 				$get_element_instance = $element->{$method}( $get_element_instance );
@@ -117,31 +124,35 @@ if ( ! class_exists( 'Addons_Cross_CP' ) ) {
 
 			foreach ( $element->get_controls() as $get_control ) {
 				$control_type = \Elementor\Plugin::instance()->controls_manager->get_control( $get_control['type'] );
-				$control_name  = $get_control['name'];
+				$control_name = $get_control['name'];
 
 				if ( ! $control_type ) {
 					return $get_element_instance;
 				}
 
-				if ( method_exists( $control_type, $method) ) {
+				if ( method_exists( $control_type, $method ) ) {
 					$get_element_instance['settings'][ $control_name ] = $control_type->{$method}( $element->get_settings( $control_name ), $get_control );
 				}
 			}
 
 			return $get_element_instance;
 		}
-		
+
 		/**
 		 * Returns the instance.
 		 *
 		 * @since  3.21.1
 		 * @return object
+		 *
+		 * @param array $shortcodes shortcodes.
 		 */
 		public static function get_instance( $shortcodes = array() ) {
-			
-			if ( null == self::$instance ) {
+
+			if ( ! isset( self::$instance ) ) {
+
 				self::$instance = new self( $shortcodes );
 			}
+
 			return self::$instance;
 		}
 	}

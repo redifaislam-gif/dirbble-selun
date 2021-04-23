@@ -8,30 +8,30 @@
 				<div class="attr-modal-header">
 					<button type="button" class="attr-close" data-dismiss="modal" aria-label="Close"><span
 							aria-hidden="true">&times;</span></button>
-					<h4 class="attr-modal-title" id="elementskit_headerfooter_modalLabel"><?php esc_html_e('Template Settings', 'elementskit'); ?></h4>
+					<h4 class="attr-modal-title" id="elementskit_headerfooter_modalLabel"><?php esc_html_e('Template Settings', 'elementskit-lite'); ?></h4>
 				</div>
 				<div class="attr-modal-body" id="elementskit_headerfooter_modal_body">
 					<div class="ekit-input-group">
-						<label class="attr-input-label"><?php esc_html_e('Title:', 'elementskit'); ?></label>
+						<label class="attr-input-label"><?php esc_html_e('Title:', 'elementskit-lite'); ?></label>
 						<input required type="text" name="title" class="ekit-template-modalinput-title attr-form-control">
 					</div>
 					<br />
 					<div class="ekit-input-group">
-						<label class="attr-input-label"><?php esc_html_e('Type:', 'elementskit'); ?></label>
+						<label class="attr-input-label"><?php esc_html_e('Type:', 'elementskit-lite'); ?></label>
 						<select name="type" class="ekit-template-modalinput-type attr-form-control">
-							<option value="header"><?php esc_html_e('Header', 'elementskit'); ?></option>
-							<option value="footer"><?php esc_html_e('Footer', 'elementskit'); ?></option>
+							<option value="header"><?php esc_html_e('Header', 'elementskit-lite'); ?></option>
+							<option value="footer"><?php esc_html_e('Footer', 'elementskit-lite'); ?></option>
 						</select>
 					</div>
 					<br />
 
 					<div class="ekit-template-headerfooter-option-container">
 						<div class="ekit-input-group">
-							<label class="attr-input-label"><?php esc_html_e('Conditions:', 'elementskit'); ?></label>
+							<label class="attr-input-label"><?php esc_html_e('Conditions:', 'elementskit-lite'); ?></label>
 							<select name="condition_a" class="ekit-template-modalinput-condition_a attr-form-control">
-								<option value="entire_site"><?php esc_html_e('Entire Site', 'elementskit'); ?></option>
-								<option value="singular"><?php esc_html_e('Singular (Only Pro)', 'elementskit'); ?></option>
-								<option value="archive"><?php esc_html_e('Archive (Only Pro)', 'elementskit'); ?></option>
+								<option value="entire_site"><?php esc_html_e('Entire Site', 'elementskit-lite'); ?></option>
+								<option value="singular"><?php esc_html_e('Singular (Only Pro)', 'elementskit-lite'); ?></option>
+								<option value="archive"><?php esc_html_e('Archive (Only Pro)', 'elementskit-lite'); ?></option>
 							</select>
 						</div>
 						<br>
@@ -41,13 +41,13 @@
 								<label class="attr-input-label"></label>
 								<select name="condition_singular"
 									class="ekit-template-modalinput-condition_singular attr-form-control">
-									<option value="all"><?php esc_html_e('All Singulars (Only Pro)', 'elementskit'); ?></option>
-									<option value="front_page"><?php esc_html_e('Front Page (Only Pro)', 'elementskit'); ?></option>
-									<option value="all_posts"><?php esc_html_e('All Posts (Only Pro)', 'elementskit'); ?></option>
-									<option value="all_pages"><?php esc_html_e('All Pages (Only Pro)', 'elementskit'); ?></option>
-									<option value="selective"><?php esc_html_e('Selective Singular (Only Pro)', 'elementskit'); ?>
+									<option value="all"><?php esc_html_e('All Singulars (Only Pro)', 'elementskit-lite'); ?></option>
+									<option value="front_page"><?php esc_html_e('Front Page (Only Pro)', 'elementskit-lite'); ?></option>
+									<option value="all_posts"><?php esc_html_e('All Posts (Only Pro)', 'elementskit-lite'); ?></option>
+									<option value="all_pages"><?php esc_html_e('All Pages (Only Pro)', 'elementskit-lite'); ?></option>
+									<option value="selective"><?php esc_html_e('Selective Singular (Only Pro)', 'elementskit-lite'); ?>
 									</option>
-									<option value="404page"><?php esc_html_e('404 Page (Only Pro)', 'elementskit'); ?></option>
+									<option value="404page"><?php esc_html_e('404 Page (Only Pro)', 'elementskit-lite'); ?></option>
 								</select>
 							</div>
 							<br>
@@ -64,7 +64,7 @@
 
 
 						<div class="ekit-switch-group">
-							<label class="attr-input-label"><?php esc_html_e('Activition:', 'elementskit'); ?></label>
+							<label class="attr-input-label"><?php esc_html_e('Activition:', 'elementskit-lite'); ?></label>
 							<div class="ekit-admin-input-switch">
 								<input checked="" type="checkbox" value="yes"
 									class="ekit-admin-control-input ekit-template-modalinput-activition"
@@ -79,8 +79,8 @@
 					<br>
 				</div>
 				<div class="attr-modal-footer">
-					<button type="button" class="attr-btn attr-btn-default elementskit-template-save-btn-editor"><?php esc_html_e('Edit content', 'elementskit'); ?></button>
-					<button type="submit" class="attr-btn attr-btn-primary elementskit-template-save-btn"><?php esc_html_e('Save changes', 'elementskit'); ?></button>
+					<button type="button" class="attr-btn attr-btn-default elementskit-template-save-btn-editor"><?php esc_html_e('Edit content', 'elementskit-lite'); ?></button>
+					<button type="submit" class="attr-btn attr-btn-primary elementskit-template-save-btn"><?php esc_html_e('Save changes', 'elementskit-lite'); ?></button>
 				</div>
 				<div class="ekit-spinner"></div>
 			</div>

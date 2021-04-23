@@ -4,10 +4,12 @@ namespace PremiumAddons\Includes\Templates\Documents;
 
 use Elementor\Core\Base\Document as Document;
 
-if ( ! defined( 'ABSPATH' ) ) exit; // Exit if accessed directly
+if ( ! defined( 'ABSPATH' ) ) {
+	exit; // Exit if accessed directly.
+}
 
 class Premium_Document_Base extends Document {
-    
+
 	public function get_name() {
 		return '';
 	}

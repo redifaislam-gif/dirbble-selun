@@ -27,18 +27,22 @@ class ElementsKit_Widget_TablePress extends Widget_Base {
         return Handler::get_categories();
     }
 
+    public function get_help_url() {
+        return '';
+    }
+
     protected function _register_controls() {
         $this->start_controls_section(
             'ekit_tablepress_section_content_table',
             [
-                'label' => esc_html__( 'Table', 'elemenetskit' ),
+                'label' => esc_html__( 'Table', 'elementskit-lite' ),
             ]
         );
 
         $this->add_control(
 			'ekit_tablepress_table_id',
 			[
-				'label'   => esc_html__( 'Select Table', 'elemenetskit' ),
+				'label'   => esc_html__( 'Select Table', 'elementskit-lite' ),
 				'type'    => Controls_Manager::SELECT,
                 'label_block' => 'true',
 				'default' => '0',
@@ -51,32 +55,32 @@ class ElementsKit_Widget_TablePress extends Widget_Base {
 			$this->add_control(
 				'ekit_tablepress_table_responsive',
 				[
-                    'label'   => __( 'Responsive', 'elemenetskit' ),
+                    'label'   => __( 'Responsive', 'elementskit-lite' ),
 					'type'    => Controls_Manager::SELECT,
                     'default' => 'none',
                     'label_block' => 'true',
 					'options' => [
-                        'none'        => __( 'None', 'elemenetskit' ),
-						'flip'     => __( 'Flip', 'elemenetskit' ),
-						'scroll'   => __( 'Scroll', 'elemenetskit' ),
-						'collapse' => __( 'Collapse', 'elemenetskit' ),
-                        'stack'    => __( 'Stack', 'elemenetskit' ),
+                        'none'        => __( 'None', 'elementskit-lite' ),
+						'flip'     => __( 'Flip', 'elementskit-lite' ),
+						'scroll'   => __( 'Scroll', 'elementskit-lite' ),
+						'collapse' => __( 'Collapse', 'elementskit-lite' ),
+                        'stack'    => __( 'Stack', 'elementskit-lite' ),
 					],
 				]
 			);
             $this->add_control(
                 'ekit_tablepress_table_responsive_breakpoint',
                 [
-                    'label'   => __( 'Responsive Breakpoint', 'elemenetskit' ),
+                    'label'   => __( 'Responsive Breakpoint', 'elementskit-lite' ),
                     'type'    => Controls_Manager::SELECT,
                     'label_block' => 'true',
                     'default' => 'none',
                     'options' => [
-                        'none'        => __( 'None', 'elemenetskit' ),
-                        'phone'     => __( 'Phone', 'elemenetskit' ),
-                        'tablet'     => __( 'Tablet', 'elemenetskit' ),
-                        'desktop'   => __( 'Desktop', 'elemenetskit' ),
-                        'all' => __( 'All', 'elemenetskit' ),
+                        'none'        => __( 'None', 'elementskit-lite' ),
+                        'phone'     => __( 'Phone', 'elementskit-lite' ),
+                        'tablet'     => __( 'Tablet', 'elementskit-lite' ),
+                        'desktop'   => __( 'Desktop', 'elementskit-lite' ),
+                        'all' => __( 'All', 'elementskit-lite' ),
                     ],
                     'condition' => [
                         'ekit_tablepress_table_responsive!' => 'none'
@@ -88,7 +92,7 @@ class ElementsKit_Widget_TablePress extends Widget_Base {
 		$this->add_responsive_control(
             'ekit_tablepress_navigation_hide',
 			[
-                'label'     => esc_html__( 'Nav Hide', 'elemenetskit' ),
+                'label'     => esc_html__( 'Nav Hide', 'elementskit-lite' ),
 				'type'      => Controls_Manager::SWITCHER,
 				'selectors' => [
 					'{{WRAPPER}} .elemenetskit-tablepress .dataTables_length' => 'display: none;',
@@ -99,7 +103,7 @@ class ElementsKit_Widget_TablePress extends Widget_Base {
 		$this->add_responsive_control(
 			'ekit_tablepress_search_hide',
 			[
-                'label'     => esc_html__( 'Search Hide', 'elemenetskit' ),
+                'label'     => esc_html__( 'Search Hide', 'elementskit-lite' ),
 				'type'      => Controls_Manager::SWITCHER,
 				'selectors' => [
                     '{{WRAPPER}} .elemenetskit-tablepress .dataTables_filter' => 'display: none;',
@@ -110,7 +114,7 @@ class ElementsKit_Widget_TablePress extends Widget_Base {
         $this->add_responsive_control(
 			'ekit_tablepress_footer_info_hide',
 			[
-                'label'     => esc_html__( 'Footer Info Hide', 'elemenetskit' ),
+                'label'     => esc_html__( 'Footer Info Hide', 'elementskit-lite' ),
 				'type'      => Controls_Manager::SWITCHER,
 				'selectors' => [
 					'{{WRAPPER}} .elemenetskit-tablepress .dataTables_info' => 'display: none;',
@@ -121,7 +125,7 @@ class ElementsKit_Widget_TablePress extends Widget_Base {
 		$this->add_responsive_control(
             'ekit_tablepress_pagination_hide',
             [
-                'label'     => esc_html__( 'Pagination Hide', 'elemenetskit' ),
+                'label'     => esc_html__( 'Pagination Hide', 'elementskit-lite' ),
                 'type'      => Controls_Manager::SWITCHER,
                 'selectors' => [
                     '{{WRAPPER}} .elemenetskit-tablepress .dataTables_paginate' => 'display: none;',
@@ -132,19 +136,19 @@ class ElementsKit_Widget_TablePress extends Widget_Base {
         $this->add_responsive_control(
             'ekit_tablepress_header_align',
             [
-                'label'   => __( 'Header Alignment', 'elemenetskit' ),
+                'label'   => __( 'Header Alignment', 'elementskit-lite' ),
                 'type'    => Controls_Manager::CHOOSE,
                 'options' => [
                     'left'    => [
-                        'title' => __( 'Left', 'elemenetskit' ),
+                        'title' => __( 'Left', 'elementskit-lite' ),
                         'icon'  => 'fa fa-align-left',
                     ],
                     'center' => [
-                        'title' => __( 'Center', 'elemenetskit' ),
+                        'title' => __( 'Center', 'elementskit-lite' ),
                         'icon'  => 'fa fa-align-center',
                     ],
                     'right' => [
-                        'title' => __( 'Right', 'elemenetskit' ),
+                        'title' => __( 'Right', 'elementskit-lite' ),
                         'icon'  => 'fa fa-align-right',
                     ],
                 ],
@@ -158,19 +162,19 @@ class ElementsKit_Widget_TablePress extends Widget_Base {
         $this->add_responsive_control(
             'ekit_tablepress_body_align',
             [
-                'label'   => __( 'Body Alignment', 'elemenetskit' ),
+                'label'   => __( 'Body Alignment', 'elementskit-lite' ),
                 'type'    => Controls_Manager::CHOOSE,
                 'options' => [
                     'left'    => [
-                        'title' => __( 'Left', 'elemenetskit' ),
+                        'title' => __( 'Left', 'elementskit-lite' ),
                         'icon'  => 'fa fa-align-left',
                     ],
                     'center' => [
-                        'title' => __( 'Center', 'elemenetskit' ),
+                        'title' => __( 'Center', 'elementskit-lite' ),
                         'icon'  => 'fa fa-align-center',
                     ],
                     'right' => [
-                        'title' => __( 'Right', 'elemenetskit' ),
+                        'title' => __( 'Right', 'elementskit-lite' ),
                         'icon'  => 'fa fa-align-right',
                     ],
                 ],
@@ -186,7 +190,7 @@ class ElementsKit_Widget_TablePress extends Widget_Base {
 		$this->start_controls_section(
 			'ekit_tablepress_section_style_table',
 			[
-				'label' => __( 'Table', 'elemenetskit' ),
+				'label' => __( 'Table', 'elementskit-lite' ),
 				'tab'   => Controls_Manager::TAB_STYLE,
 			]
 		);
@@ -194,7 +198,7 @@ class ElementsKit_Widget_TablePress extends Widget_Base {
 		$this->add_responsive_control(
 			'ekit_tablepress_table_text_color',
 			[
-				'label'     => esc_html__( 'Color', 'elemenetskit' ),
+				'label'     => esc_html__( 'Color', 'elementskit-lite' ),
 				'type'      => Controls_Manager::COLOR,
 				'selectors' => [
 					'{{WRAPPER}} .elemenetskit-tablepress .dataTables_length, {{WRAPPER}} .elemenetskit-tablepress .dataTables_filter, {{WRAPPER}} .elemenetskit-tablepress .dataTables_info, {{WRAPPER}} .elemenetskit-tablepress .paginate_button' => 'color: {{VALUE}};',
@@ -205,16 +209,16 @@ class ElementsKit_Widget_TablePress extends Widget_Base {
 		$this->add_control(
 			'ekit_tablepress_table_border_style',
 			[
-				'label'   => __( 'Border Style', 'elemenetskit' ),
+				'label'   => __( 'Border Style', 'elementskit-lite' ),
 				'type'    => Controls_Manager::SELECT,
 				'default' => 'solid',
 				'options' => [
-					'none'   => __( 'None', 'elemenetskit' ),
-					'solid'  => __( 'Solid', 'elemenetskit' ),
-					'double' => __( 'Double', 'elemenetskit' ),
-					'dotted' => __( 'Dotted', 'elemenetskit' ),
-					'dashed' => __( 'Dashed', 'elemenetskit' ),
-					'groove' => __( 'Groove', 'elemenetskit' ),
+					'none'   => __( 'None', 'elementskit-lite' ),
+					'solid'  => __( 'Solid', 'elementskit-lite' ),
+					'double' => __( 'Double', 'elementskit-lite' ),
+					'dotted' => __( 'Dotted', 'elementskit-lite' ),
+					'dashed' => __( 'Dashed', 'elementskit-lite' ),
+					'groove' => __( 'Groove', 'elementskit-lite' ),
 				],
 				'selectors' => [
 					'{{WRAPPER}} .elemenetskit-tablepress table.tablepress' => 'border-style: {{VALUE}};',
@@ -228,7 +232,7 @@ class ElementsKit_Widget_TablePress extends Widget_Base {
 		$this->add_control(
 			'ekit_tablepress_table_border_width',
 			[
-				'label'   => __( 'Border Width', 'elemenetskit' ),
+				'label'   => __( 'Border Width', 'elementskit-lite' ),
 				'type'    => Controls_Manager::SLIDER,
 				'default' => [
 					'min'  => 0,
@@ -247,7 +251,7 @@ class ElementsKit_Widget_TablePress extends Widget_Base {
 		$this->add_control(
 			'ekit_tablepress_table_border_color',
 			[
-				'label'     => __( 'Border Color', 'elemenetskit' ),
+				'label'     => __( 'Border Color', 'elementskit-lite' ),
 				'type'      => Controls_Manager::COLOR,
 				'default'   => '#ccc',
 				'selectors' => [
@@ -262,7 +266,7 @@ class ElementsKit_Widget_TablePress extends Widget_Base {
         $this->add_responsive_control(
 			'ekit_tablepress_table_header_tools_gap',
 			[
-				'label' => __( 'Pagination And Serach Gap', 'plugin-domain' ),
+				'label' => __( 'Pagination And Serach Gap', 'elementskit-lite' ),
 				'type' => Controls_Manager::DIMENSIONS,
 				'size_units' => [ 'px', '%', 'em' ],
 				'selectors' => [
@@ -274,7 +278,7 @@ class ElementsKit_Widget_TablePress extends Widget_Base {
         $this->add_responsive_control(
 			'ekit_tablepress_table_footer_tools_gap',
 			[
-				'label' => __( 'Footer Text And Navigation gap', 'plugin-domain' ),
+				'label' => __( 'Footer Text And Navigation gap', 'elementskit-lite' ),
 				'type' => Controls_Manager::DIMENSIONS,
 				'size_units' => [ 'px', '%', 'em' ],
 				'selectors' => [
@@ -288,7 +292,7 @@ class ElementsKit_Widget_TablePress extends Widget_Base {
 		$this->start_controls_section(
 			'ekit_tablepress_section_style_header',
 			[
-				'label' => __( 'Header', 'elemenetskit' ),
+				'label' => __( 'Header', 'elementskit-lite' ),
 				'tab'   => Controls_Manager::TAB_STYLE,
 			]
 		);
@@ -296,7 +300,7 @@ class ElementsKit_Widget_TablePress extends Widget_Base {
 		$this->add_responsive_control(
 			'ekit_tablepress_header_background',
 			[
-				'label'     => __( 'Background', 'elemenetskit' ),
+				'label'     => __( 'Background', 'elementskit-lite' ),
 				'type'      => Controls_Manager::COLOR,
 				'default'   => '#dfe3e6',
 				'selectors' => [
@@ -308,7 +312,7 @@ class ElementsKit_Widget_TablePress extends Widget_Base {
 		$this->add_responsive_control(
 			'ekit_tablepress_header_active_background',
 			[
-				'label'     => __( 'Hover And Active Background', 'elemenetskit' ),
+				'label'     => __( 'Hover And Active Background', 'elementskit-lite' ),
 				'type'      => Controls_Manager::COLOR,
 				'default'   => '#ccd3d8',
 				'selectors' => [
@@ -320,7 +324,7 @@ class ElementsKit_Widget_TablePress extends Widget_Base {
 		$this->add_responsive_control(
 			'ekit_tablepress_header_color',
 			[
-				'label'     => __( 'Text Color', 'elemenetskit' ),
+				'label'     => __( 'Text Color', 'elementskit-lite' ),
 				'type'      => Controls_Manager::COLOR,
 				'default'   => '#333',
 				'selectors' => [
@@ -332,16 +336,16 @@ class ElementsKit_Widget_TablePress extends Widget_Base {
 		$this->add_control(
 			'ekit_tablepress_header_border_style',
 			[
-				'label'   => __( 'Border Style', 'elemenetskit' ),
+				'label'   => __( 'Border Style', 'elementskit-lite' ),
 				'type'    => Controls_Manager::SELECT,
 				'default' => 'solid',
 				'options' => [
-					'none'   => __( 'None', 'elemenetskit' ),
-					'solid'  => __( 'Solid', 'elemenetskit' ),
-					'double' => __( 'Double', 'elemenetskit' ),
-					'dotted' => __( 'Dotted', 'elemenetskit' ),
-					'dashed' => __( 'Dashed', 'elemenetskit' ),
-					'groove' => __( 'Groove', 'elemenetskit' ),
+					'none'   => __( 'None', 'elementskit-lite' ),
+					'solid'  => __( 'Solid', 'elementskit-lite' ),
+					'double' => __( 'Double', 'elementskit-lite' ),
+					'dotted' => __( 'Dotted', 'elementskit-lite' ),
+					'dashed' => __( 'Dashed', 'elementskit-lite' ),
+					'groove' => __( 'Groove', 'elementskit-lite' ),
 				],
 				'selectors' => [
 					'{{WRAPPER}} .elemenetskit-tablepress .tablepress th' => 'border-style: {{VALUE}};',
@@ -352,7 +356,7 @@ class ElementsKit_Widget_TablePress extends Widget_Base {
 		$this->add_control(
 			'ekit_tablepress_header_border_width',
 			[
-				'label'   => __( 'Border Width', 'elemenetskit' ),
+				'label'   => __( 'Border Width', 'elementskit-lite' ),
 				'type'    => Controls_Manager::SLIDER,
 				'default' => [
 					'min'  => 0,
@@ -371,7 +375,7 @@ class ElementsKit_Widget_TablePress extends Widget_Base {
 		$this->add_control(
 			'ekit_tablepress_header_border_color',
 			[
-				'label'     => __( 'Border Color', 'elemenetskit' ),
+				'label'     => __( 'Border Color', 'elementskit-lite' ),
 				'type'      => Controls_Manager::COLOR,
 				'default'   => '#ccc',
 				'selectors' => [
@@ -386,7 +390,7 @@ class ElementsKit_Widget_TablePress extends Widget_Base {
 		$this->add_responsive_control(
 			'ekit_tablepress_header_padding',
 			[
-				'label'      => __( 'Padding', 'elemenetskit' ),
+				'label'      => __( 'Padding', 'elementskit-lite' ),
 				'type'       => Controls_Manager::DIMENSIONS,
 				'size_units' => [ 'px', 'em', '%' ],
 				'default'    => [
@@ -407,7 +411,7 @@ class ElementsKit_Widget_TablePress extends Widget_Base {
 		$this->start_controls_section(
 			'ekit_tablepress_section_style_body',
 			[
-				'label' => __( 'Body', 'elemenetskit' ),
+				'label' => __( 'Body', 'elementskit-lite' ),
 				'tab'   => Controls_Manager::TAB_STYLE,
 			]
 		);
@@ -415,16 +419,16 @@ class ElementsKit_Widget_TablePress extends Widget_Base {
 		$this->add_control(
 			'ekit_tablepress_cell_border_style',
 			[
-				'label'   => __( 'Border Style', 'elemenetskit' ),
+				'label'   => __( 'Border Style', 'elementskit-lite' ),
 				'type'    => Controls_Manager::SELECT,
 				'default' => 'solid',
 				'options' => [
-					'none'   => __( 'None', 'elemenetskit' ),
-					'solid'  => __( 'Solid', 'elemenetskit' ),
-					'double' => __( 'Double', 'elemenetskit' ),
-					'dotted' => __( 'Dotted', 'elemenetskit' ),
-					'dashed' => __( 'Dashed', 'elemenetskit' ),
-					'groove' => __( 'Groove', 'elemenetskit' ),
+					'none'   => __( 'None', 'elementskit-lite' ),
+					'solid'  => __( 'Solid', 'elementskit-lite' ),
+					'double' => __( 'Double', 'elementskit-lite' ),
+					'dotted' => __( 'Dotted', 'elementskit-lite' ),
+					'dashed' => __( 'Dashed', 'elementskit-lite' ),
+					'groove' => __( 'Groove', 'elementskit-lite' ),
 				],
 				'selectors' => [
 					'{{WRAPPER}} .elemenetskit-tablepress .tablepress td' => 'border-style: {{VALUE}};',
@@ -435,7 +439,7 @@ class ElementsKit_Widget_TablePress extends Widget_Base {
 		$this->add_control(
 			'ekit_tablepress_cell_border_width',
 			[
-				'label'   => __( 'Border Width', 'elemenetskit' ),
+				'label'   => __( 'Border Width', 'elementskit-lite' ),
 				'type'    => Controls_Manager::SLIDER,
 				'default' => [
 					'min'  => 0,
@@ -454,7 +458,7 @@ class ElementsKit_Widget_TablePress extends Widget_Base {
 		$this->add_responsive_control(
 			'ekit_tablepress_cell_padding',
 			[
-				'label'      => __( 'Cell Padding', 'elemenetskit' ),
+				'label'      => __( 'Cell Padding', 'elementskit-lite' ),
 				'type'       => Controls_Manager::DIMENSIONS,
 				'size_units' => [ 'px', 'em', '%' ],
 				'default'    => [
@@ -476,18 +480,18 @@ class ElementsKit_Widget_TablePress extends Widget_Base {
 		$this->start_controls_tab(
 			'ekit_tablepress_tab_normal',
 			[
-				'label' => __( 'Normal', 'elemenetskit' ),
+				'label' => __( 'Normal', 'elementskit-lite' ),
 			]
 		);
 
 		$this->add_control(
 			'ekit_tablepress_normal_background',
 			[
-				'label'     => __( 'Background', 'elemenetskit' ),
+				'label'     => __( 'Background', 'elementskit-lite' ),
 				'type'      => Controls_Manager::COLOR,
 				'default'   => '#fff',
 				'selectors' => [
-					'{{WRAPPER}} .elemenetskit-tablepress .tablepress .odd td' => 'background-color: {{VALUE}};',
+					'{{WRAPPER}} .elemenetskit-tablepress .tablepress tbody tr:nth-child(odd) td' => 'background-color: {{VALUE}};',
 				],
 			]
 		);
@@ -495,10 +499,10 @@ class ElementsKit_Widget_TablePress extends Widget_Base {
 		$this->add_control(
 			'ekit_tablepress_normal_color',
 			[
-				'label'     => __( 'Text Color', 'elemenetskit' ),
+				'label'     => __( 'Text Color', 'elementskit-lite' ),
 				'type'      => Controls_Manager::COLOR,
 				'selectors' => [
-					'{{WRAPPER}} .elemenetskit-tablepress .tablepress .odd td' => 'color: {{VALUE}};',
+					'{{WRAPPER}} .elemenetskit-tablepress .tablepress tbody tr:nth-child(odd) td' => 'color: {{VALUE}};',
 				],
 			]
 		);
@@ -506,11 +510,11 @@ class ElementsKit_Widget_TablePress extends Widget_Base {
 		$this->add_control(
 			'ekit_tablepress_normal_border_color',
 			[
-				'label'     => __( 'Border Color', 'elemenetskit' ),
+				'label'     => __( 'Border Color', 'elementskit-lite' ),
 				'type'      => Controls_Manager::COLOR,
 				'default'   => '#ccc',
 				'selectors' => [
-					'{{WRAPPER}} .elemenetskit-tablepress .tablepress .odd td' => 'border-color: {{VALUE}};',
+					'{{WRAPPER}} .elemenetskit-tablepress .tablepress tbody tr:nth-child(odd) td' => 'border-color: {{VALUE}};',
                 ],
                 'condition' => [
                     'ekit_tablepress_cell_border_style!' => 'none'
@@ -523,18 +527,18 @@ class ElementsKit_Widget_TablePress extends Widget_Base {
 		$this->start_controls_tab(
 			'ekit_tablepress_tab_stripe',
 			[
-				'label' => __( 'Stripe', 'elemenetskit' ),
+				'label' => __( 'Stripe', 'elementskit-lite' ),
 			]
 		);
 
 		$this->add_control(
 			'ekit_tablepress_stripe_background',
 			[
-				'label'     => __( 'Background', 'elemenetskit' ),
+				'label'     => __( 'Background', 'elementskit-lite' ),
 				'type'      => Controls_Manager::COLOR,
 				'default'   => '#f7f7f7',
 				'selectors' => [
-					'{{WRAPPER}} .elemenetskit-tablepress .tablepress .even td' => 'background-color: {{VALUE}};',
+					'{{WRAPPER}} .elemenetskit-tablepress .tablepress tbody tr:nth-child(even) td' => 'background-color: {{VALUE}};',
 				],
 			]
 		);
@@ -542,10 +546,10 @@ class ElementsKit_Widget_TablePress extends Widget_Base {
 		$this->add_control(
 			'ekit_tablepress_stripe_color',
 			[
-				'label'     => __( 'Text Color', 'elemenetskit' ),
+				'label'     => __( 'Text Color', 'elementskit-lite' ),
 				'type'      => Controls_Manager::COLOR,
 				'selectors' => [
-					'{{WRAPPER}} .elemenetskit-tablepress .tablepress .even td' => 'color: {{VALUE}};',
+					'{{WRAPPER}} .elemenetskit-tablepress .tablepress tbody tr:nth-child(even) td' => 'color: {{VALUE}};',
 				],
 			]
 		);
@@ -553,11 +557,11 @@ class ElementsKit_Widget_TablePress extends Widget_Base {
 		$this->add_control(
 			'ekit_tablepress_stripe_border_color',
 			[
-				'label'     => __( 'Border Color', 'elemenetskit' ),
+				'label'     => __( 'Border Color', 'elementskit-lite' ),
 				'type'      => Controls_Manager::COLOR,
 				'default'   => '#ccc',
 				'selectors' => [
-					'{{WRAPPER}} .elemenetskit-tablepress .tablepress .even td' => 'border-color: {{VALUE}};',
+					'{{WRAPPER}} .elemenetskit-tablepress .tablepress tbody tr:nth-child(even) td' => 'border-color: {{VALUE}};',
                 ],
                 'condition' => [
                     'ekit_tablepress_cell_border_style!' => 'none'
@@ -572,7 +576,7 @@ class ElementsKit_Widget_TablePress extends Widget_Base {
 		$this->add_control(
 			'ekit_tablepress_body_hover_background',
 			[
-				'label'     => __( 'Hover Background', 'elemenetskit' ),
+				'label'     => __( 'Hover Background', 'elementskit-lite' ),
 				'type'      => Controls_Manager::COLOR,
 				'selectors' => [
 					'{{WRAPPER}} .elemenetskit-tablepress .tablepress .row-hover tr:hover td' => 'background-color: {{VALUE}};',
@@ -585,7 +589,7 @@ class ElementsKit_Widget_TablePress extends Widget_Base {
 		$this->start_controls_section(
 			'ekit_tablepress_section_search_layout_style',
 			[
-				'label'      => esc_html__( 'Filter And Search', 'elemenetskit' ),
+				'label'      => esc_html__( 'Filter And Search', 'elementskit-lite' ),
 				'tab'        => Controls_Manager::TAB_STYLE,
 				'conditions' => [
 					'relation' => 'or',
@@ -606,7 +610,7 @@ class ElementsKit_Widget_TablePress extends Widget_Base {
 		$this->add_control(
 			'ekit_tablepress_search_icon_color',
 			[
-				'label'     => esc_html__( 'Color', 'elemenetskit' ),
+				'label'     => esc_html__( 'Color', 'elementskit-lite' ),
 				'type'      => Controls_Manager::COLOR,
 				'selectors' => [
 					'{{WRAPPER}} .elemenetskit-tablepress .dataTables_filter input, {{WRAPPER}} .elemenetskit-tablepress .dataTables_length select' => 'color: {{VALUE}};',
@@ -617,7 +621,7 @@ class ElementsKit_Widget_TablePress extends Widget_Base {
 		$this->add_control(
 			'ekit_tablepress_search_background',
 			[
-				'label'     => esc_html__( 'Background', 'elemenetskit' ),
+				'label'     => esc_html__( 'Background', 'elementskit-lite' ),
 				'type'      => Controls_Manager::COLOR,
 				'selectors' => [
 					'{{WRAPPER}} .elemenetskit-tablepress .dataTables_filter input, {{WRAPPER}} .elemenetskit-tablepress .dataTables_length select' => 'background-color: {{VALUE}};',
@@ -628,7 +632,7 @@ class ElementsKit_Widget_TablePress extends Widget_Base {
 		$this->add_responsive_control(
 			'ekit_tablepress_search_padding',
 			[
-				'label'      => esc_html__( 'Padding', 'elemenetskit' ),
+				'label'      => esc_html__( 'Padding', 'elementskit-lite' ),
 				'type'       => Controls_Manager::DIMENSIONS,
 				'size_units' => [ 'px', 'em', '%' ],
 				'selectors'  => [
@@ -641,7 +645,7 @@ class ElementsKit_Widget_TablePress extends Widget_Base {
 			Group_Control_Border::get_type(),
 			[
 				'name'        => 'ekit_tablepress_search_border',
-				'label'       => esc_html__( 'Border', 'elemenetskit' ),
+				'label'       => esc_html__( 'Border', 'elementskit-lite' ),
 				'placeholder' => '1px',
 				'default'     => '1px',
 				'selector'    => '{{WRAPPER}} .elemenetskit-tablepress .dataTables_filter input, {{WRAPPER}} .elemenetskit-tablepress .dataTables_length select',
@@ -651,7 +655,7 @@ class ElementsKit_Widget_TablePress extends Widget_Base {
 		$this->add_responsive_control(
 			'ekit_tablepress_search_radius',
 			[
-				'label'      => esc_html__( 'Radius', 'elemenetskit' ),
+				'label'      => esc_html__( 'Radius', 'elementskit-lite' ),
 				'type'       => Controls_Manager::DIMENSIONS,
 				'size_units' => [ 'px', 'em', '%' ],
 				'selectors'  => [
@@ -677,8 +681,10 @@ class ElementsKit_Widget_TablePress extends Widget_Base {
     private function get_shortcode() {
 		$settings = $this->get_settings();
 
-		if (!$settings['ekit_tablepress_table_id']) {
-			return '<div class="elemenetskit-alert-info">'.__('Please Select A Table From Setting!', 'elemenetskit').'</div>';
+		$ekit_tablepress_table_id_sanitize = isset($settings['ekit_tablepress_table_id']) ? intval($settings['ekit_tablepress_table_id']) : 0;
+
+		if (!$ekit_tablepress_table_id_sanitize) {
+			return '<div class="elemenetskit-alert-info">'.esc_html__('Please Select A Table From Setting!', 'elementskit-lite').'</div>';
 		}
 		
 		if ( \Elementor\Plugin::instance()->editor->is_edit_mode() ) {
@@ -688,14 +694,14 @@ class ElementsKit_Widget_TablePress extends Widget_Base {
 		}
 
 		$attributes = [
-			'id'         => $settings['ekit_tablepress_table_id'],
+			'id'         => $ekit_tablepress_table_id_sanitize,
             'responsive' => (class_exists('TablePress_Responsive_Tables')) ? $settings['ekit_tablepress_table_responsive'] : '',
             'responsive_breakpoint' => (class_exists('TablePress_Responsive_Tables')) ? $settings['ekit_tablepress_table_responsive_breakpoint'] : '',
 		];
 
 		$this->add_render_attribute( 'shortcode', $attributes );
 
-		$shortcode   = ['<div class="elemenetskit-tablepress ekit-wid-con" id="ekit_tablepress_'.$this->get_id().'">'];
+		$shortcode   = ['<div class="elemenetskit-tablepress ekit-wid-con" id="ekit_tablepress_'.esc_attr($this->get_id()).'">'];
 		$shortcode[] = sprintf( '[table %s]', $this->get_render_attribute_string( 'shortcode' ) );
 		$shortcode[] = '</div>';
 

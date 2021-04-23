@@ -4,7 +4,7 @@ defined( 'ABSPATH' ) || exit;
 
 trait Widget_Notice{
     /**
-     * Adding Go Pro message to all widgets
+     * Adding Go Premium message to all widgets
      *
      * @since 1.4.2
      */
@@ -14,7 +14,7 @@ trait Widget_Notice{
             $this->start_controls_section(
                 'ekit_section_pro',
                 [
-                    'label' => __('Go Pro for More Features', 'elementskit-lite'),
+                    'label' => __('Go Premium for More Features', 'elementskit-lite'),
                 ]
             );
 

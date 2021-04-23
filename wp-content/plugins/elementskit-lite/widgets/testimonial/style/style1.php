@@ -12,7 +12,7 @@
 							$clientLogo = isset($testimonial['client_logo']['url']) ? $testimonial['client_logo']['url'] : '';
 						?>
 							<div class="elementskit-client_logo">
-								<img src="<?php echo esc_url($clientLogo); ?>" alt="<?php esc_attr_e("Client Logo","agmycoo");?>">
+								<img src="<?php echo esc_url($clientLogo); ?>" alt="<?php esc_attr_e("Client Logo","elementskit-lite");?>">
 							</div>
 						<?php
 							} ?>
@@ -32,24 +32,23 @@
 					<div class="elementskit-profile-image-card">
 						<?php if (isset($testimonial['client_photo']) && !empty($testimonial['client_photo']['url']) &&  sizeof($testimonial['client_photo']) > 0) {
 								$clientPhoto = isset($testimonial['client_photo']['url']) ? $testimonial['client_photo']['url'] : ''; ?>
-								<img src="<?php echo esc_url($clientPhoto); ?>" alt="<?php esc_attr_e("Client Image","agmycoo");?>">
+								<img src="<?php echo esc_url($clientPhoto); ?>" alt="<?php esc_attr_e("Client Image", "elementskit-lite");?>">
 						<?php } ?>
 						<?php if( isset($ekit_testimonial_enable_social) && $ekit_testimonial_enable_social == 'yes'):?>
 							<div class="elementskit-hover-area">
 								<ul class="social-list medium circle text-colored">
 									<?php if(isset($testimonial['facebook_url']) && strlen($testimonial['facebook_url']) > 5){?>
-									<li><a href="<?php esc_attr_e($testimonial['facebook_url']);?>" class="facebook"><i class="fa fa-facebook"></i></a></li>
+									<li><a href="<?php esc_attr_e($testimonial['facebook_url'], 'elementskit-lite');?>" class="facebook"><i class="fa fa-facebook"></i></a></li>
 									<?php }?>
 									<?php if(isset($testimonial['twitter_url']) && strlen($testimonial['twitter_url']) > 5){?>
-									<li><a href="<?php esc_attr_e($testimonial['twitter_url']);?>" class="twitter"><i class="fa fa-twitter"></i></a></li>
+									<li><a href="<?php esc_attr_e($testimonial['twitter_url'], 'elementskit-lite');?>" class="twitter"><i class="fa fa-twitter"></i></a></li>
 									<?php }?>
 									<?php if(isset($testimonial['linkedin_url']) && strlen($testimonial['linkedin_url']) > 5){?>
-									<li><a href="<?php esc_attr_e($testimonial['linkedin_url']);?>" class="linkedin"><i class="fa fa-linkedin"></i></a></li>
+									<li><a href="<?php esc_attr_e($testimonial['linkedin_url'], 'elementskit-lite');?>" class="linkedin"><i class="fa fa-linkedin"></i></a></li>
 									<?php }?>
 									<?php if(isset($testimonial['youtube_url']) && strlen($testimonial['youtube_url']) > 5){?>
-									<li><a href="<?php esc_attr_e($testimonial['youtube_url']);?>" class="youtube"><i class="fa fa-youtube"></i></a></li>
+									<li><a href="<?php esc_attr_e($testimonial['youtube_url'], 'elementskit-lite');?>" class="youtube"><i class="fa fa-youtube"></i></a></li>
 									<?php }?>
-
 								</ul>
 							</div>
 						<?php endif;?>

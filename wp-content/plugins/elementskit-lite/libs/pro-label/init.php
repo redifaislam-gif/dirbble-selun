@@ -19,9 +19,6 @@ class Init{
             add_action( 'admin_head', [$this, 'show_go_pro_notice'] );
         }
 
-        //Plugin list links
-        add_filter('plugin_action_links_elementskit/elementskit-lite.php', [$this, 'insert_plugin_links']);
-        add_filter('plugin_row_meta', [$this, 'insert_plugin_row_meta'], 10, 2);
         add_action('admin_footer', [$this, 'footer_alert_box']);
     }
 }

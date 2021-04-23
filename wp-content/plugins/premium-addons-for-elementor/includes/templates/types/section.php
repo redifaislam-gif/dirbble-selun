@@ -2,7 +2,9 @@
 
 namespace PremiumAddons\Includes\Templates\Types;
 
-if ( ! defined( 'ABSPATH' ) ) exit; // Exit if accessed directly
+if ( ! defined( 'ABSPATH' ) ) {
+	exit; // Exit if accessed directly
+}
 
 if ( ! class_exists( 'Premium_Structure_Section' ) ) {
 
@@ -12,7 +14,7 @@ if ( ! class_exists( 'Premium_Structure_Section' ) ) {
 	class Premium_Structure_Section extends Premium_Structure_Base {
 
 		public function get_id() {
-            return 'premium_section';
+			return 'premium_section';
 		}
 
 		public function get_single_label() {

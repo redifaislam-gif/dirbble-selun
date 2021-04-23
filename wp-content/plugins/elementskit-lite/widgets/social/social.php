@@ -27,6 +27,10 @@ class ElementsKit_Widget_Social extends Widget_Base {
         return Handler::get_categories();
     }
 
+    public function get_help_url() {
+        return '';
+    }
+
 	protected function _register_controls() {
 
 		// start content section for social media
@@ -85,7 +89,7 @@ class ElementsKit_Widget_Social extends Widget_Base {
 					'size' => 5,
 				],
 				'selectors' => [
-					'{{WRAPPER}} {{CURRENT_ITEM}} a > i' => 'padding-right: {{SIZE}}{{UNIT}};',
+					'{{WRAPPER}} a > i' => 'padding-right: {{SIZE}}{{UNIT}};',
                 ],
                 'condition' => [
                     'ekit_socialmedia_style' => 'both',
@@ -112,7 +116,7 @@ class ElementsKit_Widget_Social extends Widget_Base {
 					'size' => 5,
 				],
 				'selectors' => [
-					'{{WRAPPER}} {{CURRENT_ITEM}} a > i' => 'padding-left: {{SIZE}}{{UNIT}};',
+					'{{WRAPPER}} a > i' => 'padding-left: {{SIZE}}{{UNIT}};',
                 ],
                 'condition' => [
                     'ekit_socialmedia_style' => 'both',
@@ -517,7 +521,6 @@ class ElementsKit_Widget_Social extends Widget_Base {
 			[
 				'name' => 'ekit_socialmedai_list_typography',
 				'label' => esc_html__( 'Typography', 'elementskit-lite' ),
-				'scheme' => Scheme_Typography::TYPOGRAPHY_1,
 				'selector' => '{{WRAPPER}} .ekit_social_media > li > a',
 			]
 		);

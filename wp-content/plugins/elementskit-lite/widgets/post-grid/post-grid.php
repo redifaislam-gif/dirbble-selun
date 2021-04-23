@@ -31,6 +31,10 @@ class ElementsKit_Widget_Post_Grid extends Widget_Base {
         return Handler::get_categories();
     }
 
+    public function get_help_url() {
+        return '';
+    }
+
     protected function _register_controls() {
 
         $this->start_controls_section(
@@ -234,7 +238,7 @@ class ElementsKit_Widget_Post_Grid extends Widget_Base {
                     <?php $xs_query->the_post(); ?>
                     <?php if(has_post_thumbnail()): ?>
                         <div <?php echo $this->get_render_attribute_string('ekit-single-item'); ?>>
-                            <a href="<?php echo get_the_permalink(); ?>" class="tab__post--header">
+                            <a href="<?php echo esc_url(get_the_permalink()); ?>" class="tab__post--header">
                                 <?php $img_url = get_the_post_thumbnail_url(get_the_ID(), 'medium'); ?>
                                 <div class="post_grid_img_thumb" style="background-image: url('<?php echo esc_url($img_url); ?>')"></div>
                                 <?php if(get_post_format()  == 'video') : ?>
@@ -243,7 +247,7 @@ class ElementsKit_Widget_Post_Grid extends Widget_Base {
                                     </div>
                                 <?php endif; ?>
                             </a>
-                            <h3 class="tab__post--title ekit-post_grid-title"><a href="<?php echo get_the_permalink(); ?>"><?php the_title(); ?></a></h3>
+                            <h3 class="tab__post--title ekit-post_grid-title"><a href="<?php echo esc_url(get_the_permalink()); ?>"><?php the_title(); ?></a></h3>
                         </div>
                     <?php endif; ?>
                     

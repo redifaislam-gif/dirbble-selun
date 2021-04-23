@@ -28,7 +28,7 @@ class ElementsKit_Extend_Onepage_Scroll {
          * Pro Notice
          */
         if ( \ElementsKit_Lite::package_type() === 'free' ) {
-            add_action( 'elementor/element/post/ekit_page_settings/before_section_end', [$this, 'pro_panel_notice'], 99 );
+            add_action( 'elementor/element/wp-page/ekit_page_settings/before_section_end', [$this, 'pro_panel_notice'], 99 );
             add_action( 'elementor/element/section/ekit_onepagescroll_section/before_section_end', [$this, 'pro_panel_notice'], 99 );
         }
     }
@@ -142,6 +142,7 @@ class ElementsKit_Extend_Onepage_Scroll {
             'link'      => '',
             'tooltip'   => '',
             'arrow'     => '',
+            'span'      => '',
         );
 
         switch ( $nav_pos ) {

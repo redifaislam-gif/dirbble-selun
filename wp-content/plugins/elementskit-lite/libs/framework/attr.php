@@ -37,6 +37,8 @@ class Attr{
 
         // whitelist styles
         add_filter('mailpoet_conflict_resolver_whitelist_style', [$this, 'whitelisted_styles']);
+
+        add_action('elementskit-lite/pro_awareness/before_grid_contents', [$this, 'user_consent_for_banner']);
     }
 
     public function whitelisted_styles($styles) {
@@ -54,7 +56,6 @@ class Attr{
     }
 
     public function register_settings_menus(){
-        // add_menu_page( string $page_title, string $menu_title, string $capability, string $menu_slug, callable $function = '', string $icon_url = '', int $position = null )
 
         // dashboard, main menu
         add_menu_page(
@@ -66,27 +67,15 @@ class Attr{
             self::get_url() . 'assets/images/ekit_icon.svg',
             '58.6'
         );
-
-        // add_submenu_page( $parent_slug, $page_title, $menu_title, $capability, $menu_slug, $function = '' )
-        //add_submenu_page( self::key(), 'ElementsKit_Lite Help', 'Help', 'manage_options', self::key().'-help', [$this, 'register_settings_contents__help'], 11);
     }
 
-
-    // public function register_support_menu(){
-    //     add_submenu_page( self::key(), esc_html__( 'Get Support', 'elementskit-lite' ), esc_html__( 'Get Support', 'elementskit-lite' ), 'manage_options', self::key().'-support', [$this, 'register_settings_contents__support'], 11);
-    // }
 
     public function register_settings_contents__settings(){
-        include self::get_dir() . 'views/settings-init.php';
+        include self::get_dir() . 'views/init.php';
     }
 
+    public function user_consent_for_banner(){
+        include self::get_dir() . 'views/layout-user-consent-for-banner.php';
+    }
 
-    // public function register_settings_contents__support(){
-    //     echo esc_html__('Please wait..', 'elementskit-lite');
-    //     echo '
-    //         <script>
-    //         window.location.href = "https://help.wpmet.com";
-    //         </script>
-    //     ';
-    // }
 }

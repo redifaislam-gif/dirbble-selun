@@ -32,6 +32,9 @@ class ElementsKit_Widget_Progressbar extends Widget_Base {
         return Handler::get_categories();
     }
 
+    public function get_help_url() {
+        return '';
+    }
 
     protected function _register_controls() {
         $this->start_controls_section(
@@ -513,6 +516,4 @@ class ElementsKit_Widget_Progressbar extends Widget_Base {
         </div>
         <?php
     }
-
-    protected function _content_template() { }
 }

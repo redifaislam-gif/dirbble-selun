@@ -273,12 +273,7 @@
                                     options.at = PremiumEditor.atIndex;
                                 }
 
-                                if (-1 !== PremiumTempsData.Elementor_Version.indexOf('3.0.')) {
-                                    elementor.previewView.addChildModel(data.content, options);
-                                } else {
-                                    elementor.sections.currentView.addChildModel(data.content, options);
-                                }
-
+                                elementor.previewView.addChildModel(data.content, options);
 
                                 elementor.channels.data.trigger('template:after:insert', templateModel);
                                 jQuery("#elementor-panel-saver-button-save-options, #elementor-panel-saver-button-publish").removeClass("elementor-disabled");
@@ -883,24 +878,13 @@
                         $section = $this.closest('.elementor-top-section'),
                         modelID = $section.data('model-cid');
 
-                    if (-1 !== PremiumTempsData.Elementor_Version.indexOf('3.0.')) {
-                        if (elementor.previewView.collection.length) {
-                            $.each(elementor.previewView.collection.models, function (index, model) {
-                                if (modelID === model.cid) {
-                                    PremiumEditor.atIndex = index;
-                                }
-                            });
-                        }
-                    } else {
-                        if (window.elementor.sections.currentView.collection.length) {
-                            $.each(window.elementor.sections.currentView.collection.models, function (index, model) {
-                                if (modelID === model.cid) {
-                                    PremiumEditor.atIndex = index;
-                                }
-                            });
-                        }
+                    if (elementor.previewView.collection.length) {
+                        $.each(elementor.previewView.collection.models, function (index, model) {
+                            if (modelID === model.cid) {
+                                PremiumEditor.atIndex = index;
+                            }
+                        });
                     }
-
 
                     if (PremiumTempsData.PremiumTemplatesBtn) {
                         setTimeout(function () {

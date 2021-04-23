@@ -33,6 +33,9 @@ class ElementsKit_Widget_Team extends Widget_Base {
         return Handler::get_categories();
     }
 
+    public function get_help_url() {
+        return '';
+    }
 
     protected function _register_controls() {
 
@@ -177,10 +180,10 @@ class ElementsKit_Widget_Team extends Widget_Base {
         $this->add_control(
             'ekit_team_socail_enable',
             [
-                'label' => esc_html__( 'Display Social Profiles?', 'elements-test' ),
+                'label' => esc_html__( 'Display Social Profiles?', 'elementskit-lite' ),
                 'type' => Controls_Manager::SWITCHER,
-                'label_on' => esc_html__( 'Show', 'elements-test' ),
-                'label_off' => esc_html__( 'Hide', 'elements-test' ),
+                'label_on' => esc_html__( 'Show', 'elementskit-lite' ),
+                'label_off' => esc_html__( 'Hide', 'elementskit-lite' ),
                 'return_value' => 'yes',
                 'default' => 'yes',
             ]
@@ -781,6 +784,7 @@ class ElementsKit_Widget_Team extends Widget_Base {
                     ],
                 ],
 				'selectors' => [
+					'{{WRAPPER}} .ekit-wid-con .profile-square-v.square-v4 .profile-card .profile-header' => 'padding-top: {{SIZE}}{{UNIT}};',
 					'{{WRAPPER}} .profile-header > img, {{WRAPPER}} .profile-image-card img, {{WRAPPER}} .profile-image-card, {{WRAPPER}} .profile-header ' => 'width: {{SIZE}}{{UNIT}}; height: {{SIZE}}{{UNIT}};'
 				],
 				'default' => [
@@ -1628,7 +1632,6 @@ class ElementsKit_Widget_Team extends Widget_Base {
 			[
 				'name' => 'ekit_socialmedai_list_typography',
 				'label' => esc_html__( 'Typography', 'elementskit-lite' ),
-				'scheme' => Scheme_Typography::TYPOGRAPHY_1,
 				'selector' => '{{WRAPPER}} .ekit-team-social-list > li > a',
 			]
 		);
@@ -2316,7 +2319,7 @@ class ElementsKit_Widget_Team extends Widget_Base {
 
 				<div class="profile-body">
 					<?php if ( 'default' == $ekit_team_style && 'yes' == $ekit_team_toggle_icon && !empty( $ekit_team_top_icons ) ): ?>
-					<div class="profile-icon<?php echo $ekit_team_top_icon_align ? ' icon-align-'.$ekit_team_top_icon_align : ''; ?>">
+					<div class="profile-icon<?php echo esc_attr($ekit_team_top_icon_align) ? ' icon-align-'.esc_attr($ekit_team_top_icon_align) : ''; ?>">
 
 					<?php
 						// new icon
@@ -2350,7 +2353,7 @@ class ElementsKit_Widget_Team extends Widget_Base {
 					<?php endif;?>
 				</div><!-- .profile-body END -->
 
-				<?php if(isset($ekit_team_socail_enable) AND $ekit_team_socail_enable == 'yes'){?>
+				<?php if(isset($ekit_team_socail_enable) && $ekit_team_socail_enable == 'yes'){?>
 					<div class="profile-footer">
 						<?php require Handler::get_dir() . 'parts/social-list.php'; ?>
 					</div>
@@ -2366,7 +2369,7 @@ class ElementsKit_Widget_Team extends Widget_Base {
 				<?php if($ekit_team_style == 'long_height_hover'): ?> <div class="<?php echo esc_attr($settings['ekit_team_remove_gutters'] == 'yes' ? '' : 'small-gutters'); ?> image-card-v3"> <?php endif; ?>
 				<?php if($ekit_team_style == 'overlay_circle'): ?> <div class="style-circle ekit-team-img-fit"> <?php endif; ?>
 				<?php if($ekit_team_style == 'overlay_circle_hover'): ?> <div class="image-card-v2 style-circle"> <?php endif; ?>
-					<div class="profile-image-card elementor-animation-<?php echo $team_hover_animation ?> ekit-team-img ekit-team-style-<?php echo $ekit_team_style; ?> <?php if(isset($ekit_team_content_text_align)) { echo esc_attr($ekit_team_content_text_align);} ?>">
+					<div class="profile-image-card elementor-animation-<?php echo esc_attr($team_hover_animation) ?> ekit-team-img ekit-team-style-<?php echo esc_attr($ekit_team_style); ?> <?php if(isset($ekit_team_content_text_align)) { echo esc_attr($ekit_team_content_text_align);} ?>">
 
 						<?php if($ekit_team_style == 'long_height_hover'){ ?>
 							<?php echo \ElementsKit_Lite\Utils::kses($image_html); ?>
@@ -2409,7 +2412,7 @@ class ElementsKit_Widget_Team extends Widget_Base {
 				if ( 'hover_info' == $ekit_team_style ):
 				?>
 				
-				<div class="profile-square-v square-v4 elementor-animation-<?php echo $team_hover_animation ?> ekit-team-style-<?php echo $ekit_team_style; ?>">
+				<div class="profile-square-v square-v4 elementor-animation-<?php echo esc_attr($team_hover_animation) ?> ekit-team-style-<?php echo esc_attr($ekit_team_style); ?>">
 					<div class="profile-card <?php if(isset($ekit_team_content_text_align)) { echo esc_attr($ekit_team_content_text_align);} ?>">
 						<div class="profile-header ekit-team-img" <?php if ($settings['ekit_team_chose_popup'] == 'yes') :?> data-toggle="modal" data-target="#ekit_team_modal_<?php echo esc_attr($this->get_id()); ?>" <?php endif; ?>>
 							<?php echo \ElementsKit_Lite\Utils::kses($image_html); ?>
@@ -2429,7 +2432,7 @@ class ElementsKit_Widget_Team extends Widget_Base {
 							<p class="profile-content"><?php echo \ElementsKit_Lite\Utils::kses($ekit_team_short_description); ?></p>
 							<?php endif;?>
 							<?php
-								if ( isset($ekit_team_socail_enable) AND $ekit_team_socail_enable == 'yes' ) {
+								if ( isset($ekit_team_socail_enable) && $ekit_team_socail_enable == 'yes' ) {
 									require Handler::get_dir() . 'parts/social-list.php';
 								}
 							?>
@@ -2474,7 +2477,7 @@ class ElementsKit_Widget_Team extends Widget_Base {
 								<?php } ?>
 								
 								<?php
-									if ( isset($ekit_team_socail_enable) AND $ekit_team_socail_enable == 'yes' ) {
+									if ( isset($ekit_team_socail_enable) && $ekit_team_socail_enable == 'yes' ) {
 										require Handler::get_dir() . 'parts/social-list.php';
 									}
 								?>

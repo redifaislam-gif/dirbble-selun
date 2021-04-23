@@ -1,9 +1,9 @@
 === Elements kit Elementor addons (Header & Footer Builder, Mega Menu Builder, Layout Library) ===
-Contributors: Ataurr, wpmet, emranio, pobonpaul1994, easin55474, khalidjubair, enamulhoquemohon
+Contributors: Ataurr, wpmet, emranio, easin55474, enamulhoquemohon
 Tags: elementor addons, mega menu, header footer builder, elements, elementor extensions, elementor modules, page builder addons, elementor addon, elementor widget, addons
 Requires at least: 5.0
-Tested up to: 5.5
-Stable tag: 2.0.12
+Tested up to: 5.7
+Stable tag: 2.2.2
 Requires PHP: 7.0
 License: GPLv3 or later
 License URI: https://www.gnu.org/licenses/gpl-3.0.html
@@ -12,41 +12,43 @@ ElementsKit All in one addon for Elementor page builder. It includes most compre
 
 == Description ==
 
-### **ATTENTION:** ElementsKit  2.0 Out with huge code optimisation and speed optimization. If you faced any issue please contact our team    [from here](https://help.wpmet.com/)  ###
+ElementsKit is an ultimate All in one addons for Elementor Page Builder. It includes most comprehensive modules, such as Header Footer Builder, Mega Menu Builder Layoutkit etc under the one hood. It has 55+ custom widgets to create any sites with ease. It has some most unique and powerful custom controls for Elementor, such as Image Picker, Ajax Select2, Advanced Widget and many more. Why do you need multiple plugins? Where everything under the one hood?
 
 <iframe width="560" height="315" src="https://www.youtube.com/embed/ECFC0QregXg" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 
-ElementsKit is an ultimate All in one addons for Elementor Page Builder. It includes most comprehensive modules, such as Header Footer Builder, Mega Menu Builder Layoutkit etc under the one hood. It has 55+ custom widgets to create any sites with ease. It has some most unique and powerful custom controls for Elementor, such as Image Picker, Ajax Select2, Advanced Widget and many more. Why do you need multiple plugins? Where everything under the one hood?
+
 
 
 **Elements kit** Elementor Addon has Exclusive features that blow your mind. Like our Mega Menu Builder, Header and Footer Builder layout library, One Page Scroll, Sticky Content, Parallax Effects, you will get tons of Premium features that you have never imagined.
 
 
-[ **Check our Live Demos** ](http://go.wpmet.com/ekitpro)
+###USEFUL LINKS###
+> **[ElementsKit Landing Page](http://go.wpmet.com/ekitpro)** |  **[Need Support?](http://wpmet.com/support-help/)** | **[Documentation](https://help.wpmet.com/docs-cat/elements-kit/)** | **[Video Tutorials](https://www.youtube.com/watch?v=VhBl3dHT5SY&list=PL3t2OjZ6gY8MVnyA4OLB6qXb77-roJOuY&ab_channel=Wpmet)** |
 
 
-###SUPPORT###
 
-**Found issue or new features? [Contact our team from here](https://help.wpmet.com/)**.
 
 ==== KEY FEATURES ====
+- Header Footer Builder
+- Widget Builder
 - Mega Menu Builder
 - Vertical Mega Menu
+- 70+ Free and Premium Widgets
 - 45+ Pre-designed Header & Footer Templates
-- 55+ Free and Premium elements
+- 35+ Ready Pages
 - 500+ Ready Sections
-- 230+ Ready Pages
-- 30+ Widget Presets
 - WooCommerce Widgets
 - One Page Scroll
-- Sticky Content
-- Parallax Effects
-- Multi Widgets area
-- Elementor Gallery Pack. Filterable, Masonry, Grid
-- Cross Browser Compatible
+- Sticky Content - PRO
+- Parallax Effects - PRO
+- Cross-Domain Copy Paste - PRO
+- Multi Widgets Area
+- Gallery Widget. Filterable, Masonry, Grid - PRO
+- Cross-Browser Compatible
 - Fully Responsive
 - Expert Support Team
 - Build with Elementor
+
 
 
 
@@ -345,6 +347,83 @@ Our Hotspot Widget for Elementor page builder offers lots of styles including: H
 - Widgets area
 
 == Changelog ==
+
+Version: 2.2.2 (14-04-2021)
+New: 'Text' option for 'Header Offcanvas' widget menu.
+New: 'Info Text' tooltip option to 'Pricing Table' Widget.
+New: 'Vertical Alignment' control added for 'Icon Box' Widget.
+Fix: Compatibility issues with Elementor 3.2.0.
+Fix: Minutes typography options for 'Countdown Timer' Widget.
+
+Version: 2.2.1 (08-03-2021)
+New: Added Responsive Alignment Control for Category List, Page List and Post List Widgets.
+Fix: Missing dependency issue with One Page Scroll Module.
+Fix: Category Query were empty for Woo Product Carousel Widget.
+
+Version: 2.2.0 (02-03-2021)
+Improve: Minor bug fix and code improvements.
+Improve: Minor escaping and validation improvements.
+
+Version: 2.1.7 (25-02-2021)
+New: Featured Image Size control for Post List Widget.
+New: Option to Show/Hide Facebook Messenger Dialog Box.
+Fix: Widget builder limited widget issue.
+Fix: Tab Widget arrow not showing when body background was set.
+Fix: Nav Menu widget showing empty widget on responsive when toggle button is visible.
+
+Version: 2.1.6 (07-02-2021)
+Fix: basic tags support for text shadow option in Heading Widget.
+
+Version: 2.1.5 (01-02-2021)
+New: CSS Print Method 'Internal Embedding' option support for Header and Footer Builder.
+Tweak: Coding Standard improvement.
+Fix: Text Domains correction.
+Fix: Pot File updated.
+Fix: TablePress Widget row color ordering consistency in editor and frontend.
+
+Version: 2.1.4 (27-01-2021)
+Tweak: Support W3C validation when using Header-Footer Builder.
+Fix: Slick Library update support for Latest Elementor update.
+Fix: Mailchimp Widget minor CSS flex issue.
+Fix: Team Widget popup scroll bar showing inside content.
+
+Version: 2.1.3 (25-01-2021)
+Fix: Added support for new Widget Categories hook.
+Fix: Team Widget modal close button wasn't clickable on some edge cases.
+Fix: Blog Posts Widget default image size changed to provide clear images.
+
+Version: 2.1.2 (18-01-2021)
+New: Banners consent for showing notices.
+
+Version: 2.1.1 (10-01-2021) 
+New: Quickly turn on or off the Widgets and Modules from Dashboard.
+New: Position option for Header Off-Canvas Widget.
+Fix: Team Widget minor css fix for Position text.
+Fix: Header Footer builder popup css conflict.
+Fix: Widget Builder controls selectors values backward support.
+Fix: removed em tag from Testimonial Style 3.
+
+Version: 2.1.0 (24-12-2020)
+New: Added new 'Fluent Forms' widgets.
+New: added new background color control on each page list
+New: added new column control
+New: Tab Widget now has option to enable URL hash routing capability.
+Fix: Testimonial default style broken issues fixed
+Fix: Nav Widget css compatibility with Twenty Twenty One Theme.
+Fix: Contact Form 7 Widget minor css fix.
+Fix: Minor css issue on Onepage Scroll Module.
+Fix: Megamenu horizontal scroll issues fixed
+Fix: Minor css issue on Onepage Scroll Module.
+Fix: Divider conflict issues with some theme is fixed
+Fix: Buttons white-space are reset to default.
+Fix: Image Accordion, Accordion, Button and Heading Widget compatibility with TwentyTwentyOne Theme.
+Fix: CSS ul and ol list style wasn't visible inside widgets.
+Tweek: Improved design issues
+
+
+Version: 2.0.13 (06-12-2020)
+Fix: Elementor dependency error fixed on Onepage scroll
+
 Version: 2.0.12 (06-12-2020)
 New: Added 'Equal Height' feature on 'Icon Box' and 'Image Box' widgets.
 Fix: Dashboard modal css not found on some clients site.
@@ -357,7 +436,7 @@ Fix: Updated Facebook community link
 Version: 2.0.10 (30-11-2020)
 New: Option to set Pricing Table Widget button 'text-align' and 'width'.
 New: Added instagram API settings.
-New: Added new library announcements dashboard widget.
+New: Added new library stories dashboard widget.
 Removed: Removed instagram share option from share widget, since it's not officially supported.
 Fix: Testimonial Widget image missing if not set
 Fix: Product Carousel breaks when collapsed in Advanced Widgets.

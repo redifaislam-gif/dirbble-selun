@@ -9,7 +9,7 @@ class ElementsKit_Pro_Extend_Onepage_Scroll {
         /**
          * Pro Page Controls
          */
-        add_action( 'elementor/element/post/ekit_page_settings/before_section_end', [$this, 'pro_page_controls'] );
+        add_action( 'elementor/element/wp-page/ekit_page_settings/before_section_end', [$this, 'pro_page_controls'] );
 
 
         /**

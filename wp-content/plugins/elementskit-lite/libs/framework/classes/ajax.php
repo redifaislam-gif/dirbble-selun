@@ -12,15 +12,31 @@ class Ajax{
     }
     
     public function elementskit_admin_action() {
+        // Check for nonce security      
+        if(!wp_verify_nonce( $_POST['nonce'], 'ajax-nonce' ) ) {
+           return;
+        }
 
         if(!current_user_can('manage_options')){
             return;
         }
 
 
-        $this->utils->save_option('widget_list', !isset($_POST['widget_list']) ? [] : $_POST['widget_list']);
-        $this->utils->save_option('module_list',  !isset($_POST['module_list']) ? [] : $_POST['module_list']);
-        $this->utils->save_option('user_data', $_POST['user_data']);
+        if(isset($_POST['widget_list'])){
+            $this->utils->save_option('widget_list', empty($_POST['widget_list']) ? [] : $_POST['widget_list']);
+        }
+
+        if(isset($_POST['module_list'])){
+            $this->utils->save_option('module_list', empty($_POST['module_list']) ? [] : $_POST['module_list']);
+        }
+
+        if(isset($_POST['user_data'])){
+            $this->utils->save_option('user_data', empty($_POST['user_data']) ? [] : $_POST['user_data']);
+        }
+
+        if(isset($_POST['settings'])){
+            $this->utils->save_option('settings', empty($_POST['settings']) ? [] : $_POST['settings']);
+        }
         
         do_action('elementskit/admin/after_save');
 

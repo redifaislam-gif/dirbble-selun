@@ -4,7 +4,7 @@
         <button type="button" class="close attr-hidden" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
             <div class="attr-modal-body attr-text-center">
                 <i class="icon icon-information"></i>
-                <h2>Go Pro</h2>
+                <h2>Go Premium</h2>
                 <p>Purchase our <a href="https://go.wpmet.com/ekitpro">pro version</a> to unlock these premium features!</p>
             </div>
         </div>

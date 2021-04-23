@@ -27,6 +27,10 @@ class ElementsKit_Widget_Ninja_Forms extends Widget_Base {
         return Handler::get_categories();
 	}
 
+    public function get_help_url() {
+        return '';
+    }
+
     protected function _register_controls() {
         $this->start_controls_section(
             'ekit_ninja_section_tab', [
@@ -214,7 +218,6 @@ class ElementsKit_Widget_Ninja_Forms extends Widget_Base {
             [
                 'name'                  => 'ekit_ninja_required_notice_typography',
                 'label'                 => __( 'Typography', 'elementskit-lite' ),
-                'scheme'            => Scheme_Typography::TYPOGRAPHY_4,
                 'selector'              => '{{WRAPPER}} .ekit_ninjaForms_container .nf-form-fields-required',
             ]
         );
@@ -431,7 +434,7 @@ class ElementsKit_Widget_Ninja_Forms extends Widget_Base {
         $this->add_responsive_control(
             'ekit_ninja_field_spacing',
             [
-                'label'                 => __( 'Spacing', 'essential-addons-elementor' ),
+                'label'                 => __( 'Spacing', 'elementskit-lite' ),
                 'type'                  => Controls_Manager::SLIDER,
                 'range'                 => [
                     'px'        => [
@@ -662,7 +665,6 @@ class ElementsKit_Widget_Ninja_Forms extends Widget_Base {
             [
                 'name'                  => 'ekit_ninja_button_typography',
                 'label'                 => __( 'Typography', 'elementskit-lite' ),
-                'scheme'            => Scheme_Typography::TYPOGRAPHY_4,
                 'selector'              => '{{WRAPPER}} .ekit_ninjaForms_container .submit-container input[type="button"]',
 				// 'separator'             => 'before',
             ]
@@ -909,7 +911,7 @@ class ElementsKit_Widget_Ninja_Forms extends Widget_Base {
         if ( ! empty( $settings['ekit_ninja_form_id'] ) ) {
         ?>
         <div <?php echo $this->get_render_attribute_string( 'contact-form' ); ?>>
-            <?php  echo do_shortcode( '[ninja_form id="' . $settings['ekit_ninja_form_id'] . '" ]' ); ?>
+            <?php  echo do_shortcode( '[ninja_form id="' . intval($settings['ekit_ninja_form_id']) . '" ]' ); ?>
         </div>
        <?php 
        }

@@ -27,6 +27,10 @@ class ElementsKit_Widget_Blog_Posts extends Widget_Base {
         return Handler::get_categories();
     }
 
+    public function get_help_url() {
+        return '';
+    }
+
     public function format_colname($str) {
         return str_replace('ekit', 'col', $str);
     }
@@ -67,10 +71,32 @@ class ElementsKit_Widget_Blog_Posts extends Widget_Base {
                ],
            ]
        );
+       
+        /**
+        * Control: Featured Image Size
+        */
+        $this->add_group_control(
+            Group_Control_Image_Size::get_type(),
+            [
+                'name'              => 'ekit_blog_posts_feature_img_size',
+                'fields_options'    => [
+                    'size'  => [
+                        'label' => esc_html__( 'Featured Image Size', 'elementskit-lite' ),
+                    ],
+                ],
+                'exclude'           => [ 'custom' ],
+                'default'           => 'large',
+                'condition'         => [
+                    'ekit_blog_posts_feature_img'   => 'yes',
+                    'ekit_blog_posts_layout_style!' => 'elementskit-post-card',
+                ],
+            ]
+        );
+
        $this->add_control(
            'ekit_blog_posts_feature_img_float',
            [
-               'label'     => esc_html__( 'Featured image alignment', 'elementskit-lite' ),
+               'label'     => esc_html__( 'Featured Image Alignment', 'elementskit-lite' ),
                'type'      => Controls_Manager::CHOOSE,
                'options'   => [
                    'left'  => [
@@ -89,6 +115,7 @@ class ElementsKit_Widget_Blog_Posts extends Widget_Base {
                'default'   => 'left',
            ]
        );
+
        $this->add_control(
            'ekit_blog_posts_column',
            [
@@ -107,6 +134,7 @@ class ElementsKit_Widget_Blog_Posts extends Widget_Base {
                'default'   => 'ekit-lg-4 ekit-md-6',
            ]
        );
+
        $this->add_control(
            'ekit_blog_posts_title',
            [
@@ -1422,10 +1450,6 @@ class ElementsKit_Widget_Blog_Posts extends Widget_Base {
            [
                'label' => esc_html__( 'Triangle Background', 'elementskit-lite' ),
                'type' => Controls_Manager::COLOR,
-               'scheme' => [
-                   'type' => Scheme_Color::get_type(),
-                   'value' => Scheme_Color::COLOR_1,
-               ],
                'selectors' => [
                    '{{WRAPPER}} .elementskit-meta-lists.elementskit-style-tag > .elementskit-single-meta::before' => 'color: {{VALUE}}',
                ],
@@ -2452,6 +2476,7 @@ class ElementsKit_Widget_Blog_Posts extends Widget_Base {
            'orderby'           => array( $ekit_blog_posts_order_by => $ekit_blog_posts_sort ),
            'posts_per_page'    => $ekit_blog_posts_num,
            'offset'            => $ekit_blog_posts_offset,
+           'post_status'       => 'publish'
        ];
 
         if($ekit_blog_posts_is_manual_selection === 'yes'){
@@ -2633,7 +2658,7 @@ class ElementsKit_Widget_Blog_Posts extends Widget_Base {
                             <?php if ( 'yes' == $ekit_blog_posts_feature_img && has_post_thumbnail() ): ?>
                                 <div class="<?php echo esc_attr( $column_size.' '.$img_order ); ?>">
                                     <a href="<?php the_permalink(); ?>" class="elementskit-entry-thumb">
-                                        <img src="<?php the_post_thumbnail_url(); ?>" alt="<?php the_title(); ?>">
+                                        <img src="<?php the_post_thumbnail_url( esc_attr( $ekit_blog_posts_feature_img_size_size ) ); ?>" alt="<?php the_title(); ?>">
                                     </a><!-- .elementskit-entry-thumb END -->
                                 </div>
                             <?php endif; ?>
@@ -2679,7 +2704,7 @@ class ElementsKit_Widget_Blog_Posts extends Widget_Base {
                         <div class="elementskit-entry-header">
                             <?php if ( 'elementskit-post-image-card' == $ekit_blog_posts_layout_style && 'yes' == $ekit_blog_posts_feature_img && has_post_thumbnail() ): ?>
                                 <a href="<?php the_permalink(); ?>" class="elementskit-entry-thumb">
-                                    <img src="<?php the_post_thumbnail_url(); ?>" alt="<?php the_title(); ?>">
+                                    <img src="<?php the_post_thumbnail_url( esc_attr( $ekit_blog_posts_feature_img_size_size ) ); ?>" alt="<?php the_title(); ?>">
                                 </a><!-- .elementskit-entry-thumb END -->
                                 <?php if('yes' == $settings['ekit_blog_posts_floating_date']) : ?>
                                 <?php if($ekit_blog_posts_floating_date_style == 'style1'): ?>
@@ -2759,6 +2784,9 @@ class ElementsKit_Widget_Blog_Posts extends Widget_Base {
                                 $btn_class = ($settings['ekit_blog_posts_btn_class'] != '') ? $settings['ekit_blog_posts_btn_class'] : '';
                                 $btn_id = ($settings['ekit_blog_posts_btn_id'] != '') ? 'id='.$settings['ekit_blog_posts_btn_id'] : '';
                                 $icon_align = $settings['ekit_blog_posts_btn_icon_align'];
+                                
+                                // Reset Whitespace for this specific widget
+                                $btn_class .= ' whitespace--normal';
                                 ?>
                                 <div class="btn-wraper">
                                     <?php if($icon_align == 'right'): ?>

@@ -33,6 +33,10 @@ class ElementsKit_Widget_Piechart extends Widget_Base {
         return Handler::get_categories();
     }
 
+    public function get_help_url() {
+        return '';
+    }
+
     protected function _register_controls() {
 
 
@@ -120,7 +124,7 @@ class ElementsKit_Widget_Piechart extends Widget_Base {
         $this->add_control(
             'ekit_piechart_icon_image',
             [
-                'label' => esc_html__( 'Choose Image', 'elementor' ),
+                'label' => esc_html__( 'Choose Image', 'elementskit-lite' ),
                 'type' => Controls_Manager::MEDIA,
                 'default' => [
                     'url' => Utils::get_placeholder_image_src(),
@@ -147,10 +151,10 @@ class ElementsKit_Widget_Piechart extends Widget_Base {
         $this->add_control(
             'ekit_piechart_title',
             [
-                'label' => esc_html__( 'Title', 'elementor' ),
+                'label' => esc_html__( 'Title', 'elementskit-lite' ),
                 'type' => Controls_Manager::TEXT,
-                'default' => esc_html__( 'Default title', 'elementor' ),
-                'placeholder' => esc_html__( 'Type your title here', 'elementor' ),
+                'default' => esc_html__( 'Default title', 'elementskit-lite' ),
+                'placeholder' => esc_html__( 'Type your title here', 'elementskit-lite' ),
                 'label_block' => true,
                 'condition' => [
                     'ekit_piechart_style' => 'withcontent'
@@ -161,11 +165,11 @@ class ElementsKit_Widget_Piechart extends Widget_Base {
         $this->add_control(
             'ekit_piechart_item_description',
             [
-                'label' => esc_html__( 'Description', 'elementor' ),
+                'label' => esc_html__( 'Description', 'elementskit-lite' ),
                 'type' => Controls_Manager::TEXTAREA,
                 'rows' => 10,
-                'default' => esc_html__( 'Default description', 'elementor' ),
-                'placeholder' => esc_html__( 'Type your description here', 'elementor' ),
+                'default' => esc_html__( 'Default description', 'elementskit-lite' ),
+                'placeholder' => esc_html__( 'Type your description here', 'elementskit-lite' ),
                 'label_block' => true,
                 'condition' => [
                     'ekit_piechart_style' => 'withcontent'
@@ -226,7 +230,6 @@ class ElementsKit_Widget_Piechart extends Widget_Base {
             [
                 'name' => 'ekit_piechart_title_typography_group',
                 'label' => esc_html__( 'Title Typography', 'elementskit-lite' ),
-                'scheme' => Scheme_Typography::TYPOGRAPHY_1,
                 'selector' => '{{WRAPPER}} .ekit-piechart-title',
                 'condition' => [
                     'ekit_piechart_style' => 'withcontent'
@@ -287,7 +290,6 @@ class ElementsKit_Widget_Piechart extends Widget_Base {
             [
                 'name' => 'ekit_piechart_content_typography_group',
                 'label' => esc_html__( 'Typography', 'elementskit-lite' ),
-                'scheme' => Scheme_Typography::TYPOGRAPHY_1,
                 'selector' => '{{WRAPPER}} .withcontent p',
                 'condition' => [
                     'ekit_piechart_style' => 'withcontent'

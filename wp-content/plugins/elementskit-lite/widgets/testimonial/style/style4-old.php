@@ -33,7 +33,7 @@
 					$clientLogo = isset($testimonial['client_logo']['url']) ? $testimonial['client_logo']['url'] : '';
 				?>
 					<div class="elementskit-commentor-image">
-						<img src="<?php echo esc_url($clientLogo); ?>" alt="<?php esc_attr_e("Client Logo", "agmycoo");?>">
+						<img src="<?php echo esc_url($clientLogo); ?>" alt="<?php esc_attr_e("Client Logo", "elementskit-lite");?>">
 					</div>
 				<?php
 					}

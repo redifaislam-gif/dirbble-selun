@@ -4,13 +4,13 @@
             <div class="attr-modal-header">
             <ul class="tb-nav tb-nav-tabs ekit_menu_control_nav" role="tablist">
                     <li role="presentation" id="attr_content_nav" class="attr-active"><a class="attr-nav-link" href="#attr_content_tab" aria-controls="attr_content_tab"
-                            role="tab" data-attr-toggle="tab"><?php esc_html_e('Content', 'elementskit'); ?></a></li>
+                            role="tab" data-attr-toggle="tab"><?php esc_html_e('Content', 'elementskit-lite'); ?></a></li>
                     <li role="presentation" id="attr_icon_nav"><a class="attr-nav-link ekit-<?php echo ElementsKit_Lite::package_type(); ?>-labal" href="#attr_icon_tab" aria-controls="attr_icon_tab" role="tab"
-                            data-attr-toggle="tab"><?php esc_html_e('Icon', 'elementskit'); ?></a></li>
+                            data-attr-toggle="tab"><?php esc_html_e('Icon', 'elementskit-lite'); ?></a></li>
                     <li role="presentation" id="attr_badge_nav"><a class="attr-nav-link ekit-<?php echo ElementsKit_Lite::package_type(); ?>-labal" href="#attr_badge_tab" aria-controls="attr_badge_tab"
-                            role="tab" data-attr-toggle="tab"><?php esc_html_e('Badge', 'elementskit'); ?></a></li>
+                            role="tab" data-attr-toggle="tab"><?php esc_html_e('Badge', 'elementskit-lite'); ?></a></li>
                     <li role="presentation" id="attr_badge_nav"><a class="attr-nav-link" href="#attr_vertical_menu_setting_tab" aria-controls="attr_vertical_menu_setting_tab"
-                            role="tab" data-attr-toggle="tab"><?php esc_html_e('Settings', 'elementskit'); ?></a></li>
+                            role="tab" data-attr-toggle="tab"><?php esc_html_e('Settings', 'elementskit-lite'); ?></a></li>
                 </ul>
             </div>
             <div class="attr-modal-body ekit-wid-con">
@@ -23,22 +23,22 @@
                         </div>
                         <div id="elementskit-menu-builder-warper">
                             <small
-                                class="elementskit-menu-mega-submenu enabled_item"><?php esc_html_e('Megamenu enabled'); ?></small>
+                                class="elementskit-menu-mega-submenu enabled_item"><?php esc_html_e('Megamenu enabled', 'elementskit-lite'); ?></small>
                             <small
-                                class="elementskit-menu-mega-submenu disabled_item"><?php esc_html_e('Megamenu disabled'); ?></small>
+                                class="elementskit-menu-mega-submenu disabled_item"><?php esc_html_e('Megamenu disabled', 'elementskit-lite'); ?></small>
 
                             <button disabled type="button" id="elementskit-menu-builder-trigger"
                                 class="elementskit-menu-elementor-button button" data-attr-toggle="modal"
                                 data-target="#elementskit-menu-builder-modal">
                                 <img src="<?php echo esc_url($this->url); ?>/assets/images/elementor-icon.png"
                                     alt="elementskit megamenu" />
-                                <?php esc_html_e('Edit megamenu content'); ?>
+                                <?php esc_html_e('Edit megamenu content', 'elementskit-lite'); ?>
                             </button>
 
                             <div id="mobile_submenu_content_type" class="ekit-<?php echo ElementsKit_Lite::package_type(); ?>-labal ekit-<?php echo ElementsKit_Lite::package_type(); ?>-labal-container">
-                                <strong><?php esc_html_e('Use mobile submenu as:'); ?></strong>
-                                <span><input type="radio" name="content_type" checked value="builder_content"> <?php esc_html_e('builder content'); ?></span>
-                                <span><input type="radio" name="content_type" value="submenu_list"> <?php esc_html_e('wp submenu list'); ?></span>
+                                <strong><?php esc_html_e('Use mobile submenu as:', 'elementskit-lite'); ?></strong>
+                                <span><input type="radio" name="content_type" checked value="builder_content"> <?php esc_html_e('builder content', 'elementskit-lite'); ?></span>
+                                <span><input type="radio" name="content_type" value="submenu_list"> <?php esc_html_e('wp submenu list', 'elementskit-lite'); ?></span>
                             </div>
                         </div>
                         <?php else: ?>
@@ -64,7 +64,7 @@
                                             <option value=""><?php esc_html_e('No icon', 'elementskit-lite'); ?></option>
                                             <?php
                                     foreach( self::get_icons() as $icon_class){
-                                        echo "<option value='$icon_class'>'$icon_class'</option>";
+                                        echo "<option value='".esc_attr($icon_class)."'>'".esc_html($icon_class)."'</option>";
                                     }
                                 ?>
                                         </select>

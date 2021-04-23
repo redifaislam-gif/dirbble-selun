@@ -125,9 +125,10 @@ class Controls_Ajax_Select2_Api extends Core\Handler_Api {
 
 
         $options = [];
-        $count = count($terms);
-        if($count > 0):
-            foreach ($terms as $term) {
+
+        if(is_countable($terms) && count($terms) > 0):
+
+        foreach ($terms as $term) {
                 $options[] = [ 'id' => $term->term_id, 'text' => $term->name ];
             }
         endif;      
@@ -183,14 +184,15 @@ class Controls_Ajax_Select2_Api extends Core\Handler_Api {
 
 
         $options = [];
-        $count = count($terms);
-        if($count > 0):
+
+        if(is_countable($terms) && count($terms) > 0):
             foreach ($terms as $term) {
                 $options[] = [ 'id' => $term->term_id, 'text' => $term->name ];
             }
-        endif;      
+        endif;
+
         return ['results' => $options];
     }
-    
 }
+
 new Controls_Ajax_Select2_Api();

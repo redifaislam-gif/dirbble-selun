@@ -36,6 +36,10 @@ class ElementsKit_Widget_Image_Comparison extends Widget_Base {
         return Handler::get_categories();
     }
 
+    public function get_help_url() {
+        return '';
+    }
+
     protected function _register_controls() {
 
         $this->start_controls_section(
@@ -274,7 +278,6 @@ class ElementsKit_Widget_Image_Comparison extends Widget_Base {
 			Group_Control_Typography::get_type(),
 			array(
 				'name'     => 'ekit_img_comparison_before_label_typography_group',
-				'scheme'   => Scheme_Typography::TYPOGRAPHY_1,
 				'selector' => '{{WRAPPER}} .elementskit-image-comparison .twentytwenty-before-label:before',
 			)
 		);
@@ -334,7 +337,6 @@ class ElementsKit_Widget_Image_Comparison extends Widget_Base {
 			Group_Control_Typography::get_type(),
 			array(
 				'name'     => 'ekit_img_comparison_after_label_typography_group',
-				'scheme'   => Scheme_Typography::TYPOGRAPHY_1,
 				'selector' => '{{WRAPPER}} .elementskit-image-comparison .twentytwenty-after-label:before',
 			)
 		);
@@ -638,19 +640,17 @@ class ElementsKit_Widget_Image_Comparison extends Widget_Base {
 
         }
 
-        $data = 'data-offset='.($settings['ekit_img_comparison_offset']['size'] / 100).'
-        data-overlay="'.($settings['ekit_img_comparison_overlay']).'"
-        data-label_after="'.($settings['ekit_img_comparison_label_after']).'"
-        data-label_before="'.($settings['ekit_img_comparison_label_before']).'"
-        data-move_slider_on_hover="'.($settings['ekit_img_comparison_move_slider_on_hover']).'"
-        data-click_to_move="'.($settings['ekit_img_comparison_click_to_move']).'"';
+        $data = 'data-offset='.esc_attr($settings['ekit_img_comparison_offset']['size'] / 100).'
+        data-overlay="'.esc_attr($settings['ekit_img_comparison_overlay']).'"
+        data-label_after="'.esc_attr($settings['ekit_img_comparison_label_after']).'"
+        data-label_before="'.esc_attr($settings['ekit_img_comparison_label_before']).'"
+        data-move_slider_on_hover="'.esc_attr($settings['ekit_img_comparison_move_slider_on_hover']).'"
+        data-click_to_move="'.esc_attr($settings['ekit_img_comparison_click_to_move']).'"';
         ?>
 
         <div <?php echo \ElementsKit_Lite\Utils::render($this->get_render_attribute_string( 'image_comparison_wrapper' )); ?> <?php echo \ElementsKit_Lite\Utils::render($data); ?>>
             <?php echo  \ElementsKit_Lite\Utils::kses($image_html); ?>
         </div>
 
-
     <?php }
-    protected function _content_template() { }
 }

@@ -32,6 +32,10 @@ class ElementsKit_Widget_Video extends Widget_Base {
         return Handler::get_categories();
     }
 
+    public function get_help_url() {
+        return '';
+    }
+
 	protected function _register_controls() {
 
 		$this->start_controls_section(
@@ -177,7 +181,7 @@ class ElementsKit_Widget_Video extends Widget_Base {
 		$this->add_control(
 			'ekit_video_popup_end_time',
 			[
-				'label' => esc_html__( 'End TIme', 'elementskit-lite' ),
+				'label' => esc_html__( 'End Time', 'elementskit-lite' ),
 				'type' => Controls_Manager::NUMBER,
 				'input_type' => 'number',
 				'placeholder' => '',
@@ -484,10 +488,6 @@ class ElementsKit_Widget_Video extends Widget_Base {
 			[
 				'label' => esc_html__( 'Glow Color', 'elementskit-lite' ),
 				'type' => Controls_Manager::COLOR,
-				'scheme' => [
-					'type' => Scheme_Color::get_type(),
-					'value' => Scheme_Color::COLOR_1,
-				],
 				'selectors' => [
 					'{{WRAPPER}} .ekit-video-popup-btn.glow-btn:before' => 'color: {{VALUE}}',
 					'{{WRAPPER}} .ekit-video-popup-btn.glow-btn:after' => 'color: {{VALUE}}',
@@ -685,7 +685,7 @@ class ElementsKit_Widget_Video extends Widget_Base {
 			Group_Control_Text_Shadow::get_type(),
 			[
 				'name' => 'ekit_video_popup_btn_text_shadow',
-				'label' => esc_html__( 'Text Shadow', 'plugin-domain' ),
+				'label' => esc_html__( 'Text Shadow', 'elementskit-lite' ),
 				'selector' => '{{WRAPPER}} .ekit-video-popup-btn',
 			]
 		);
@@ -823,10 +823,6 @@ class ElementsKit_Widget_Video extends Widget_Base {
                 </a>
             </div>
 		<?php
-
-
 	}
-
-	protected function _content_template() {}
 
 }

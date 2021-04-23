@@ -28,6 +28,10 @@ class ElementsKit_Widget_Drop_Caps extends Widget_Base {
         return Handler::get_categories();
     }
 
+    public function get_help_url() {
+        return '';
+    }
+
     protected function _register_controls() {
 
 		$this->start_controls_section(
@@ -77,66 +81,9 @@ class ElementsKit_Widget_Drop_Caps extends Widget_Base {
                 Group_Control_Typography::get_type(),
                 [
                     'name' => 'ekit_content_typography',
-                    'scheme' => Scheme_Typography::TYPOGRAPHY_1,
                     'selector' => '{{WRAPPER}} .ekit-dropcap-cotnent',
                 ]
             );
-
-            // $this->add_group_control(
-            //     Group_Control_Background::get_type(),
-            //     [
-            //         'name' => 'ekit_content_background',
-            //         'label' => esc_html__( 'Background', 'elementskit-lite' ),
-            //         'types' => [ 'classic', 'gradient' ],
-            //         'selector' => '{{WRAPPER}} .ekit-dropcap-cotnent',
-            //     ]
-            // );
-
-            // $this->add_responsive_control(
-            //     'ekit_content_padding',
-            //     [
-            //         'label' => esc_html__( 'Padding', 'elementskit-lite' ),
-            //         'type' => Controls_Manager::DIMENSIONS,
-            //         'size_units' => [ 'px', '%', 'em' ],
-            //         'selectors' => [
-            //             '{{WRAPPER}} .ekit-dropcap-cotnent' => 'padding: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
-            //         ],
-            //         'separator' =>'before',
-            //     ]
-            // );
-
-            // $this->add_responsive_control(
-            //     'ekit_content_margin',
-            //     [
-            //         'label' => esc_html__( 'Margin', 'elementskit-lite' ),
-            //         'type' => Controls_Manager::DIMENSIONS,
-            //         'size_units' => [ 'px', '%', 'em' ],
-            //         'selectors' => [
-            //             '{{WRAPPER}} .ekit-dropcap-cotnent' => 'margin: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
-            //         ],
-            //     ]
-            // );
-
-            // $this->add_group_control(
-            //     Group_Control_Border::get_type(),
-            //     [
-            //         'name' => 'ekit_content_border',
-            //         'label' => esc_html__( 'Border', 'elementskit-lite' ),
-            //         'selector' => '{{WRAPPER}} .ekit-dropcap-cotnent',
-            //     ]
-            // );
-
-            // $this->add_responsive_control(
-            //     'ekit_content_border_radius',
-            //     [
-            //         'label' => esc_html__( 'Border Radius', 'elementskit-lite' ),
-			// 		'type' => Controls_Manager::DIMENSIONS,
-			// 		'size_units' => [ 'px', '%', 'em' ],
-            //         'selectors' => [
-            //             '{{WRAPPER}} .ekit-dropcap-cotnent' => 'border-radius: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
-            //         ],
-            //     ]
-            // );
 
         $this->end_controls_section();
 
@@ -165,7 +112,6 @@ class ElementsKit_Widget_Drop_Caps extends Widget_Base {
                 Group_Control_Typography::get_type(),
                 [
                     'name' => 'ekit_content_dropcaps_typography',
-                    'scheme' => Scheme_Typography::TYPOGRAPHY_1,
                     'selector' => '{{WRAPPER}} .ekit-dropcap-cotnent:first-child:first-letter',
                 ]
             );
@@ -247,6 +193,4 @@ class ElementsKit_Widget_Drop_Caps extends Widget_Base {
 		</div>
         <?php
     }
-
-    protected function _content_template() { }
 }

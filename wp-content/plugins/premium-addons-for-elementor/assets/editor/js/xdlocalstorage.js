@@ -1,5 +1,5 @@
 "use strict";
-window.XdUtils = window.XdUtils || function() {
+window.XdUtils = window.XdUtils || function () {
     function a(a, b) {
         var c, d = b || {};
         for (c in a) a.hasOwnProperty(c) && (d[c] = a[c]);
@@ -8,7 +8,7 @@ window.XdUtils = window.XdUtils || function() {
     return {
         extend: a
     }
-}(), window.xdLocalStorage = window.xdLocalStorage || function() {
+}(), window.xdLocalStorage = window.xdLocalStorage || function () {
     function a(a) {
         k[a.id] && (k[a.id](a), delete k[a.id])
     }
@@ -17,7 +17,7 @@ window.XdUtils = window.XdUtils || function() {
         var c;
         try {
             c = JSON.parse(b.data)
-        } catch (a) {}
+        } catch (a) { }
         c && c.namespace === h && ("iframe-ready" === c.id ? (m = !0, i.initCallback()) : a(c))
     }
 
@@ -50,44 +50,44 @@ window.XdUtils = window.XdUtils || function() {
         i = {
             iframeId: "cross-domain-iframe",
             iframeUrl: void 0,
-            initCallback: function() {}
+            initCallback: function () { }
         },
         j = -1,
         k = {},
         l = !1,
         m = !0;
     return {
-        init: function(a) {
+        init: function (a) {
             if (!a.iframeUrl) throw "You must specify iframeUrl";
             if (l) return void console.log("xdLocalStorage was already initialized!");
-            l = !0, f() ? d(a) : document.addEventListener ? document.addEventListener("readystatechange", function() {
+            l = !0, f() ? d(a) : document.addEventListener ? document.addEventListener("readystatechange", function () {
                 f() && d(a)
-            }) : document.attachEvent("readystatechange", function() {
+            }) : document.attachEvent("readystatechange", function () {
                 f() && d(a)
             })
         },
-        setItem: function(a, b, d) {
+        setItem: function (a, b, d) {
             e() && c("set", a, b, d)
         },
-        getItem: function(a, b) {
+        getItem: function (a, b) {
             e() && c("get", a, null, b)
         },
-        removeItem: function(a, b) {
+        removeItem: function (a, b) {
             e() && c("remove", a, null, b)
         },
-        key: function(a, b) {
+        key: function (a, b) {
             e() && c("key", a, null, b)
         },
-        getSize: function(a) {
+        getSize: function (a) {
             e() && c("size", null, null, a)
         },
-        getLength: function(a) {
+        getLength: function (a) {
             e() && c("length", null, null, a)
         },
-        clear: function(a) {
+        clear: function (a) {
             e() && c("clear", null, null, a)
         },
-        wasInit: function() {
+        wasInit: function () {
             return l
         }
     }

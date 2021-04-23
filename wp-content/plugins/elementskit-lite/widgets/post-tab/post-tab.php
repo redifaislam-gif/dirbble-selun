@@ -32,6 +32,9 @@ class ElementsKit_Widget_Post_Tab extends Widget_Base {
         return Handler::get_categories();
     }
 
+    public function get_help_url() {
+        return '';
+    }
 
     protected function _register_controls() {
 
@@ -180,7 +183,6 @@ class ElementsKit_Widget_Post_Tab extends Widget_Base {
 			[
 				'name' => 'ekit_post_tab__item_content_typography',
 				'label' => esc_html__( 'Typography', 'elementskit-lite' ),
-				'scheme' => Scheme_Typography::TYPOGRAPHY_1,
 				'selector' => '{{WRAPPER}} .tab__list .tab__list__item',
 			]
         );
@@ -224,10 +226,6 @@ class ElementsKit_Widget_Post_Tab extends Widget_Base {
 			[
 				'label' => esc_html__( 'Color', 'elementskit-lite' ),
 				'type' => Controls_Manager::COLOR,
-				'scheme' => [
-					'type' => Scheme_Color::get_type(),
-					'value' => Scheme_Color::COLOR_1,
-				],
 				'selectors' => [
 					'{{WRAPPER}} .tab__list .tab__list__item' => 'color: {{VALUE}}',
 				],
@@ -291,10 +289,6 @@ class ElementsKit_Widget_Post_Tab extends Widget_Base {
 			[
 				'label' => esc_html__( 'Color', 'elementskit-lite' ),
 				'type' => Controls_Manager::COLOR,
-				'scheme' => [
-					'type' => Scheme_Color::get_type(),
-					'value' => Scheme_Color::COLOR_1,
-				],
 				'selectors' => [
 					'{{WRAPPER}} .tab__list .tab__list__item.active' => 'color: {{VALUE}}',
 				],

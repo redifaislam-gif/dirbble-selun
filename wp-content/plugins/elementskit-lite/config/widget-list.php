@@ -278,6 +278,11 @@ class Widget_List {
 			'title'   => 'Tablepress',
 			'package' => 'free',
 		],
+		'fluent-forms'         => [
+			'slug'    => 'fluent-forms',
+			'title'   => 'Fluent Forms',
+			'package' => 'free',
+		],
 		'advanced-accordion' => [
 			'slug'    => 'advanced-accordion',
 			'title'   => 'Advanced Accordion',
@@ -436,6 +441,11 @@ class Widget_List {
 		'unfold'         => [
 			'slug'    => 'unfold',
 			'title'   => 'Unfold',
+			'package' => 'pro-disabled',
+		],
+		'image-swap'     => [
+			'slug'    => 'image-swap',
+			'title'   => 'Image Swap',
 			'package' => 'pro-disabled',
 		],
 	];

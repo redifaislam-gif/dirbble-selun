@@ -6,10 +6,11 @@ defined( 'ABSPATH' ) || exit;
  * Description: The most advanced addons for Elementor with tons of widgets, Header builder, Footer builder, Mega menu builder, layout pack and powerful custom controls.
  * Plugin URI: https://products.wpmet.com/elementskit
  * Author: Wpmet
- * Version: 2.0.12
+ * Version: 2.2.2
  * Author URI: https://wpmet.com/
  *
  * Text Domain: elementskit-lite
+ * Domain Path: /languages
  *
  * ElementsKit is a powerful addon for Elementor page builder.
  * It includes most comprehensive modules, such as "header footer builder", "mega menu",
@@ -27,7 +28,7 @@ final class ElementsKit_Lite{
 	 * @var string The plugin version.
 	 */
 	static function version(){
-		return '2.0.12';
+		return '2.2.2';
 	}
 
 	/**
@@ -77,7 +78,7 @@ final class ElementsKit_Lite{
 	 * @var string Minimum Elementor version required to run the plugin.
 	 */
 	static function min_el_version(){
-		return '2.4.0';
+		return '2.8.0';
 	}
 
 	/**
@@ -211,9 +212,10 @@ final class ElementsKit_Lite{
 	public function __construct() {
 		// Load the main static helper class.
 		require_once self::plugin_dir() . 'libs/notice/notice.php'; // new notice system
-		require_once self::plugin_dir() . 'libs/banner/init.php'; // new notice system
-		require_once self::plugin_dir() . 'libs/announcements/init.php'; // new announcements system
-		require_once self::plugin_dir() . 'libs/pro-awareness/init.php'; // pro menu class file
+		require_once self::plugin_dir() . 'libs/banner/banner.php'; // new banner system
+		require_once self::plugin_dir() . 'libs/stories/stories.php'; // new stories system
+		require_once self::plugin_dir() . 'libs/rating/rating.php';
+		require_once self::plugin_dir() . 'libs/pro-awareness/pro-awareness.php'; // pro menu class file
 		require_once self::plugin_dir() . 'helpers/utils.php';
 		
 		// Load translation
@@ -252,7 +254,7 @@ final class ElementsKit_Lite{
 		\Oxaim\Libs\Notice::init();
 
 		// init pro menu class
-		\Wpmet\Libs\Pro_Awareness\Init::init();
+		\Wpmet\Libs\Pro_Awareness::init();
 
 		// Check if Elementor installed and activated.
 		if ( ! did_action( 'elementor/loaded' ) ) {
@@ -268,7 +270,7 @@ final class ElementsKit_Lite{
 		// Once we get here, We have passed all validation checks so we can safely include our plugin.
 
 		// Register ElementsKit_Lite widget category
-		add_action('elementor/init', [$this, 'elementor_widget_category']);
+		add_action('elementor/elements/categories_registered', [$this, 'elementor_widget_category']);
 
 		add_action( 'elementor/init', function(){
 			if(class_exists('ElementsKit') && !class_exists('ElementsKit_Comp')){

@@ -21,10 +21,27 @@ class Utils{
         return (isset($data_all[$key]) && $data_all[$key] != '') ? $data_all[$key] : $default;
     }
 
+    public function get_settings($key, $default = ''){
+        $data_all = $this->get_option('settings', []);
+        return (isset($data_all[$key]) && $data_all[$key] != '') ? $data_all[$key] : $default;
+    }
+
     public function save_option($key, $value = ''){
         $data_all = get_option(self::$key);
         $data_all[$key] = $value;
         update_option('elementskit_options', $data_all);
+    }
+
+    /*
+        -> this method used to check weather the widget active/deactive
+        -> this method takes two paramitter 1. widget name 2. Active/deactive hook
+     */ 
+    public function is_widget_active_class( $widget_name, $pro_active ){
+        if($pro_active){
+            return 'label-'.esc_attr($widget_name).' attr-panel-heading';
+        }else{
+            return 'label-'.esc_attr($widget_name).' attr-panel-heading pro-disabled';
+        }
     }
 
     public function input($input_options){

@@ -7,7 +7,7 @@
 					
 					<?php if ( !empty( $testimonial['client_photo']['url'] ) ): ?>
 					<div class="elementskit-commentor-image">
-						<img src="<?php echo esc_url($clientLogo); ?>" height="<?php echo esc_attr($ekit_testimonial_client_image_size['size']); ?>" width="<?php echo esc_attr($ekit_testimonial_client_image_size['size']); ?>" alt="<?php esc_attr_e("Client Photo", "agmycoo");?>">
+						<img src="<?php echo esc_url($clientLogo); ?>" height="<?php echo esc_attr($ekit_testimonial_client_image_size['size']); ?>" width="<?php echo esc_attr($ekit_testimonial_client_image_size['size']); ?>" alt="<?php esc_attr_e("Client Photo", "elementskit-lite");?>">
 					</div>
 					<?php endif; ?>
 				<?php } ?>
@@ -52,7 +52,7 @@
 								$iconStart = 'fas fa-star active';
 							}
 						?>
-						<li><a href="#"><i class="<?php esc_attr_e( $iconStart );?>"></i></a></li>
+						<li><a href="#"><i class="<?php esc_attr_e( $iconStart, 'elementskit-lite' );?>"></i></a></li>
 					<?php }?>
 				</ul>
 				<?php endif; ?>

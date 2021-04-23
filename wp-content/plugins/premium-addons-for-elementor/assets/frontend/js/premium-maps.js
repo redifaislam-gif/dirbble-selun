@@ -1,7 +1,9 @@
 jQuery(window).on("elementor/frontend/init", function () {
+
     elementorFrontend.hooks.addAction(
         "frontend/element_ready/premium-addon-maps.default",
         function ($scope, $) {
+
             var mapElement = $scope.find(".premium_maps_map_height");
 
             var mapSettings = mapElement.data("settings");
@@ -60,6 +62,7 @@ jQuery(window).on("elementor/frontend/init", function () {
                 ),
                     icon_img = pin.attr("data-icon"),
                     maxWidth = pin.attr("data-max-width"),
+                    customID = pin.attr("data-id"),
                     iconSize = parseInt(pin.attr("data-icon-size"));
 
                 if (icon_img != "") {
@@ -84,13 +87,36 @@ jQuery(window).on("elementor/frontend/init", function () {
                     icon: icon
                 });
 
+
                 // add to array
                 map.markers.push(marker);
 
                 premiumMapMarkers.push(marker);
 
-                // if marker contains HTML, add it to an infoWindow
+                //Used with Carousel Custom Navigation option
+                if (customID) {
+                    google.maps.event.addListener(marker, "click", function () {
 
+                        var $carouselWidget = $(".premium-carousel-wrapper");
+
+                        if ($carouselWidget.length) {
+                            $carouselWidget.map(function (index, item) {
+                                var carouselSettings = $(item).data("settings");
+
+                                if (carouselSettings.navigation) {
+                                    if (-1 != carouselSettings.navigation.indexOf("#" + customID)) {
+                                        var slideIndex = carouselSettings.navigation.indexOf("#" + customID);
+                                        $(item).find(".premium-carousel-inner").slick("slickGoTo", slideIndex);
+                                    }
+                                }
+                            })
+
+                        }
+
+                    });
+                }
+
+                // if marker contains HTML, add it to an infoWindow
                 if (
                     pin.find(".premium-maps-info-title").html() ||
                     pin.find(".premium-maps-info-desc").html()
@@ -115,6 +141,27 @@ jQuery(window).on("elementor/frontend/init", function () {
                     }
                     // show info window when marker is clicked
                     google.maps.event.addListener(marker, "click", function () {
+
+                        //Used with Carousel Custom Navigation option
+                        if (customID) {
+
+                            var $carouselWidget = $(".premium-carousel-wrapper");
+
+                            if ($carouselWidget.length) {
+                                $carouselWidget.map(function (index, item) {
+                                    var carouselSettings = $(item).data("settings");
+
+                                    if (carouselSettings.navigation) {
+                                        if (-1 != carouselSettings.navigation.indexOf("#" + customID)) {
+                                            var slideIndex = carouselSettings.navigation.indexOf("#" + customID);
+                                            $carouselWidget.find(".premium-carousel-inner").slick("slickGoTo", slideIndex);
+                                        }
+                                    }
+                                })
+
+                            }
+
+                        }
                         infowindow.open(map, marker);
                     });
                 }

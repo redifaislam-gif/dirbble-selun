@@ -2,7 +2,9 @@
 
 namespace PremiumAddons\Includes\Templates\Types;
 
-if ( ! defined('ABSPATH') ) exit; // No access of directly access
+if ( ! defined( 'ABSPATH' ) ) {
+	exit; // No access of directly access
+}
 
 if ( ! class_exists( 'Premium_Structure_Base' ) ) {
 
@@ -24,9 +26,9 @@ if ( ! class_exists( 'Premium_Structure_Base' ) ) {
 		/**
 		 * Is current structure could be outputed as location
 		 *
-         * @since 3.6.0
-         * @access public
-         * 
+		 * @since 3.6.0
+		 * @access public
+		 *
 		 * @return boolean
 		 */
 		public function is_location() {
@@ -35,10 +37,10 @@ if ( ! class_exists( 'Premium_Structure_Base' ) ) {
 
 		/**
 		 * Location name
-         * 
+		 *
 		 * @since 3.6.0
-         * @access public
-         * 
+		 * @access public
+		 *
 		 * @return boolean
 		 */
 		public function location_name() {

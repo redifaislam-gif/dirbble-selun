@@ -119,6 +119,11 @@ class Module_List{
             'package' => 'pro-disabled',
             'title' => 'Cross-Domain Copy Paste'
         ],
+        'advanced-tooltip'  => [
+            'slug'      => 'advanced-tooltip',
+            'package'   => 'pro-disabled',
+            'title'     => 'Advanced Tooltip',
+        ]
     ];
     
 }

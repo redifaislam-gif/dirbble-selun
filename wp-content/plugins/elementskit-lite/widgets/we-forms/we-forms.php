@@ -32,6 +32,10 @@ class ElementsKit_Widget_We_Forms extends Widget_Base {
         return Handler::get_categories();
 	}
 
+    public function get_help_url() {
+        return '';
+    }
+
     protected function _register_controls() {
         $this->start_controls_section(
             'ekit_weform_section_tab', [
@@ -135,7 +139,6 @@ class ElementsKit_Widget_We_Forms extends Widget_Base {
                 'name' => 'ekit_weform_field_typography',
                 'label' => __( 'Typography', 'elementskit-lite' ),
                 'selector' => '{{WRAPPER}} .wpuf-form-add.wpuf-style ul.wpuf-form .wpuf-fields input:not(.weforms_submit_btn), .wpuf-form-add.wpuf-style ul.wpuf-form .wpuf-fields textarea',
-                'scheme' => Scheme_Typography::TYPOGRAPHY_3
             ]
         );
 
@@ -287,7 +290,6 @@ class ElementsKit_Widget_We_Forms extends Widget_Base {
                 'name' => 'ekit_weform_label_typography',
                 'label' => __( 'Label Typography', 'elementskit-lite' ),
                 'selector' => '{{WRAPPER}} .wpuf-label label, {{WRAPPER}} .wpuf-form-sub-label',
-                'scheme' => Scheme_Typography::TYPOGRAPHY_3
             ]
         );
 
@@ -297,7 +299,6 @@ class ElementsKit_Widget_We_Forms extends Widget_Base {
                 'name' => 'ekit_weform_desc_typography',
                 'label' => __( 'Help Text Typography', 'elementskit-lite' ),
                 'selector' => '{{WRAPPER}} .wpuf-fields .wpuf-help',
-                'scheme' => Scheme_Typography::TYPOGRAPHY_3
             ]
         );
 
@@ -444,7 +445,6 @@ class ElementsKit_Widget_We_Forms extends Widget_Base {
             [
                 'name' => 'ekit_weform_submit_typography',
                 'selector' => '{{WRAPPER}} .wpuf-form-add.wpuf-style ul.wpuf-form .wpuf-submit input[type=submit]',
-                'scheme' => Scheme_Typography::TYPOGRAPHY_4
             ]
         );
 

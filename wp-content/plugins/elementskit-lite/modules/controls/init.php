@@ -78,7 +78,7 @@ class Init{
          * Use dependencies ['jquery', 'elementor-frontend']
          * Using ['jquery', 'elementor-editor'] causes Advanced Widgets content editor window not to open
          */
-		wp_enqueue_script( 'elementskit-js-widgetarea-control-editor',  self::get_url() . 'assets/js/widgetarea-editor.js', ['jquery', 'elementor-frontend'], \ElementsKit_Lite::version() );
+		wp_enqueue_script( 'elementskit-js-widgetarea-control-editor',  self::get_url() . 'assets/js/widgetarea-editor.js', ['jquery', 'elementor-frontend'], \ElementsKit_Lite::version(), true );
     }
     
 	public function widgetarea_enqueue_styles_editor() {

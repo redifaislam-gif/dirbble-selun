@@ -398,21 +398,6 @@ if ( ! class_exists( 'Astra_Admin_Settings' ) ) {
 		 * @return void
 		 */
 		public static function register_scripts( $hook ) {
-			$js_prefix  = '.min.js';
-			$css_prefix = '.min.css';
-			$dir        = 'minified';
-			if ( SCRIPT_DEBUG ) {
-				$js_prefix  = '.js';
-				$css_prefix = '.css';
-				$dir        = 'unminified';
-			}
-
-			if ( is_rtl() ) {
-				$css_prefix = '-rtl.min.css';
-				if ( SCRIPT_DEBUG ) {
-					$css_prefix = '-rtl.css';
-				}
-			}
 
 			if ( in_array( $hook, array( 'post.php', 'post-new.php' ) ) ) {
 				$post_types = get_post_types( array( 'public' => true ) );
@@ -491,6 +476,9 @@ if ( ! class_exists( 'Astra_Admin_Settings' ) ) {
 				'recommendedPluiginDeactivateText'   => __( 'Deactivate', 'astra' ),
 				'recommendedPluiginSettingsText'     => __( 'Settings', 'astra' ),
 				'astraPluginManagerNonce'            => wp_create_nonce( 'astra-recommended-plugin-nonce' ),
+				'ajax_nonce'                         => wp_create_nonce( 'astra-builder-module-nonce' ),
+				'old_header_footer'                  => __( 'Use Old Header/Footer', 'astra' ),
+				'migrate_to_builder'                 => __( 'Use New Header/Footer Builder', 'astra' ),
 			);
 			wp_localize_script( 'astra-admin-settings', 'astra', apply_filters( 'astra_theme_js_localize', $localize ) );
 
@@ -559,7 +547,6 @@ if ( ! class_exists( 'Astra_Admin_Settings' ) ) {
 
 			$current_slug = isset( $_GET['action'] ) ? sanitize_text_field( wp_unslash( $_GET['action'] ) ) : self::$current_slug; // phpcs:ignore WordPress.Security.NonceVerification.Recommended
 
-			$active_tab   = str_replace( '_', '-', $current_slug );
 			$current_slug = str_replace( '-', '_', $current_slug );
 
 			$ast_icon           = apply_filters( 'astra_page_top_icon', true );
@@ -612,11 +599,11 @@ if ( ! class_exists( 'Astra_Admin_Settings' ) ) {
 			?>
 
 			<div class="postbox">
-				<h2 class="hndle ast-normal-cusror">
+				<h2 class="hndle ast-normal-cursor">
 					<span class="dashicons dashicons-admin-customizer"></span>
 					<span><?php echo esc_html( apply_filters( 'astra_sites_menu_page_title', __( 'Import Starter Template', 'astra' ) ) ); ?></span>
 				</h2>
-				<img class="ast-starter-sites-img" src="<?php echo esc_url( ASTRA_THEME_URI . 'assets/images/astra-starter-sites.jpg' ); ?>">
+				<img class="ast-starter-sites-img" alt="Starter Templates" src="<?php echo esc_url( ASTRA_THEME_URI . 'assets/images/astra-starter-sites.jpg' ); ?>">
 				<div class="inside">
 					<p>
 						<?php
@@ -679,7 +666,7 @@ if ( ! class_exists( 'Astra_Admin_Settings' ) ) {
 			?>
 
 			<div class="postbox">
-				<h2 class="hndle ast-normal-cusror">
+				<h2 class="hndle ast-normal-cursor">
 					<span class="dashicons dashicons-book"></span>
 					<span><?php esc_html_e( 'Knowledge Base', 'astra' ); ?></span>
 				</h2>
@@ -717,7 +704,7 @@ if ( ! class_exists( 'Astra_Admin_Settings' ) ) {
 			?>
 
 			<div class="postbox">
-				<h2 class="hndle ast-normal-cusror">
+				<h2 class="hndle ast-normal-cursor">
 					<span class="dashicons dashicons-groups"></span>
 					<span>
 						<?php
@@ -768,7 +755,7 @@ if ( ! class_exists( 'Astra_Admin_Settings' ) ) {
 			?>
 
 			<div class="postbox">
-				<h2 class="hndle ast-normal-cusror">
+				<h2 class="hndle ast-normal-cursor">
 					<span class="dashicons dashicons-sos"></span>
 					<span><?php esc_html_e( 'Five Star Support', 'astra' ); ?></span>
 				</h2>
@@ -811,40 +798,40 @@ if ( ! class_exists( 'Astra_Admin_Settings' ) ) {
 			$quick_settings = apply_filters(
 				'astra_quick_settings',
 				array(
+					'header'       => array(
+						'title'     => __( 'Header Options', 'astra' ),
+						'dashicon'  => 'dashicons-align-center',
+						'quick_url' => admin_url( 'customize.php?autofocus[panel]=panel-header-group' ),
+					),
 					'logo-favicon' => array(
 						'title'     => __( 'Upload Logo', 'astra' ),
 						'dashicon'  => 'dashicons-format-image',
 						'quick_url' => admin_url( 'customize.php?autofocus[control]=custom_logo' ),
+					),
+					'footer'       => array(
+						'title'     => __( 'Footer Settings', 'astra' ),
+						'dashicon'  => 'dashicons-align-wide',
+						'quick_url' => admin_url( 'customize.php?autofocus[section]=section-footer-group' ),
 					),
 					'colors'       => array(
 						'title'     => __( 'Set Colors', 'astra' ),
 						'dashicon'  => 'dashicons-admin-customizer',
 						'quick_url' => admin_url( 'customize.php?autofocus[section]=section-colors-background' ),
 					),
-					'typography'   => array(
-						'title'     => __( 'Customize Fonts', 'astra' ),
-						'dashicon'  => 'dashicons-editor-textcolor',
-						'quick_url' => admin_url( 'customize.php?autofocus[section]=section-typography' ),
-					),
 					'layout'       => array(
 						'title'     => __( 'Layout Options', 'astra' ),
 						'dashicon'  => 'dashicons-layout',
 						'quick_url' => admin_url( 'customize.php?autofocus[section]=section-container-layout' ),
 					),
-					'header'       => array(
-						'title'     => __( 'Header Options', 'astra' ),
-						'dashicon'  => 'dashicons-align-center',
-						'quick_url' => admin_url( 'customize.php?autofocus[panel]=panel-header-group' ),
+					'typography'   => array(
+						'title'     => __( 'Customize Fonts', 'astra' ),
+						'dashicon'  => 'dashicons-editor-textcolor',
+						'quick_url' => admin_url( 'customize.php?autofocus[section]=section-typography' ),
 					),
 					'blog-layout'  => array(
 						'title'     => __( 'Blog Layouts', 'astra' ),
 						'dashicon'  => 'dashicons-welcome-write-blog',
 						'quick_url' => admin_url( 'customize.php?autofocus[section]=section-blog-group' ),
-					),
-					'footer'       => array(
-						'title'     => __( 'Footer Settings', 'astra' ),
-						'dashicon'  => 'dashicons-admin-generic',
-						'quick_url' => admin_url( 'customize.php?autofocus[section]=section-footer-group' ),
 					),
 					'sidebars'     => array(
 						'title'     => __( 'Sidebar Options', 'astra' ),
@@ -942,7 +929,7 @@ if ( ! class_exists( 'Astra_Admin_Settings' ) ) {
 						'links'     => array(
 							array(
 								'link_class'   => 'ast-learn-more',
-								'link_url'     => astra_get_pro_url( 'https://wpastra.com/docs/how-to-white-label-astra/', 'astra-dashboard', 'learn-more', 'welcome-page' ),
+								'link_url'     => astra_get_pro_url( 'https://wpastra.com/docs/nav-menu-addon/', 'astra-dashboard', 'learn-more', 'welcome-page' ),
 								'link_text'    => __( 'Learn More &#187;', 'astra' ),
 								'target_blank' => true,
 							),
@@ -1051,7 +1038,7 @@ if ( ! class_exists( 'Astra_Admin_Settings' ) ) {
 						'links'     => array(
 							array(
 								'link_class'   => 'ast-learn-more',
-								'link_url'     => astra_get_pro_url( 'https://wpastra.com/docs', 'astra-dashboard', 'learn-more', 'welcome-page' ),
+								'link_url'     => astra_get_pro_url( 'https://wpastra.com/docs/easy-digital-downloads-module-overview/', 'astra-dashboard', 'learn-more', 'welcome-page' ),
 								'link_text'    => __( 'Learn More &#187;', 'astra' ),
 								'target_blank' => true,
 							),
@@ -1101,7 +1088,7 @@ if ( ! class_exists( 'Astra_Admin_Settings' ) ) {
 			);
 			?>
 			<div class="postbox">
-				<h2 class="hndle ast-normal-cusror"><span><?php esc_html_e( 'Links to Customizer Settings:', 'astra' ); ?></span></h2>
+				<h2 class="hndle ast-normal-cursor"><span><?php esc_html_e( 'Links to Customizer Settings:', 'astra' ); ?></span></h2>
 					<div class="ast-quick-setting-section">
 						<?php
 						if ( ! empty( $quick_settings ) ) :
@@ -1110,7 +1097,7 @@ if ( ! class_exists( 'Astra_Admin_Settings' ) ) {
 								<ul class="ast-flex">
 									<?php
 									foreach ( (array) $quick_settings as $key => $link ) {
-										echo '<li class=""><span class="dashicons ' . esc_attr( $link['dashicon'] ) . '"></span><a class="ast-quick-setting-title" href="' . esc_url( $link['quick_url'] ) . '" target="_blank" rel="noopener">' . esc_html( $link['title'] ) . '</a></li>';
+										echo '<li class="' . esc_attr( $key ) . '"><span class="dashicons ' . esc_attr( $link['dashicon'] ) . '"></span><a class="ast-quick-setting-title" href="' . esc_url( $link['quick_url'] ) . '" target="_blank" rel="noopener">' . esc_html( $link['title'] ) . '</a></li>';
 									}
 									?>
 								</ul>
@@ -1120,7 +1107,7 @@ if ( ! class_exists( 'Astra_Admin_Settings' ) ) {
 			</div>
 
 			<div class="postbox">
-				<h2 class="hndle ast-normal-cusror ast-addon-heading ast-flex"><span><?php echo esc_html( $astra_addon_tagline ); ?></span>
+				<h2 class="hndle ast-normal-cursor ast-addon-heading ast-flex"><span><?php echo esc_html( $astra_addon_tagline ); ?></span>
 					<?php do_action( 'astra_addon_bulk_action' ); ?>
 				</h2>
 					<div class="ast-addon-list-section">
@@ -1259,7 +1246,7 @@ if ( ! class_exists( 'Astra_Admin_Settings' ) ) {
 				?>
 
 				<div class="postbox">
-					<h2 class="hndle ast-normal-cusror ast-addon-heading ast-flex"><span><?php echo esc_html( $astra_addon_tagline ); ?></span>
+					<h2 class="hndle ast-normal-cursor ast-addon-heading ast-flex"><span><?php echo esc_html( $astra_addon_tagline ); ?></span>
 					</h2>
 						<div class="ast-addon-list-section">
 							<?php
@@ -1490,19 +1477,6 @@ if ( ! class_exists( 'Astra_Admin_Settings' ) ) {
 		 * @since 1.2.4
 		 */
 		public static function top_header_right_section() {
-
-			$allowed_html = array(
-				'svg'  => array(
-					'width'   => array(),
-					'height'  => array(),
-					'xmlns'   => array(),
-					'viewBox' => array(),
-				),
-				'path' => array(
-					'fill' => array(),
-					'd'    => array(),
-				),
-			);
 
 			$top_links = apply_filters(
 				'astra_header_top_links',

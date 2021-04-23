@@ -1,10 +1,15 @@
 <?php
+/**
+ * PA WPML Google Maps.
+ */
 
 namespace PremiumAddons\Compatibility\WPML\Widgets;
 
 use WPML_Elementor_Module_With_Items;
 
-if ( ! defined('ABSPATH') ) exit; // No access of directly access
+if ( ! defined( 'ABSPATH' ) ) {
+	exit; // No access of directly access.
+}
 
 /**
  * Fancy Text
@@ -35,9 +40,9 @@ class Maps extends WPML_Elementor_Module_With_Items {
 	public function get_fields() {
 		return array(
 			'map_latitude',
-            'map_longitude',
-            'pin_title',
-            'pin_desc'
+			'map_longitude',
+			'pin_title',
+			'pin_desc',
 		);
 	}
 
@@ -46,31 +51,35 @@ class Maps extends WPML_Elementor_Module_With_Items {
 	 *
 	 * @since 3.1.9
 	 *
+	 * @param string $field control ID.
+	 *
 	 * @return string
 	 */
 	protected function get_title( $field ) {
-		
-        if ( 'map_latitude' === $field ) {
+
+		if ( 'map_latitude' === $field ) {
 			return __( 'Maps: Marker Latitude', 'premium-addons-for-elementor' );
 		}
-        if ( 'map_longitude' === $field ) {
+		if ( 'map_longitude' === $field ) {
 			return __( 'Maps: Marker Longitude', 'premium-addons-for-elementor' );
 		}
-        if ( 'pin_title' === $field ) {
+		if ( 'pin_title' === $field ) {
 			return __( 'Maps: Marker Title', 'premium-addons-for-elementor' );
 		}
-        if ( 'pin_desc' === $field ) {
+		if ( 'pin_desc' === $field ) {
 			return __( 'Maps: Marker Description', 'premium-addons-for-elementor' );
 		}
-        
+
 		return '';
-		
+
 	}
 
 	/**
 	 * Get `editor_type` for each repeater string
 	 *
 	 * @since 3.1.9
+	 *
+	 * @param string $field control ID.
 	 *
 	 * @return string
 	 */
@@ -79,7 +88,7 @@ class Maps extends WPML_Elementor_Module_With_Items {
 		if ( 'map_latitude' === $field || 'map_longitude' === $field || 'pin_title' === $field ) {
 			return 'LINE';
 		}
-        if ( 'pin_desc' === $field ) {
+		if ( 'pin_desc' === $field ) {
 			return 'AREA';
 		}
 

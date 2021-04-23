@@ -14,7 +14,7 @@ class ElementsKit_Widget_Client_Logo extends Widget_Base {
     
     public function __construct( $data = [], $args = null ) {
 		parent::__construct( $data, $args );
-		$this->add_script_depends('jquery-slick');
+		// $this->add_script_depends('ekit-slick'); // deprecated
 	}
 
 	public function get_name() {
@@ -31,6 +31,10 @@ class ElementsKit_Widget_Client_Logo extends Widget_Base {
 
     public function get_categories() {
         return Handler::get_categories();
+    }
+
+    public function get_help_url() {
+        return '';
     }
 
     protected function _register_controls() {
@@ -119,7 +123,7 @@ class ElementsKit_Widget_Client_Logo extends Widget_Base {
             [
                 'label' => esc_html__( 'Link', 'elementskit-lite' ),
                 'type' => Controls_Manager::URL,
-                'placeholder' => esc_html__( 'https://your-link.com', 'elementskit-lite' ),
+                'placeholder' => esc_html__( 'https://wpmet.com', 'elementskit-lite' ),
                 'show_external' => true,
                 'condition' => [
                     'ekit_client_logo_enable_link' => 'yes'
@@ -439,7 +443,7 @@ class ElementsKit_Widget_Client_Logo extends Widget_Base {
         $this->start_controls_section(
 			'ekit_client_logo_container_style_tab',
 			[
-				'label' => esc_html__( 'Container', 'plugin-name' ),
+				'label' => esc_html__( 'Container', 'elementskit-lite' ),
 				'tab' => Controls_Manager::TAB_STYLE,
 			]
         );

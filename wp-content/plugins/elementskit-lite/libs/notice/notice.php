@@ -12,7 +12,7 @@ class Notice{
      *
      * @var string
      */
-    protected $script_version = '2.0.3';
+    protected $script_version = '2.0.5';
 
     /**
      * Unique ID to identify each notice
@@ -285,7 +285,6 @@ class Notice{
         }else{
             $expired = '';
         }
-        // echo $expired; exit;
 
         global $oxaim_lib_notice_list;
 
@@ -325,7 +324,7 @@ class Notice{
             <div class="notice-right-container">
 
                 <?php if(empty($this->html)): ?>
-                    <div class="extension-message">
+                    <div class="main-message">
                         <?php echo (empty($this->title) ? '' : sprintf('<h3>%s</h3>', $this->title)); ?>
                         <?php echo ( $this->message );?>
                     </div>
@@ -371,7 +370,6 @@ class Notice{
 		$notice_id   = ( isset( $_POST['notice_id'] ) ) ? $_POST['notice_id'] : '';
 		$dismissible = ( isset( $_POST['dismissible'] ) ) ? $_POST['dismissible'] : '';
 		$expired_time = ( isset( $_POST['expired_time'] ) ) ? $_POST['expired_time'] : '';
-        // print_r([$notice_id, $dismissible, $expired_time]);
 
 		if ( ! empty( $notice_id ) ) {
 			if ( 'user' === $dismissible ) {
@@ -392,22 +390,24 @@ class Notice{
                 jQuery(document).ready(function ($) {
                     $( '.wpmet-notice.is-dismissible' ).on( 'click', '.notice-dismiss', function() {
 
-                        _this 		= $( this ).parents('.wpmet-notice').eq(0);
-                        var notice_id 	= _this.attr( 'id' ) || '';
+                        _this 		        = $( this ).parents('.wpmet-notice').eq(0);
+                        var notice_id 	    = _this.attr( 'id' ) || '';
                         var expired_time 	= _this.attr( 'expired_time' ) || '';
                         var dismissible 	= _this.attr( 'dismissible' ) || '';
-                        var x = $( this ).attr('class');
+                        var x               = $( this ).attr('class');
 
-                        console.log({
-                            _this, x, notice_id, expired_time, dismissible
-                        });
+                        // console.log({
+                        //     _this, x, notice_id, expired_time, dismissible
+                        // });
                         // return;
+
+                        _this.addClass('hidden');
 
                         $.ajax({
                             url: ajaxurl,
                             type: 'POST',
                             data: {
-                                action 	: 'wpmet-notices',
+                                action 	        : 'wpmet-notices',
                                 notice_id 		: notice_id,
                                 dismissible 	: dismissible,
                                 expired_time 	: expired_time,
@@ -426,6 +426,10 @@ class Notice{
                     margin-top: -1px;
                 }
 
+                .wpmet-notice .main-message{
+                    margin-bottom: 10px;
+                }
+
                 .wpmet-notice-buttons {
                     text-decoration:none;
                 }
@@ -435,10 +439,13 @@ class Notice{
                 }
 
                 .wpmet-notice .notice-right-container{
-                    padding-top: 10px;
+                    /* padding-top: 10px; */
                 }
                 .wpmet-notice .notice-right-container .submit {
-                    padding-top: 8px
+                    padding-top: 0;
+                    margin-top: 0;
+                    margin-bottom: 15px;
+                    padding-bottom: 0;
                 }
 
                 .wpmet-notice img{

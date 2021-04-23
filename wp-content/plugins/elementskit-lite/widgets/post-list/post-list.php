@@ -31,6 +31,10 @@ class ElementsKit_Widget_Post_List extends Widget_Base {
         return Handler::get_categories();
     }
 
+    public function get_help_url() {
+        return '';
+    }
+
 	protected function _register_controls() {
 
 		$this->start_controls_section(
@@ -189,6 +193,49 @@ class ElementsKit_Widget_Post_List extends Widget_Base {
 				'default' => 'no',
 			]
 		);
+       
+
+        /**
+        * Control: Featured Image Size
+        */
+        $this->add_group_control(
+            Group_Control_Image_Size::get_type(),
+            [
+                'name'              => 'show_feature_img_size',
+                'fields_options'    => [
+                    'size'  => [
+                        'label' => esc_html__( 'Featured Image Size', 'elementskit-lite' ),
+                    ],
+                ],
+                'default'           => 'large',
+                'conditions'        => [
+					'relation'	=> 'or',
+					'terms'		=> [
+						[
+							'name'		=> 'show_feature_image',
+							'operator'	=> '==',
+							'value'		=> 'yes',
+						],
+						[
+							'name'		=> 'show_bg_feature_image',
+							'operator'	=> '==',
+							'value'		=> 'yes',
+						],
+					],
+                ],
+            ]
+        );
+
+
+        /**
+        * Control: Divider After Featured Image Size
+        */
+		$this->add_control(
+			'ekit_post_list_divider_after_featured',
+			[
+				'type'	=> Controls_Manager::DIVIDER,
+			]
+		);
 
 
 		$this->add_control(
@@ -214,7 +261,7 @@ class ElementsKit_Widget_Post_List extends Widget_Base {
 				'label_block' => true,
 				'fa4compatibility' => 'icon',
 				'default'	=> [
-					'value'	=> 'far fa-circle',
+					'value'	=> 'fas fa-circle',
 					'library'	=> 'regular'
 				],
 				'condition'	=> [
@@ -476,7 +523,7 @@ class ElementsKit_Widget_Post_List extends Widget_Base {
 
         $this->end_controls_tabs();
 
-		$this->add_control(
+		$this->add_responsive_control(
 			'icon_align',
 			[
 				'label' => esc_html__( 'Alignment', 'elementskit-lite' ),
@@ -484,18 +531,18 @@ class ElementsKit_Widget_Post_List extends Widget_Base {
 				'options' => [
 					'left' => [
 						'title' => esc_html__( 'Left', 'elementskit-lite' ),
-						'icon' => 'eicon-h-align-left',
+						'icon' => 'eicon-text-align-left',
 					],
 					'center' => [
 						'title' => esc_html__( 'Center', 'elementskit-lite' ),
-						'icon' => 'eicon-h-align-center',
+						'icon' => 'eicon-text-align-center',
 					],
 					'right' => [
 						'title' => esc_html__( 'Right', 'elementskit-lite' ),
-						'icon' => 'eicon-h-align-right',
+						'icon' => 'eicon-text-align-right',
 					],
 				],
-				'prefix_class' => 'elementor-align-',
+				'prefix_class' => 'elementor%s-align-',
 			]
 		);
 		
@@ -674,10 +721,6 @@ class ElementsKit_Widget_Post_List extends Widget_Base {
 				'label' => esc_html__( 'Color', 'elementskit-lite' ),
 				'type' => Controls_Manager::COLOR,
 				'default' => '#ddd',
-				'scheme' => [
-					'type' => Scheme_Color::get_type(),
-					'value' => Scheme_Color::COLOR_3,
-				],
 				'condition' => [
 					'divider' => 'yes',
 				],
@@ -818,10 +861,6 @@ class ElementsKit_Widget_Post_List extends Widget_Base {
 					'{{WRAPPER}} .elementor-icon-list-icon i' => 'color: {{VALUE}};',
 					'{{WRAPPER}} .elementor-icon-list-icon svg path'	=> 'stroke: {{VALUE}}; fill: {{VALUE}};',
 				],
-				'scheme' => [
-					'type' => Scheme_Color::get_type(),
-					'value' => Scheme_Color::COLOR_1,
-				],
 			]
 		);
 
@@ -878,10 +917,6 @@ class ElementsKit_Widget_Post_List extends Widget_Base {
 				'selectors' => [
 					'{{WRAPPER}} .elementor-icon-list-text' => 'color: {{VALUE}};',
 				],
-				'scheme' => [
-					'type' => Scheme_Color::get_type(),
-					'value' => Scheme_Color::COLOR_2,
-				],
 			]
 		);
 
@@ -921,7 +956,6 @@ class ElementsKit_Widget_Post_List extends Widget_Base {
 			[
 				'name' => 'icon_typography',
 				'selector' => '{{WRAPPER}} .elementor-icon-list-item',
-				'scheme' => Scheme_Typography::TYPOGRAPHY_3,
 			]
 		);
 
@@ -993,7 +1027,6 @@ class ElementsKit_Widget_Post_List extends Widget_Base {
 			[
 				'name' => 'ekit_post_list_meta_content_typography',
 				'label' => esc_html__( 'Typography', 'elementskit-lite' ),
-				'scheme' => Scheme_Typography::TYPOGRAPHY_1,
 				'selector' => '{{WRAPPER}} .elementor-icon-list-item .meta-lists > span',
 			]
 		);
@@ -1191,13 +1224,13 @@ class ElementsKit_Widget_Post_List extends Widget_Base {
 		
 
 		ob_start();
-		$feature_bg_url = get_the_post_thumbnail_url($post, 'full');
+		$feature_bg_url = get_the_post_thumbnail_url($post, $settings['show_feature_img_size_size']);
 		?>
 			<li class="elementor-icon-list-item <?php echo esc_attr($grid_d); ?> <?php echo esc_attr($grid_t); ?> <?php echo esc_attr($grid_m); ?>">
-				<a href="<?php echo esc_url(get_the_permalink($post->ID)); ?>" <?php if(isset($settings['show_bg_feature_image']) && $settings['show_bg_feature_image'] == 'yes' && !empty($feature_bg_url)) : ?>style="background-image: url('<?php echo get_the_post_thumbnail_url($post, 'full'); ?>')" <?php endif; ?>>
+				<a href="<?php echo esc_url(get_the_permalink($post->ID)); ?>" <?php if(isset($settings['show_bg_feature_image']) && $settings['show_bg_feature_image'] == 'yes' && !empty($feature_bg_url)) : ?>style="background-image: url('<?php echo esc_attr( $feature_bg_url ); ?>')" <?php endif; ?>>
 					<?php 
 						if ($settings['show_feature_image'] == 'yes') {
-							echo get_the_post_thumbnail($post->ID, 'full');
+							echo get_the_post_thumbnail($post->ID, $settings['show_feature_img_size_size']);
 						} else {
 							if ( $settings['show_post_icon'] === 'yes' ) { ?>
 								<span class="elementor-icon-list-icon">
@@ -1283,7 +1316,7 @@ class ElementsKit_Widget_Post_List extends Widget_Base {
 						};
 						?>
 
-						<span class="elementor-icon-list-text"><?php echo esc_html($text, 'elementskit-lite'); ?></span>
+						<span class="elementor-icon-list-text"><?php echo esc_html($text); ?></span>
 
 						<?php if ($settings['show_post_meta'] == 'yes') { 
 							if ($settings['post_meta_position'] == 'bottom_position') {
@@ -1377,11 +1410,9 @@ class ElementsKit_Widget_Post_List extends Widget_Base {
 				$post_args['order']		= 'DESC';
 			}
 			$posts = get_posts($post_args);
-
-			
 			
 			if($settings['section_layout_options'] === 'recent' || $settings['section_layout_options'] === 'popular'){
-				if(count($posts) > 0){
+				if( is_countable($posts) && count($posts) > 0){
 					foreach($posts as $post){
 						echo $this->post_list($post);
 					}
@@ -1399,6 +1430,4 @@ class ElementsKit_Widget_Post_List extends Widget_Base {
 		</ul>
 		<?php
 	}
-
-
 }
